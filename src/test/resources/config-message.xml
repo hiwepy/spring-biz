@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<bean id="staticResource" class="org.springframework.enhanced.context.support.ModuleMessageSource">
+		<!--
+			“useCodeAsDefaultMessage ”， 默认为false
+			，这样当Spring在ResourceBundle中找不到messageKey的话，
+			就抛出NoSuchMessageException，把它设置为true，则找不到不会抛出异常，而是使用messageKey作为返回值
+		-->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 定义消息资源文件的相对路径 -->
+		<property name="basenames">
+			<list>  
+             	<value>classpath*:Key</value>  
+             	<value>classpath*:system*</value>  
+             	<value>classpath*:runtime/runtime*</value>
+             	<value>classpath*:message/message*</value>  
+             	<value>classpath*:config/*config*</value>  
+         	</list>
+		</property>
+	</bean>
+	
+	<bean id="reloadableResource" class="org.springframework.enhanced.context.support.ModuleReloadableMessageSource ">
+		<!--
+			“useCodeAsDefaultMessage ”， 默认为false
+			，这样当Spring在ResourceBundle中找不到messageKey的话，
+			就抛出NoSuchMessageException，把它设置为true，则找不到不会抛出异常，而是使用messageKey作为返回值
+		-->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 定时刷新资源文件,可以不重启动; 以秒为单位,如果-1表示用不刷新 -->
+    	<property name="cacheSeconds" value="3000" />
+		<!-- 定义消息资源文件的相对路径 -->
+		<property name="basenames">
+			<list>  
+             	<value>classpath*:Key</value>  
+             	<value>classpath*:system*</value>  
+             	<value>classpath*:runtime/runtime*</value>
+             	<value>classpath*:message/message*</value>  
+             	<value>classpath*:config/*config*</value>  
+         	</list>
+		</property>
+	</bean>
+
+	<!-- 配置国际化资源文件路径 -->
+	<bean id="staticModuleResource" class="org.springframework.enhanced.context.support.ModuleReloadableMessageSource">
+		<!--
+			“useCodeAsDefaultMessage ”， 默认为false
+			，这样当Spring在ResourceBundle中找不到messageKey的话，
+			就抛出NoSuchMessageException，把它设置为true，则找不到不会抛出异常，而是使用messageKey作为返回值
+		-->
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>  
+             	<value>i18n/message-common</value>  
+             	<value>i18n/message-bygl</value>
+             	<value>i18n/message-cjgl</value>  
+             	<value>i18n/message-cxgl</value>  
+             	<value>i18n/message-fbbxh</value>  
+             	<value>i18n/message-jxjhgl</value>    
+             	<value>i18n/message-jxpjgl</value>
+             	<value>i18n/message-ksgl</value>
+             	<value>i18n/message-pkgl</value>
+             	<value>i18n/message-sygl</value>
+             	<value>i18n/message-xjgl</value>
+             	<value>i18n/message-xkgl</value>
+             	<value>i18n/message-hzsfdx10511</value>
+             	<value>i18n/message-njgydx10291</value>
+             	<value>i18n/message-zjdx10335</value>
+             	<value>i18n/message-zjjcxy11483</value>
+         	</list>
+		</property>
+	</bean>
+	
+
+	<!-- 配置国际化资源文件路径 -->
+	<bean id="reloadableModuleResource" class="org.springframework.enhanced.context.support.ModuleReloadableResourceBundleMessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 定时刷新资源文件,可以不重启动; 以秒为单位,如果-1表示用不刷新 -->
+    	<property name="cacheSeconds" value="3000" />
+		<!-- 定义消息资源文件的相对路径 -->
+		<property name="basenames">
+			<list>  
+             	<value>classpath:i18n/message-jwglxt</value>  
+             	<value>classpath:i18n/message-bygl</value>
+             	<value>classpath:i18n/message-cjgl</value>  
+             	<value>classpath:i18n/message-cxgl</value>  
+             	<value>classpath:i18n/message-fbbxh</value>  
+             	<value>classpath:i18n/message-jxjhgl</value>    
+             	<value>classpath:i18n/message-jxpjgl</value>
+             	<value>classpath:i18n/message-ksgl</value>
+             	<value>classpath:i18n/message-pkgl</value>
+             	<value>classpath:i18n/message-sygl</value>
+             	<value>classpath:i18n/message-xjgl</value>
+             	<value>classpath:i18n/message-xkgl</value>
+             	<value>classpath:i18n/message-hzsfdx10511</value>
+             	<value>classpath:i18n/message-njgydx10291</value>
+             	<value>classpath:i18n/message-zjdx10335</value>
+             	<value>classpath:i18n/message-zjjcxy11483</value>
+         	</list>
+		</property>
+	</bean>
+
+	<!-- 基于Cookie的本地化解析器 
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieMaxAge" value="604800" />
+		<property name="defaultLocale" value="zh_CN" />
+		<property name="cookieName" value="Language"></property>
+	</bean>-->
+	<!-- 基于Session的本地化解析器 -->
+	<!--
+		<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	-->
+
+	<!-- Message 工厂-->
+    <bean id="messageFactory" class="com.zfsoft.common.factory.MessageFactory"/>
+    
+</beans>

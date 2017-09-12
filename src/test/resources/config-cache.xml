@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- ehCache 配置管理器 -->
+    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml" />
+        <!--true:单例，一个cacheManager对象共享；false：多个对象独立  -->
+        <property name="shared" value="true" />
+        <property name="cacheManagerName" value="ehcacheManager" />
+    </bean>
+
+    <!-- ehCache 操作对象 -->
+    <bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+       <property name="cacheName" value="ehCache"/>
+       <property name="cacheManager" ref="ehcacheManager"/>
+    </bean>
+    
+    
+    <!-- 自定义ehcache+redis-->
+   <bean id="ehRedisCacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
+        <property name="caches">  
+            <set>  
+               <bean  id="ehRedisCache" class="org.musicmaster.yulin.ercache.EhRedisCache">  
+                     <property name="redisTemplate" ref="redisTemplate" />  
+                     <property name="ehCache" ref="ehCache"/> 
+                     <property name="name" value="userCache"/> 
+                <!-- <property name="liveTime" value="3600"/>  --> 
+                </bean>
+            </set>  
+        </property>  
+    </bean>  
+
+    <!-- 注解声明 -->
+    <cache:annotation-driven cache-manager="ehRedisCacheManager"  proxy-target-class="true"  /> 
+
+    
+</beans>
