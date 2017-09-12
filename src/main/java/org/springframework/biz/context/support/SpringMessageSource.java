@@ -18,15 +18,6 @@ package org.springframework.biz.context.support;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
-/**
- * *******************************************************************
- * @className	： HierarchicalMessageSource
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
- * @date		： Mar 2, 2016 12:11:50 PM
- * @version 	V1.0 
- * *******************************************************************
- */
 public interface SpringMessageSource{
 	
 	/**

@@ -26,27 +26,9 @@ public abstract class AbstractQuartzTask implements InitializingBean{
 		}
 	}
 	
-	/**
-	 * 
-	 *@描述		：定义实现类需要实现的抽象方法
-	 *@创建人	: wandalong
-	 *@创建时间	: Mar 21, 201611:07:10 AM
-	 *@修改人	: 
-	 *@修改时间	: 
-	 *@修改描述	:
-	 */
 	public abstract void doAfterPropertiesSet() throws Exception;
 	
 	
-	/**
-	 * 
-	 *@描述		：任务执行方法
-	 *@创建人	: wandalong
-	 *@创建时间	: Mar 21, 201611:07:16 AM
-	 *@修改人	: 
-	 *@修改时间	: 
-	 *@修改描述	:
-	 */
 	public abstract void task();
 	
 	 

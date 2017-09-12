@@ -8,13 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
  * 
- * @className: Exceptional
- * @description: Aop方法异常通知注解：有此注解的方法才会继续其他的操作
- * @author : wandalong
- * @date : 下午06:27:47 2014-6-7
- * @modify by:
- * @modify date :
- * @modify description :
+ * @className	： Exceptional
+ * @description	： Aop方法异常通知注解：有此注解的方法才会继续其他的操作
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:26:54
+ * @version 	V1.0
  */
 @Target({ ElementType.TYPE})
 @Documented

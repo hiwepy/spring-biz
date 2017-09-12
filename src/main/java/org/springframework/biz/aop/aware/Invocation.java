@@ -9,16 +9,6 @@ import org.springframework.biz.aop.annotations.Exceptional;
 import org.springframework.biz.aop.annotations.Logger;
 import org.springframework.biz.aop.annotations.Validation;
 
-/**
- * 
- * @className: Invocation
- * @description: TODO(描述这个类的作用)
- * @author : wandalong
- * @date : 下午07:32:40 2014-6-7
- * @modify by:
- * @modify date :
- * @modify description :
- */
 public class Invocation {
 
 	/**

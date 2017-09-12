@@ -14,13 +14,12 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * 
- *@类名称		： FastJsonArgumentResolver.java
- *@类描述		： http://zjumty.iteye.com/blog/1927890
- *@创建人		：wandalong
- *@创建时间	：2017年5月15日 下午3:40:47
- *@修改人		：
- *@修改时间	：
- *@版本号		: v1.0
+ * @className	： FastJsonArgumentResolver
+ * @description	： TODO(描述这个类的作用)
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:22:59
+ * @version 	V1.0
+ * @see http://zjumty.iteye.com/blog/1927890
  */
 public class FastJsonArgumentResolver implements HandlerMethodArgumentResolver {  
     @Override  

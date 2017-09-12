@@ -8,13 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
  * 
- * @className: Validation
- * @description: 验证注解，有此字段会进行字段规则验证
- * @author : wandalong
- * @date : 下午5:53:00 2014-10-22
- * @modify by:
- * @modify date :
- * @modify description :
+ * @className	： Validation
+ * @description	： 验证注解，有此字段会进行字段规则验证
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:26:36
+ * @version 	V1.0
  */
 @Target({ElementType.METHOD})
 @Documented

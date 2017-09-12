@@ -29,10 +29,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * 
- * *******************************************************************
  * @className	： DelegatingServletProxy
  * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
  * @date		： Dec 27, 2016 11:43:51 AM
  * @version 	V1.0
  * @see #setTargetBeanName
@@ -44,7 +42,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @see #DelegatingServletProxy(String, WebApplicationContext)
  * @see javax.servlet.ServletContext#addServlet(String, Servlet)
  * @see org.springframework.biz.web.WebApplicationInitializer 
- * *******************************************************************
  */
 @SuppressWarnings("serial")
 public class DelegatingServletProxy extends GenericServletBean {

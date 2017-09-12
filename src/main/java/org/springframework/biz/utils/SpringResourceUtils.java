@@ -66,8 +66,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 	/**
 	 * 
 	 * @description: 匹配classpath*:**\\/*.properties的配置文件
-	 * @author : wandalong
-	 * @date 上午11:14:54 2014-10-26 
 	 * @return
 	 * @throws IOException
 	 * @return Resource[] 返回类型
@@ -88,8 +86,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 	/**
 	 * 
 	 * @description: 匹配 classpath*:config\/**\/*.properties 的配置文件
-	 * @author : wandalong
-	 * @date 上午11:13:48 2014-10-26 
 	 * @return
 	 * @throws IOException
 	 * @return  Resource[] 返回类型
@@ -150,8 +146,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 	/**
 	 * 
 	 * @description: 匹配classpath*:config\/mybatis\/**\/*.xml的配置文件
-	 * @author : wandalong
-	 * @date 上午11:14:54 2014-10-26 
 	 * @return
 	 * @throws IOException
 	 * @return  Resource[] 返回类型

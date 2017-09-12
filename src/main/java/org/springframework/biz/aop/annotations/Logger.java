@@ -8,11 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
  * 
- *@类名称:Logger.java
- *@类描述：Aop环绕通知注解：有此注解的class,方法上如果有Comment则会进行日志记录
- *@创建人：wandalong
- *@创建时间：2014-8-5 下午08:31:49
- *@版本号:v1.0
+ * @className	： Logger
+ * @description	： Aop环绕通知注解：有此注解的class,方法上如果有Comment则会进行日志记录
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:26:45
+ * @version 	V1.0
  */
 @Target({ ElementType.TYPE})
 @Documented

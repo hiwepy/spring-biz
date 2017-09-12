@@ -37,8 +37,6 @@ public abstract class SpringPropertiesBundleUtils {
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
 	 * </p>
-	 * @author : wandalong
-	 * @date 下午04:13:29 2015-3-19 
 	 * @param location
 	 * @return
 	 * @return  Properties 返回类型
@@ -79,8 +77,6 @@ public abstract class SpringPropertiesBundleUtils {
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
 	 * </p>
-	 * @author : wandalong
-	 * @date 下午04:13:29 2015-3-19 
 	 * @param location
 	 * @return
 	 * @return  Properties 返回类型
@@ -106,8 +102,6 @@ public abstract class SpringPropertiesBundleUtils {
 	/**
 	 * 
 	 * @description: 加载 所有 匹配classpath*:**\\/*.properties的配置文件
-	 * @author : wandalong
-	 * @date 下午04:28:02 2015-3-19 
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
@@ -132,8 +126,6 @@ public abstract class SpringPropertiesBundleUtils {
 	/**
 	 * 
 	 * @description: 加载 所有 匹配classpath*:**\\/*.properties 配置文件
-	 * @author : wandalong
-	 * @date 下午04:27:07 2015-3-19 
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
@@ -237,8 +229,6 @@ public abstract class SpringPropertiesBundleUtils {
 	/**
 	 * 
 	 * @description: 对存在的属性文件中添加键值对并保存
-	 * @author : wandalong
-	 * @date 下午01:49:28 2015-3-18 
 	 * @param location		：属性文件的路径(包括类路径及文件系统路径)
 	 * @param keyValues		：键值对Hashtable
 	 * @return
@@ -300,15 +290,10 @@ public abstract class SpringPropertiesBundleUtils {
 	/**
 	 * 
 	 * @description: 删除缓存中 匹配 location 路径 的 配置文件 
-	 * @author : wandalong
-	 * @date 下午04:51:16 2015-3-19 
 	 * @param location
 	 * @return
 	 * @return  boolean 返回类型
 	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public static boolean removeCache(String location){
 		Assert.notNull(location, " location is null!");

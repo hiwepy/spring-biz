@@ -1,13 +1,5 @@
 package org.springframework.biz.aop;
 
-/**
- *@类名称:Operation.java
- *@类描述：
- *@创建人：wandalong
- *@创建时间：2014-7-24 上午09:39:20
- *@版本号:v1.0
- */
-
 public enum Operation {
 
 	/**

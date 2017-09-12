@@ -35,10 +35,7 @@ public abstract class SpringPropertiesUtils {
 	protected static Properties cachedProperties = new Properties();
 	
 	/**
-	 * 
 	 * @description	：读取配置文件到缓存区
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-	 * @date 		：Jan 28, 2016 1:45:38 PM
 	 * @param location
 	 * @param encoding
 	 */
@@ -117,15 +114,10 @@ public abstract class SpringPropertiesUtils {
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
 	 * </p>
-	 * @author : wandalong
-	 * @date 下午04:13:29 2015-3-19 
 	 * @param location
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public final static Properties getProperties(String location) {
 		Assert.notNull(location, " location is null!");
@@ -161,14 +153,9 @@ public abstract class SpringPropertiesUtils {
 	/**
 	 * 
 	 * @description: 加载 所有 匹配classpath*:**\\/*.properties的配置文件
-	 * @author : wandalong
-	 * @date 下午04:28:02 2015-3-19 
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public final static Properties getRootProperties(){
 		return SpringPropertiesUtils.getProperties("classpath*:*.properties");
@@ -177,14 +164,9 @@ public abstract class SpringPropertiesUtils {
 	/**
 	 * 
 	 * @description: 加载 所有 匹配classpath*:**\\/*.properties 配置文件
-	 * @author : wandalong
-	 * @date 下午04:27:07 2015-3-19 
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public final static Properties getAllProperties(){
 		return SpringPropertiesUtils.getProperties("classpath*:**/*.properties");

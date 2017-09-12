@@ -35,14 +35,11 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
 	
 	/***
 	 * 
-	 *@描述		：before 切面 : :方法执行前被调用
-	 *@创建人	: wandalong
-	 *@创建时间	: Mar 21, 20169:40:57 AM
-	 *@param point
-	 *@throws Throwable
-	 *@修改人	: 
-	 *@修改时间	: 
-	 *@修改描述	:
+	 * @description	： before 切面 : :方法执行前被调用
+	 * @author 		：<a href="https://github.com/vindell">vindell</a>
+	 * @date 		：2017年9月12日 下午11:25:24
+	 * @param point
+	 * @throws Throwable
 	 */
 	@Override
 	public void doBefore(JoinPoint point) throws Throwable {
@@ -181,15 +178,12 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
 	
 	/**
 	 * 
-	 *@描述		：after 切面 :方法执行完后被调用
-	 *@创建人	: wandalong
-	 *@创建时间	: Mar 21, 20169:40:44 AM
-	 *@param point
-	 *@param returnValue
-	 *@throws Throwable
-	 *@修改人	: 
-	 *@修改时间	: 
-	 *@修改描述	:
+	 * @description	： after 切面 :方法执行完后被调用
+	 * @author 		：<a href="https://github.com/vindell">vindell</a>
+	 * @date 		：2017年9月12日 下午11:25:15
+	 * @param point
+	 * @param returnValue
+	 * @throws Throwable
 	 */
 	@Override
     public void doAfterReturning(JoinPoint point,Object returnValue) throws Throwable {  
@@ -241,15 +235,12 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
 	
 	/**
 	 * 
-	 *@描述		：异常切面  :方法执行完后如果抛出异常则被调用
-	 *@创建人	: wandalong
-	 *@创建时间	: Mar 21, 20169:40:30 AM
-	 *@param point
-	 *@param ex
-	 *@throws Throwable
-	 *@修改人	: 
-	 *@修改时间	: 
-	 *@修改描述	:
+	 * @description	： 异常切面  :方法执行完后如果抛出异常则被调用
+	 * @author 		：<a href="https://github.com/vindell">vindell</a>
+	 * @date 		：2017年9月12日 下午11:25:05
+	 * @param point
+	 * @param ex
+	 * @throws Throwable
 	 */
 	@Override
     public void doAfterThrowing(JoinPoint point,Throwable ex) throws Throwable {  

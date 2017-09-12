@@ -16,17 +16,15 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 /**
  * 
- *@类名称		： MultipartStatusResolver
- *@类描述		：Spring中带进度条的文件上传
+ * @className	： MultipartStatusResolver
+ * @description	： Spring中带进度条的文件上传
  * 	1、Spring的DispatcherServlet在初始化的时候会去容器中查找是否有可用的MultipartResolver，如果有的话就会使用此resolver将request转换为MultipartHttpServletRequest。
  * 	2、Spring提供了两个resolver，CommonsMultipartResolver，StandardServletMultipartResolver。我们可以任选其一。
  *	CommonsMultipartResolver的parseRequest方法调用commons-fileupload的ServletFileupload完成了对request的解析工作。
  * 	3、最后在controller的配置文件中指定resolver： <bean id="multipartResolver" class="org.springframework.biz.web.multipart.commons.MultipartStatusResolver"></bean>
- *@创建人		：wandalong
- *@创建时间	：Feb 24, 2017 4:02:02 PM
- *@修改人		：
- *@修改时间	：
- *@版本号		: v1.0
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:22:49
+ * @version 	V1.0
  */
 public class MultipartStatusResolver extends CommonsMultipartResolver {
 	

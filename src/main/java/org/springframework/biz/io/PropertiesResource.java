@@ -264,15 +264,6 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return properties;
 	}
 
-	/**
-	 * ******************************************************************
-	 * @description	： TODO(描述这个方法的作用)
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-	 * @date 		：Mar 2, 2016 4:40:54 PM
-	 * @param key
-	 * @return
-	 * ******************************************************************
-	 */
 	public String getString(String key) {
 		return properties.getProperty(key);
 	}
@@ -281,17 +272,6 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return properties.getProperty(key, defaultValue);
 	}
 
-	/**
-	 * ******************************************************************
-	 * @description	： TODO(描述这个方法的作用)
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-	 * @date 		：Mar 3, 2016 8:48:47 AM
-	 * @param location
-	 * @param defaultEncoding
-	 * @param bundleClassLoader
-	 * @return
-	 * ******************************************************************
-	 */
 	public static PropertiesResource getBundle(String basename,String defaultEncoding, ClassLoader bundleClassLoader) {
 		PropertiesResource resource = new PropertiesResource(basename + PROPERTIES_SUFFIX,defaultEncoding,bundleClassLoader);
 		if(!resource.exists()){
@@ -300,17 +280,6 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return resource;
 	}
 
-	/**
-	 * ******************************************************************
-	 * @description	： TODO(描述这个方法的作用)
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-	 * @date 		：Mar 3, 2016 8:49:04 AM
-	 * @param location
-	 * @param bundleClassLoader
-	 * @return
-	 * ******************************************************************
-	 */
-	
 	public static PropertiesResource getBundle(String location,ClassLoader bundleClassLoader) {
 		return new PropertiesResource(location,bundleClassLoader);
 	}

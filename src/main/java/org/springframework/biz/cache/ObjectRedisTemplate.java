@@ -15,10 +15,11 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * 
- * @className ： ObjectRedisTemplate
- * @description ：Redis实现对象序列化存储
- * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
- * @date ： Dec 21, 2015 8:23:52 PM
+ * @className	： ObjectRedisTemplate
+ * @description	： Redis实现对象序列化存储
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:24:46
+ * @version 	V1.0 
  * @param <T>
  */
 public class ObjectRedisTemplate<T> extends RedisTemplate<String, T> {

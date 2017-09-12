@@ -8,13 +8,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
  * 
- * @className: DynamicDataSource
- * @description: 动态数据源切换注解：有此注解的dao方法会自动切换数据源
- * @author : wandalong
- * @date : 下午06:27:47 2014-6-7
- * @modify by:
- * @modify date :
- * @modify description :
+ * @className	： DynamicDataSource
+ * @description	： 动态数据源切换注解：有此注解的dao方法会自动切换数据源
+ * @author 		： <a href="https://github.com/vindell">vindell</a>
+ * @date		： 2017年9月12日 下午11:27:05
+ * @version 	V1.0
  */
 @Target({ElementType.METHOD})
 @Documented
