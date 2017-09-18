@@ -14,17 +14,54 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class SpringMVCCORSInterceptor extends HandlerInterceptorAdapter {
 	
+	private String allowOrigin = "*";
+	private String allowMethods = "POST, GET, PUT, OPTIONS, DELETE";
+	private String allowHeaders = "Origin, X-Requested-With, Content-Type, Accept";
+	private String maxAge = "3600";
+	
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		
-		response.setHeader("Access-Control-Allow-Origin", "*");  
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");  
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");  
+		response.setHeader("Access-Control-Allow-Origin", getAllowOrigin());  
+        response.setHeader("Access-Control-Allow-Methods", getAllowMethods());  
+        response.setHeader("Access-Control-Allow-Headers", getAllowHeaders());  
+        response.setHeader("Access-Control-Max-Age", getMaxAge());
         
 		super.afterCompletion(request, response, handler, ex);
 		
+	}
+
+	public String getAllowOrigin() {
+		return allowOrigin;
+	}
+
+	public void setAllowOrigin(String allowOrigin) {
+		this.allowOrigin = allowOrigin;
+	}
+
+	public String getAllowMethods() {
+		return allowMethods;
+	}
+
+	public void setAllowMethods(String allowMethods) {
+		this.allowMethods = allowMethods;
+	}
+
+	public String getAllowHeaders() {
+		return allowHeaders;
+	}
+
+	public void setAllowHeaders(String allowHeaders) {
+		this.allowHeaders = allowHeaders;
+	}
+
+	public String getMaxAge() {
+		return maxAge;
+	}
+
+	public void setMaxAge(String maxAge) {
+		this.maxAge = maxAge;
 	}
 
 }
