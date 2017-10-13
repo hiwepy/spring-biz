@@ -248,8 +248,6 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 	protected void registerRequestMappingIfNecessary(String controllerBeanName) {
 
-		removeRequestMappingIfNecessary(controllerBeanName);
-
 		RequestMappingHandlerMapping requestMappingHandlerMapping = getRequestMappingHandlerMapping();
 		// spring 3.1 开始
 		ReflectionUtils.invokeMethod(detectHandlerMethodsMethod, requestMappingHandlerMapping, controllerBeanName);
