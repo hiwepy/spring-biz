@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 
-public interface DynamicControllerRegistry {
+public interface DynamicControllerRegistry extends DynamicBeanDefinitionRegistry {
 
 	/**
      * 动态注册SpringMVC Controller到Spring上下文
@@ -26,7 +26,7 @@ public interface DynamicControllerRegistry {
      */
     public void registerController(Class<?> controllerClass, String scope, boolean lazyInit,boolean autowireCandidate); 
 	
-	/**
+    /**
      * 动态注册SpringMVC Controller到Spring上下文
      */
 	public void registerController(String beanName,Class<?> controllerClass);
@@ -45,7 +45,7 @@ public interface DynamicControllerRegistry {
      * 动态注册SpringMVC Controller到Spring上下文
      */
     public void registerController(String beanName,Class<?> controllerClass, String scope, boolean lazyInit,boolean autowireCandidate); 
-	
+
     /**
      * 动态注册SpringMVC Controller到Spring上下文
      */

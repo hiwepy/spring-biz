@@ -33,26 +33,26 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		implements DynamicControllerRegistry {
 
 	protected static final Logger LOG = LoggerFactory.getLogger(DefaultDynamicControllerRegistry.class);
-	
+
 	// RequestMappingHandlerMapping
 	protected static Method detectHandlerMethodsMethod = ReflectionUtils.findMethod(RequestMappingHandlerMapping.class,
 			"detectHandlerMethods", Object.class);
 	protected static Method getMappingForMethodMethod = ReflectionUtils.findMethod(RequestMappingHandlerMapping.class,
 			"getMappingForMethod", Method.class, Class.class);
 
-	protected static Field urlMapField = ReflectionUtils.findField(RequestMappingHandlerMapping.class, "urlMap",
-			MultiValueMap.class);
+	protected static Field mappingRegistryField = ReflectionUtils.findField(RequestMappingHandlerMapping.class,
+			"mappingRegistry");
 
 	protected static Field injectionMetadataCacheField = ReflectionUtils
 			.findField(AutowiredAnnotationBeanPostProcessor.class, "injectionMetadataCache");
 
 	private Map<String, Long> scriptLastModifiedMap = new ConcurrentHashMap<String, Long>();// in millis
-	
+
 	static {
 		detectHandlerMethodsMethod.setAccessible(true);
 		getMappingForMethodMethod.setAccessible(true);
 		// urlMapField.setAccessible(true);
-
+		mappingRegistryField.setAccessible(true);
 		injectionMetadataCacheField.setAccessible(true);
 	}
 
@@ -70,7 +70,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 	public void registerController(Class<?> controllerClass) {
 		this.registerController(controllerClass, BeanDefinition.SCOPE_SINGLETON);
 	}
-	
+
 	@Override
 	public void registerController(Class<?> controllerClass, String scope) {
 		this.registerController(controllerClass, scope, false);
@@ -80,30 +80,30 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 	public void registerController(Class<?> controllerClass, String scope, boolean lazyInit) {
 		this.registerController(controllerClass, scope, lazyInit, true);
 	}
-	 
+
 	@Override
 	public void registerController(Class<?> controllerClass, String scope, boolean lazyInit,
 			boolean autowireCandidate) {
 		this.registerController(controllerClass.getName(), controllerClass, scope, lazyInit, autowireCandidate);
 	}
-	
+
 	@Override
-	public void registerController(String beanName,Class<?> controllerClass) {
-		this.registerController(beanName,controllerClass, BeanDefinition.SCOPE_SINGLETON);
-	}
-	
-	@Override
-	public void registerController(String beanName,Class<?> controllerClass, String scope) {
-		this.registerController(beanName,controllerClass, scope, false);
+	public void registerController(String beanName, Class<?> controllerClass) {
+		this.registerController(beanName, controllerClass, BeanDefinition.SCOPE_SINGLETON);
 	}
 
 	@Override
-	public void registerController(String beanName,Class<?> controllerClass, String scope, boolean lazyInit) {
+	public void registerController(String beanName, Class<?> controllerClass, String scope) {
+		this.registerController(beanName, controllerClass, scope, false);
+	}
+
+	@Override
+	public void registerController(String beanName, Class<?> controllerClass, String scope, boolean lazyInit) {
 		this.registerController(beanName, controllerClass, scope, lazyInit, true);
 	}
-	 
+
 	@Override
-	public void registerController(String beanName,Class<?> controllerClass, String scope, boolean lazyInit,
+	public void registerController(String beanName, Class<?> controllerClass, String scope, boolean lazyInit,
 			boolean autowireCandidate) {
 
 		Assert.notNull(controllerClass, "register controller bean class must not null");
@@ -114,14 +114,14 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		// 构造Controller BeanDefinition
 		GenericBeanDefinition bd = new GenericBeanDefinition();
 		bd.setBeanClass(controllerClass);
-        bd.setScope(scope);
-        bd.setLazyInit(lazyInit);
-        bd.setAutowireCandidate(autowireCandidate);
-        
+		bd.setScope(scope);
+		bd.setLazyInit(lazyInit);
+		bd.setAutowireCandidate(autowireCandidate);
+
 		this.registerController(beanName, bd);
-		
+
 	}
-	
+
 	@Override
 	public void registerController(String beanName, BeanDefinition beanDefinition) {
 
@@ -129,18 +129,17 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		if (!WebApplicationContext.class.isAssignableFrom(getApplicationContext().getClass())) {
 			throw new IllegalArgumentException("applicationContext must be WebApplicationContext type");
 		}
-        
-        beanName = StringUtils.isEmpty(beanName) ? beanDefinition.getBeanClassName() : beanName;
-        
+
+		beanName = StringUtils.isEmpty(beanName) ? beanDefinition.getBeanClassName() : beanName;
+
 		// 1、如果RequestMapping存在则移除
 		removeRequestMappingIfNecessary(beanName);
 		// 2、注册新的Controller
 		getBeanFactory().registerBeanDefinition(beanName, beanDefinition);
 		// 3、注册新的RequestMapping
 		registerRequestMappingIfNecessary(beanName);
-		
-	}
 
+	}
 
 	@Override
 	public void removeController(String controllerBeanName) throws IOException {
@@ -164,70 +163,91 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 				.getScriptedObject(new ResourceScriptSource(getApplicationContext().getResource(scriptLocation)));
 
 		String controllerBeanName = scriptLocation;
-		
+
 		// 1、如果RequestMapping存在则移除
 		removeRequestMappingIfNecessary(controllerBeanName);
 		if (getBeanFactory().containsBean(controllerBeanName)) {
 			getBeanFactory().destroySingleton(controllerBeanName); // 移除单例bean
-			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an instance of declaring class
+			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an
+			// instance of declaring class
 			getInjectionMetadataCache().remove(controller.getClass().getName());
 		}
-		
+
 		// 2、注册新的GroovyController
 		getBeanFactory().registerSingleton(controllerBeanName, controller); // 注册单例bean
 		getBeanFactory().autowireBean(controller); // 自动注入
-		
+
 		// 3、注册新的RequestMapping
 		registerRequestMappingIfNecessary(controllerBeanName);
 	}
 
 	@Override
-	public void removeGroovyController(String scriptLocation,String controllerBeanName) throws IOException {
-		
+	public void removeGroovyController(String scriptLocation, String controllerBeanName) throws IOException {
+
 		if (scriptNotExists(scriptLocation)) {
 			throw new IllegalArgumentException("script not exists : " + scriptLocation);
 		}
-		
+
 		// 如果RequestMapping存在则移除
 		removeRequestMappingIfNecessary(scriptLocation);
 		if (getBeanFactory().containsBean(scriptLocation)) {
 			getBeanFactory().destroySingleton(scriptLocation); // 移除单例bean
-			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an instance of declaring class
+			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an
+			// instance of declaring class
 			getInjectionMetadataCache().remove(controllerBeanName);
 		}
-		
+
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	protected void removeRequestMappingIfNecessary(String controllerBeanName) {
 
 		if (!getBeanFactory().containsBean(controllerBeanName)) {
 			return;
 		}
-		
+
 		RequestMappingHandlerMapping requestMappingHandlerMapping = getRequestMappingHandlerMapping();
 
 		// remove old
 		Class<?> handlerType = getApplicationContext().getType(controllerBeanName);
 		final Class<?> userType = ClassUtils.getUserClass(handlerType);
 
-		Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
-		MultiValueMap urlMapping = (MultiValueMap) ReflectionUtils.getField(urlMapField, requestMappingHandlerMapping);
+		/*
+		 * Map<RequestMappingInfo, HandlerMethod> handlerMethods =
+		 * requestMappingHandlerMapping.getHandlerMethods(); 返回只读集合：
+		 * 特别说明：因requestMappingHandlerMapping.getHandlerMethods()方法获取到的结果是只读集合，不能进行移除操作，
+		 * 所以需要采用反射方式获取目标对象
+		 */
+		Object mappingRegistry = ReflectionUtils.getField(mappingRegistryField, requestMappingHandlerMapping);
+		Method getMappingsMethod = ReflectionUtils.findMethod(mappingRegistry.getClass(), "getMappings");
+		getMappingsMethod.setAccessible(true);
+		Map<RequestMappingInfo, HandlerMethod> handlerMethods = (Map<RequestMappingInfo, HandlerMethod>) ReflectionUtils
+				.invokeMethod(getMappingsMethod, mappingRegistry);
+
+		/*
+		 * 查找URL映射：解决 Ambiguous handler methods mapped for HTTP path “” 问题
+		 */
+		Field urlLookupField = ReflectionUtils.findField(mappingRegistry.getClass(), "urlLookup");
+		urlLookupField.setAccessible(true);
+		MultiValueMap<String, RequestMappingInfo> urlMapping = (MultiValueMap<String, RequestMappingInfo>) ReflectionUtils
+				.getField(urlLookupField, mappingRegistry);
 
 		final RequestMappingHandlerMapping innerRequestMappingHandlerMapping = requestMappingHandlerMapping;
 		Set<Method> methods = MethodIntrospector.selectMethods(userType, new ReflectionUtils.MethodFilter() {
 			@Override
 			public boolean matches(Method method) {
-				return ReflectionUtils.invokeMethod(getMappingForMethodMethod, innerRequestMappingHandlerMapping, method, userType) != null;
+				return ReflectionUtils.invokeMethod(getMappingForMethodMethod, innerRequestMappingHandlerMapping,
+						method, userType) != null;
 			}
 		});
-		
+
 		for (Method method : methods) {
 
 			RequestMappingInfo requestMappingInfo = (RequestMappingInfo) ReflectionUtils
 					.invokeMethod(getMappingForMethodMethod, requestMappingHandlerMapping, method, userType);
 
 			handlerMethods.remove(requestMappingInfo);
-			
+
 			PatternsRequestCondition patternsCondition = requestMappingInfo.getPatternsCondition();
 			Set<String> patterns = patternsCondition.getPatterns();
 			// (Set<String>) ReflectionUtils.invokeMethod(getMappingPathPatternsMethod,
@@ -239,7 +259,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 			for (String pattern : patterns) {
 				if (!pathMatcher.isPattern(pattern)) {
-					// urlMapping.remove(pattern);
+					urlMapping.remove(pattern);
 				}
 			}
 		}
@@ -282,7 +302,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 			}
 		}.start();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	protected Map<String, InjectionMetadata> getInjectionMetadataCache() {
 
@@ -294,7 +314,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 		return injectionMetadataMap;
 	}
-	
+
 	protected RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
 		try {
 			return getApplicationContext().getBean(RequestMappingHandlerMapping.class);
@@ -302,7 +322,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 			throw new IllegalArgumentException("applicationContext must has RequestMappingHandlerMapping");
 		}
 	}
-	
+
 	protected long scriptLastModified(String scriptLocation) {
 		try {
 			return getApplicationContext().getResource(scriptLocation).getFile().lastModified();
