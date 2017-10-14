@@ -15,7 +15,9 @@
  */
 package org.springframework.biz.validation.beanvalidation;
 
-@Constraint
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+
 public class CrossFieldOperator {
-	http://www.cnblogs.com/ASPNET2008/p/5831766.html
+	
 }

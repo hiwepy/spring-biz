@@ -15,17 +15,22 @@
  */
 package org.springframework.biz.validation.beanvalidation;
 
+import java.lang.reflect.Field;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 public class CrossFieldMatchValidator implements ConstraintValidator<CrossFieldMatch, Object> {
 
     private String firstFieldName;
     private String secondFieldName;
-    private CrossFieldOperator operator;
+   // private CrossFieldOperator operator;
 
     @Override
     public void initialize(final CrossFieldMatch constraintAnnotation) {
         firstFieldName = constraintAnnotation.first();
         secondFieldName = constraintAnnotation.second();
-        operator=constraintAnnotation.operator();
+       // operator=constraintAnnotation.operator();
     }
 
     @Override
@@ -51,7 +56,7 @@ public class CrossFieldMatchValidator implements ConstraintValidator<CrossFieldM
 
             //整数支持 long int short
             //浮点数支持 double
-            if(operator==CrossFieldOperator.EQ) {
+            /*if(operator==CrossFieldOperator.EQ) {
                 return firstFieldValue.equals(secondFieldValue);
             }
             else if(operator==CrossFieldOperator.GT){
@@ -86,7 +91,7 @@ public class CrossFieldMatchValidator implements ConstraintValidator<CrossFieldM
                 else if(firstFieldValue.getClass().equals(Double.class)) {
                     return Double.valueOf(firstFieldValue.toString()) <= Double.valueOf(secondFieldValue.toString());
                 }
-            }
+            }*/
         }
         catch (final Exception ignore) {
             // ignore

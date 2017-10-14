@@ -327,6 +327,13 @@
 				<version>${javax.servlet-api.version}</version>
 			</dependency>
 			
+			<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+			<dependency>
+			    <groupId>javax.validation</groupId>
+			    <artifactId>validation-api</artifactId>
+			    <version>2.0.0.Final</version>
+			</dependency>
+			
 			<!-- ###################### 模板框架  ###################### -->
 			
 			<!--
@@ -616,6 +623,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
 		</dependency>
 		
 		<!-- Commons项目中用来处理IO的一些工具类包 -->

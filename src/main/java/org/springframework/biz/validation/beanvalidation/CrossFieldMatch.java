@@ -21,8 +21,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.springframework.messaging.handler.annotation.Payload;
+import javax.validation.Constraint;
 
+import org.springframework.messaging.handler.annotation.Payload;
+//http://www.cnblogs.com/ASPNET2008/p/5831766.html
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = CrossFieldMatchValidator.class)
 @Documented
@@ -48,7 +50,7 @@ public @interface CrossFieldMatch {
      * first operator second
      * @return
      */
-    CrossFieldOperator operator();
+    //CrossFieldOperator operator();
 
     /**
      * Defines several <code>@FieldMatch</code> annotations on the same element
