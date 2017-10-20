@@ -48,6 +48,9 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 	private Map<String, Long> scriptLastModifiedMap = new ConcurrentHashMap<String, Long>();// in millis
 
+	@Autowired
+	protected RequestMappingHandlerMapping requestMappingHandlerMapping;
+	
 	static {
 		detectHandlerMethodsMethod.setAccessible(true);
 		getMappingForMethodMethod.setAccessible(true);
@@ -317,6 +320,9 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 	protected RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
 		try {
+			if(requestMappingHandlerMapping != null){
+				return requestMappingHandlerMapping;
+			}
 			return getApplicationContext().getBean(RequestMappingHandlerMapping.class);
 		} catch (Exception e) {
 			throw new IllegalArgumentException("applicationContext must has RequestMappingHandlerMapping");
