@@ -3,7 +3,6 @@ package org.springframework.biz.utils;
 import java.io.File;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
 
 public abstract class FilemimeUtils {
 	
@@ -28,7 +27,7 @@ public abstract class FilemimeUtils {
 	}
 
 	public static String getFileMimeType(String fileName) {
-		if ((StringUtils.isBlank(fileName)) || (fileName.indexOf(".") == -1)) {
+		if ((!StringUtils.hasText(fileName)) || (fileName.indexOf(".") == -1)) {
 			return DEFAULT_MIME;
 		}
 		fileName = fileName.substring(fileName.lastIndexOf("."));
@@ -37,7 +36,7 @@ public abstract class FilemimeUtils {
 
 	public static String getExtensionMimeType(String extension) {
 		String result = null;
-		if (StringUtils.isBlank(extension)) {
+		if (!StringUtils.hasText(extension)) {
 			return result;
 		}
 		extension = extension.toLowerCase();
