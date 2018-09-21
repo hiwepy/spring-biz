@@ -19,7 +19,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.biz.context.MultipleMessageSource;
+import org.springframework.biz.context.NestedMessageSource;
 import org.springframework.context.MessageSource;
 
 public class MultipleMessageSourceFactory extends EnhancedBeanFactory implements FactoryBean<MessageSource> {
@@ -36,7 +36,7 @@ public class MultipleMessageSourceFactory extends EnhancedBeanFactory implements
 		// 转成数组
 		MessageSource[] sources = sourceMap.values().toArray(new MessageSource[sourceMap.size()]);
 		// 返回整合后的资源对象
-		return new MultipleMessageSource(sources);
+		return new NestedMessageSource(sources);
 	}
 
 	@Override

@@ -23,14 +23,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 
-public class MultipleMessageSource implements MessageSource{
+public class NestedMessageSource implements MessageSource{
 
 	protected MessageSource[] delegates;
-	protected static Logger LOG = LoggerFactory.getLogger(MultipleMessageSource.class);
-	public MultipleMessageSource() {
+	protected static Logger LOG = LoggerFactory.getLogger(NestedMessageSource.class);
+	public NestedMessageSource() {
     }
 	
-	public MultipleMessageSource(MessageSource ...sources){
+	public NestedMessageSource(MessageSource ...sources){
 		this.delegates = sources;
 	}
 	

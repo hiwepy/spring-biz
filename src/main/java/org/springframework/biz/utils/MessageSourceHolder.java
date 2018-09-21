@@ -3,7 +3,7 @@ package org.springframework.biz.utils;
 import java.util.Locale;
 
 import org.springframework.beans.factory.BeanFactoryUtils;
-import org.springframework.biz.context.MultipleMessageSource;
+import org.springframework.biz.context.NestedMessageSource;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.biz.factory.EnhancedBeanFactory;
@@ -11,11 +11,11 @@ import org.springframework.biz.factory.EnhancedBeanFactory;
 public class MessageSourceHolder extends EnhancedBeanFactory {
 
 	private static Object[] EMPTY = new Object[0]; 
-	private static MultipleMessageSource messageSource = null;
+	private static NestedMessageSource messageSource = null;
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		MessageSourceHolder.messageSource = BeanFactoryUtils.beanOfType(getApplicationContext(), MultipleMessageSource.class);
+		MessageSourceHolder.messageSource = BeanFactoryUtils.beanOfType(getApplicationContext(), NestedMessageSource.class);
 	}
 	
 	public static String getMessage(String key) throws NoSuchMessageException{
