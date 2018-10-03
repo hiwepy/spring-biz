@@ -19,14 +19,24 @@ import org.springframework.util.Assert;
 public class MultiResourceBundleMessageSource extends ResourceBundleMessageSource {
 	
 	protected static Logger LOG = LoggerFactory.getLogger(MultiResourceBundleMessageSource.class);
+	/** Pseudo URL prefix for loading from the class path: "classpath*:" */
+	protected static final String CLASSPATH_URL_PREFIX = "classpath*:";
 	protected static final String PROPERTIES_SUFFIX = ".properties";
 	protected static final String XML_SUFFIX = ".xml";
 	
 	protected String[] basenames = new String[0];
+	protected ResourceBasenameHandler basenameHandler = new ResourceBasenameHandler() {
+		
+		@Override
+		public String handle(Resource resource) throws IOException {
+			String filepath = resource.getFile().getAbsolutePath();
+			return FilenameUtils.getFullPath(filepath) + FilenameUtils.getBaseName(filepath);
+		}
+	};
 	/** Cache to hold Resource lists per filename */
 	protected ConcurrentMap<String, List<Resource>> cachedResources = new ConcurrentHashMap<String, List<Resource>>();
 	protected ResourceLoader resourceLoader = new PathMatchingResourcePatternResolver();
-	
+	 
 	@Override
 	public void setBasename(String basename) {
 		setBasenames(basename);
@@ -65,9 +75,7 @@ public class MultiResourceBundleMessageSource extends ResourceBundleMessageSourc
 		//对处理后的路径进行处理
 		for (int i = 0; i < resourceList.size(); i++) {
 			try {
-				Resource resource = resourceList.get(i);
-				String filepath = resource.getFile().getAbsolutePath();
-				result.add(FilenameUtils.getFullPath(filepath) + FilenameUtils.getBaseName(filepath));
+				result.add(basenameHandler.handle(resourceList.get(i)));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -92,9 +100,9 @@ public class MultiResourceBundleMessageSource extends ResourceBundleMessageSourc
 				//“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。带通配符的classpath使用“ClassLoader”的“Enumeration<URL> getResources(String name)”
 				//方法来查找通配符之前的资源，然后通过模式匹配来获取匹配的资源。
 				ResourcePatternResolver resourceResolver = (ResourcePatternResolver) resourceLoader;
-				resources = resourceResolver.getResources(basename + PROPERTIES_SUFFIX);
+				resources = resourceResolver.getResources(CLASSPATH_URL_PREFIX + basename + PROPERTIES_SUFFIX);
 				if (resources == null || resources.length == 0 ) {
-					resources = resourceResolver.getResources(basename + XML_SUFFIX);
+					resources = resourceResolver.getResources(CLASSPATH_URL_PREFIX + basename + XML_SUFFIX);
 				}
 			} catch (IOException e) {
 				LOG.debug("No properties file found for [" + basename + "] - neither plain properties nor XML");
@@ -105,9 +113,9 @@ public class MultiResourceBundleMessageSource extends ResourceBundleMessageSourc
 				}
 			}
 		}else{
-			Resource resource = this.resourceLoader.getResource(basename + PROPERTIES_SUFFIX);
+			Resource resource = this.resourceLoader.getResource(CLASSPATH_URL_PREFIX + basename + PROPERTIES_SUFFIX);
 			if (!resource.exists()) {
-				resource = this.resourceLoader.getResource(basename + XML_SUFFIX);
+				resource = this.resourceLoader.getResource(CLASSPATH_URL_PREFIX + basename + XML_SUFFIX);
 			}
 			if (resource.exists() || resource.isReadable()) {
 				resourceList.add(resource);
@@ -120,6 +128,14 @@ public class MultiResourceBundleMessageSource extends ResourceBundleMessageSourc
 			}
 		}
 		return resourceList;
+	}
+
+	public ResourceBasenameHandler getBasenameHandler() {
+		return basenameHandler;
+	}
+
+	public void setBasenameHandler(ResourceBasenameHandler basenameHandler) {
+		this.basenameHandler = basenameHandler;
 	}
 	
 }
