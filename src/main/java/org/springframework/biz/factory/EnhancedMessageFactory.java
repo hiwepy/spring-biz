@@ -1,20 +1,16 @@
 package org.springframework.biz.factory;
 
-import org.springframework.biz.context.support.ModuleMessageSource;
-import org.springframework.biz.context.support.ModuleReloadableMessageSource;
+import org.springframework.biz.context.support.MultiReloadableResourceBundleMessageSource;
+import org.springframework.biz.context.support.MultiResourceBundleMessageSource;
+import org.springframework.biz.utils.LocaleUtils;
 
 /**
- * 
- * @className	： EnhancedMessageFactory
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:09:32
- * @version 	V1.0
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 public abstract class EnhancedMessageFactory extends EnhancedBeanFactory {
 
-	protected ModuleMessageSource staticResource;
-	protected ModuleReloadableMessageSource reloadableResource;
+	protected MultiResourceBundleMessageSource staticResource;
+	protected MultiReloadableResourceBundleMessageSource reloadableResource;
 	
 	public String getMessage(String key,String ...patams) {
 		return getMessage(key, null, patams);
@@ -24,11 +20,11 @@ public abstract class EnhancedMessageFactory extends EnhancedBeanFactory {
 		String message = null;
 		//优先使用动态加载的资源
 		if (reloadableResource != null) {
-			message = reloadableResource.getMessage(key, patams, defaultMessage);
+			message = reloadableResource.getMessage(key, patams, defaultMessage, LocaleUtils.getLocale());
 		}
 		//没有取到，再考虑今天不变的资源是否存在
 		if(message == null && staticResource != null){
-			message = staticResource.getMessage(key, patams, defaultMessage);
+			message = staticResource.getMessage(key, patams, defaultMessage, LocaleUtils.getLocale());
 		}
 		return message;
 	}
@@ -36,28 +32,28 @@ public abstract class EnhancedMessageFactory extends EnhancedBeanFactory {
 	/**
 	 * @return the staticResource
 	 */
-	public ModuleMessageSource getStaticResource() {
+	public MultiResourceBundleMessageSource getStaticResource() {
 		return this.staticResource;
 	}
 
 	/**
 	 * @param staticResource the staticResource to set
 	 */
-	public void setStaticResource(ModuleMessageSource staticResource) {
+	public void setStaticResource(MultiResourceBundleMessageSource staticResource) {
 		this.staticResource = staticResource;
 	}
 	
 	/**
 	 * @return the reloadableResource
 	 */
-	public ModuleReloadableMessageSource getReloadableResource() {
+	public MultiReloadableResourceBundleMessageSource getReloadableResource() {
 		return this.reloadableResource;
 	}
 
 	/**
 	 * @param reloadableResource the reloadableResource to set
 	 */
-	public void setReloadableResource(ModuleReloadableMessageSource reloadableResource) {
+	public void setReloadableResource(MultiReloadableResourceBundleMessageSource reloadableResource) {
 		this.reloadableResource = reloadableResource;
 	}
 	

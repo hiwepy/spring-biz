@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.biz.utils.LocaleUtils;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
 
@@ -42,6 +43,7 @@ public class NestedLocaleResolver extends AbstractLocaleResolver implements Loca
 		if(isNested()){
 			for (LocaleResolver localeResolver : getResolvers()) {
 				localeResolver.setLocale(request, response, locale);
+				LocaleUtils.setLocale(locale);
 			}
 		}
 	}

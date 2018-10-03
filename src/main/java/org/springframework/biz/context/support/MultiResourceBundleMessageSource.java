@@ -1,0 +1,125 @@
+package org.springframework.biz.context.support;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.util.Assert;
+
+public class MultiResourceBundleMessageSource extends ResourceBundleMessageSource {
+	
+	protected static Logger LOG = LoggerFactory.getLogger(MultiResourceBundleMessageSource.class);
+	protected static final String PROPERTIES_SUFFIX = ".properties";
+	protected static final String XML_SUFFIX = ".xml";
+	
+	protected String[] basenames = new String[0];
+	/** Cache to hold Resource lists per filename */
+	protected ConcurrentMap<String, List<Resource>> cachedResources = new ConcurrentHashMap<String, List<Resource>>();
+	protected ResourceLoader resourceLoader = new PathMatchingResourcePatternResolver();
+	
+	@Override
+	public void setBasename(String basename) {
+		setBasenames(basename);
+	}
+	
+	@Override
+	public void setBasenames(String... basenames) {
+		if (basenames != null) {
+			//解析资源basename
+			List<String> basenameList = new ArrayList<String>();
+			for(String basename : basenames){
+				Assert.hasText(basename, "Basename must not be empty");
+				//解析资源basename
+				basenameList.addAll(calculateFilenamesForBasename(basename));
+			}
+			//对处理后的路径进行处理
+			this.basenames = new String[basenameList.size()];
+			for (int i = 0; i < basenameList.size(); i++) {
+				this.basenames[i] = basenameList.get(i);
+			}
+		}
+		else {
+			this.basenames = new String[0];
+		}
+		super.setBasenames(this.basenames);
+	}
+	
+	public void setResourceLoader(ResourceLoader resourceLoader) {
+		this.resourceLoader = (resourceLoader != null ? resourceLoader : new PathMatchingResourcePatternResolver());
+	}
+	
+	protected List<String> calculateFilenamesForBasename(String basename) {
+		List<String> result = new ArrayList<String>(3);
+		//解析Resource资源
+		List<Resource> resourceList = calculateResourcesForBasename(basename);
+		//对处理后的路径进行处理
+		for (int i = 0; i < resourceList.size(); i++) {
+			try {
+				Resource resource = resourceList.get(i);
+				String filepath = resource.getFile().getAbsolutePath();
+				result.add(FilenameUtils.getFullPath(filepath) + FilenameUtils.getBaseName(filepath));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	protected List<Resource> calculateResourcesForBasename(String basename) {
+		Assert.hasText(basename, "Basename must not be empty");
+		List<Resource> resourceList = this.cachedResources.get(basename);
+		if (resourceList != null) {
+			return resourceList;
+		}
+		//解析Resource资源
+		resourceList = new ArrayList<Resource>(7);
+		//增加表达式路径支持
+		if(resourceLoader instanceof ResourcePatternResolver){
+			Resource[] resources = null;
+			try {
+				//spring 资源路径匹配解析器
+				//“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
+				//“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。带通配符的classpath使用“ClassLoader”的“Enumeration<URL> getResources(String name)”
+				//方法来查找通配符之前的资源，然后通过模式匹配来获取匹配的资源。
+				ResourcePatternResolver resourceResolver = (ResourcePatternResolver) resourceLoader;
+				resources = resourceResolver.getResources(basename + PROPERTIES_SUFFIX);
+				if (resources == null || resources.length == 0 ) {
+					resources = resourceResolver.getResources(basename + XML_SUFFIX);
+				}
+			} catch (IOException e) {
+				LOG.debug("No properties file found for [" + basename + "] - neither plain properties nor XML");
+			}
+			for(Resource resource : resources){
+				if (resource.exists() || resource.isReadable()) {
+					resourceList.add(resource);
+				}
+			}
+		}else{
+			Resource resource = this.resourceLoader.getResource(basename + PROPERTIES_SUFFIX);
+			if (!resource.exists()) {
+				resource = this.resourceLoader.getResource(basename + XML_SUFFIX);
+			}
+			if (resource.exists() || resource.isReadable()) {
+				resourceList.add(resource);
+			}
+		}
+		if (!resourceList.isEmpty()) {
+			List<Resource> existing = this.cachedResources.putIfAbsent(basename, resourceList);
+			if (existing != null) {
+				resourceList = existing;
+			}
+		}
+		return resourceList;
+	}
+	
+}
