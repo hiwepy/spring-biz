@@ -71,7 +71,6 @@ public abstract class GenericServletBean extends HttpServlet implements BeanName
 	 * Stores the bean name as defined in the Spring bean factory.
 	 * <p>Only relevant in case of initialization as bean, to have a name as
 	 * fallback to the Servlet name usually provided by a ServletConfig instance.
-	 * @see org.springframework.biz.beans.factory.BeanNameAware
 	 * @see #getServletName()
 	 */
 	public final void setBeanName(String beanName) {

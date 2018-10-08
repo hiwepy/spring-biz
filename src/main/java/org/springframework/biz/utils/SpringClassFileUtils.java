@@ -10,12 +10,7 @@ import org.apache.commons.io.filefilter.FileFilterUtils;
 
 
 /**
- * 
- * @className	： SpringClassFileUtils
- * @description	： Classpath 根目录资源文件加载工具
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:04:56
- * @version 	V1.0
+ * Classpath 根目录资源文件加载工具
  */
 public abstract class SpringClassFileUtils {
 

@@ -9,12 +9,7 @@ import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.theme.AbstractThemeResolver;
 
 /**
- * 
- * @className ： NestedThemeResolver
- * @description ： 嵌套Theme解析器；解决同时设置Theme到Session和Cookie的问题
- * @author ： <a href="https://github.com/vindell">vindell</a>
- * @date ： 2017年7月28日 下午8:40:23
- * @version V1.0
+ * 嵌套Theme解析器；解决同时设置Theme到Session和Cookie的问题
  */
 public class NestedThemeResolver extends AbstractThemeResolver implements ThemeResolver {
 

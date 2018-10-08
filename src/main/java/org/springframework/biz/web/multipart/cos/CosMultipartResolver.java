@@ -15,22 +15,18 @@ import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequ
 import org.springframework.web.util.WebUtils;
 
 /**
- * {
- * 
- * @link MultipartResolver } implementation for Jason Hunter's
- *       <a href="http://www.servlets.com/cos">COS (com.oreilly.servlet)</a>.
+ * {@link MultipartResolver } implementation for Jason Hunter's
+ *       &lt;a href="http://www.servlets.com/cos">COS (com.oreilly.servlet)&lt;/a&gt;.
  *       Works with a COS MultipartRequest underneath.
  * 
- *       <p>
+ * <p>
  *       Provides "maxUploadSize" and "defaultEncoding" settings as bean
  *       properties; see respective MultipartRequest constructor parameters for
  *       details. Default maximum file size is unlimited; fallback encoding is
  *       the platform's default.
- * 
+ * </p>
  * @author Juergen Hoeller
  * @since 06.10.2003
- * @see CosMultipartHttpServletRequest
- * @see com.CosMultipartRequest.servlet.MultipartRequest
  */
 public class CosMultipartResolver extends CosFileUploadSupport implements MultipartResolver, ServletContextAware {
 

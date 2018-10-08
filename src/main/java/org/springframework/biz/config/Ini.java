@@ -194,7 +194,7 @@ public class Ini implements Map<String, Ini.Section> {
      * Loads the specified raw INI-formatted text into this instance.
      *
      * @param iniConfig the raw INI-formatted text to load into this instance.
-     * @throws EventHandleException if the text cannot be loaded
+     * @throws IOException if the text cannot be loaded
      */
     public void load(String iniConfig) throws IOException {
         load(new Scanner(iniConfig));

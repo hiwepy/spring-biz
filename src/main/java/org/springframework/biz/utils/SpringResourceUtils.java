@@ -15,16 +15,12 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 	//方法来查找通配符之前的资源，然后通过模式匹配来获取匹配的资源。
 	protected static ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 	
-	/**
+	/*
 	 * “classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
 	 * 带通配符的classpath使用“ClassLoader”的“Enumeration<URL> getResources(String
 	 * name)”方法来查找通配符之前的资源，
 	 * 然后通过模式匹配来获取匹配的资源。如“classpath:META-INF/*.LIST”将首先加载通配符之前的目录
 	 * “META-INF”，然后再遍历路径进行子路径匹配从而获取匹配的资源。
-	 * 
-	 * @param regString
-	 * @return
-	 * @throws IOException
 	 */
 	public static String[] getRelativeResources(String location) throws IOException {
 		String[] rs = SpringResourceUtils.getResourcePaths(location);
@@ -63,14 +59,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 		return resolver.getResources(location);
 	}
 	
-	/**
-	 * 
-	 * @description: 匹配classpath*:**\\/*.properties的配置文件
-	 * @return
-	 * @throws IOException
-	 * @return Resource[] 返回类型
-	 * @throws  
-	 */
 	public static Resource[] getProperties() throws IOException {
 		return SpringResourceUtils.getResources("classpath*:**/*.properties");
 	}
@@ -83,14 +71,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 		return SpringResourceUtils.getResources("classpath*:**/runtime*.properties");
 	}
 	
-	/**
-	 * 
-	 * @description: 匹配 classpath*:config\/**\/*.properties 的配置文件
-	 * @return
-	 * @throws IOException
-	 * @return  Resource[] 返回类型
-	 * @throws  
-	 */
 	public static Resource[] getConfigProperties() throws IOException {
 		return SpringResourceUtils.getResources("classpath*:conf/**/*.properties");
 	}
@@ -143,14 +123,6 @@ public abstract class SpringResourceUtils extends org.springframework.util.Resou
 		return SpringResourceUtils.getResources("classpath*:config/ibatis/**/*.xml");
 	}
 
-	/**
-	 * 
-	 * @description: 匹配classpath*:config\/mybatis\/**\/*.xml的配置文件
-	 * @return
-	 * @throws IOException
-	 * @return  Resource[] 返回类型
-	 * @throws  
-	 */
 	public static Resource[] getMybatisXMLs() throws IOException {
 		return SpringResourceUtils.getResources("classpath*:config/mybatis/**/*.xml");
 	}

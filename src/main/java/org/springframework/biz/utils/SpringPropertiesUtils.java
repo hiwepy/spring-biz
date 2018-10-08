@@ -30,7 +30,7 @@ public abstract class SpringPropertiesUtils {
 	protected static Properties cachedProperties = new Properties();
 	
 	/**
-	 * @description	：读取配置文件到缓存区
+	 * 读取配置文件到缓存区
 	 * @param location
 	 * @param encoding
 	 */
@@ -102,7 +102,7 @@ public abstract class SpringPropertiesUtils {
 	
 	/**
 	 * 
-	 * @description: 根据location路径 获取 Properties；
+	 * 根据location路径 获取 Properties；
 	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
 	 * <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
 	 * <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
@@ -147,7 +147,7 @@ public abstract class SpringPropertiesUtils {
 	
 	/**
 	 * 
-	 * @description: 加载 所有 匹配classpath*:**\\/*.properties的配置文件
+	 * 加载 所有 匹配classpath*:**\\/*.properties的配置文件
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
@@ -158,7 +158,7 @@ public abstract class SpringPropertiesUtils {
 
 	/**
 	 * 
-	 * @description: 加载 所有 匹配classpath*:**\\/*.properties 配置文件
+	 * 加载 所有 匹配classpath*:**\\/*.properties 配置文件
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  

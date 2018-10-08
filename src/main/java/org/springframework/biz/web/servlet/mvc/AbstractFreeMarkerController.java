@@ -17,12 +17,6 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import freemarker.template.TemplateException;
 
 /**
- * 
- * @className	： AbstractFreeMarkerController
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午8:50:42
- * @version 	V1.0
  */
 public abstract class AbstractFreeMarkerController extends AbstractController {
 

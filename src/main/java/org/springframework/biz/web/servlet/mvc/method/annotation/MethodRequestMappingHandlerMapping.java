@@ -20,11 +20,6 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 /**
  * http://blog.csdn.net/home_zhang/article/details/71156093
- * @className	： MethodRequestMappingHandlerMapping
- * @description	： TODO(描述这个类的作用)
- * @author 		：万大龙（743）
- * @date		： 2017年10月24日 下午4:16:25
- * @version 	V1.0
  */
 @RequestMapping
 public class MethodRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
@@ -63,7 +58,6 @@ public class MethodRequestMappingHandlerMapping extends RequestMappingHandlerMap
 		if ((patterns != null) && (patterns.length == 0)) {//
 			patterns = new String[] { classNameExceptAction + "!" + method.getName() };
 		}
-		System.out.println(patterns[0]);
 
 		return new RequestMappingInfo(
 				new PatternsRequestCondition(patterns, getUrlPathHelper(), getPathMatcher(), this.useSuffixPatternMatch,

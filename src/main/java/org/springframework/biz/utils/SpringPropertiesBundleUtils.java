@@ -25,7 +25,7 @@ public abstract class SpringPropertiesBundleUtils {
 	
 	/**
 	 * 
-	 * @description: 根据location路径 获取 Properties；
+	 * 根据location路径 获取 Properties；
 	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
 	 * <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
 	 * <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
@@ -65,7 +65,7 @@ public abstract class SpringPropertiesBundleUtils {
 	
 	/**
 	 * 
-	 * @description: 根据location路径 获取 Properties；
+	 * 根据location路径 获取 Properties；
 	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
 	 * <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
 	 * <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
@@ -96,7 +96,7 @@ public abstract class SpringPropertiesBundleUtils {
 	
 	/**
 	 * 
-	 * @description: 加载 所有 匹配classpath*:**\\/*.properties的配置文件
+	 * 加载 所有 匹配classpath*:**\\/*.properties的配置文件
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
@@ -120,7 +120,7 @@ public abstract class SpringPropertiesBundleUtils {
 
 	/**
 	 * 
-	 * @description: 加载 所有 匹配classpath*:**\\/*.properties 配置文件
+	 * 加载 所有 匹配classpath*:**\\/*.properties 配置文件
 	 * @return
 	 * @return  Properties 返回类型
 	 * @throws  
@@ -223,7 +223,7 @@ public abstract class SpringPropertiesBundleUtils {
 	
 	/**
 	 * 
-	 * @description: 对存在的属性文件中添加键值对并保存
+	 * 对存在的属性文件中添加键值对并保存
 	 * @param location		：属性文件的路径(包括类路径及文件系统路径)
 	 * @param keyValues		：键值对Hashtable
 	 * @return
@@ -284,7 +284,7 @@ public abstract class SpringPropertiesBundleUtils {
 	
 	/**
 	 * 
-	 * @description: 删除缓存中 匹配 location 路径 的 配置文件 
+	 * 删除缓存中 匹配 location 路径 的 配置文件 
 	 * @param location
 	 * @return
 	 * @return  boolean 返回类型

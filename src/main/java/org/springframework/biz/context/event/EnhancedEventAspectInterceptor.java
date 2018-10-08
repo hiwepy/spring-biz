@@ -36,14 +36,7 @@ public class EnhancedEventAspectInterceptor extends EnhancedBeanFactory implemen
 	public void afterPropertiesSet() throws Exception {
 		
 	}  
-	
-	/***
-	 * 
-	 * @description	： before 切面 : :方法执行前被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:11
-	 * @param point
-	 */
+
 	public void before(JoinPoint point) throws Throwable {
 		
 		String mathodName = point.getSignature().getName();
@@ -99,15 +92,6 @@ public class EnhancedEventAspectInterceptor extends EnhancedBeanFactory implemen
         return null; 
     }  
 	
-	/**
-	 * 
-	 * @description	： after 切面 :方法执行完后被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:21
-	 * @param point
-	 * @param returnValue
-	 * @throws Throwable
-	 */
     public void afterReturning(JoinPoint point,Object returnValue) throws Throwable {  
     	String mathodName = point.getSignature().getName();
 		if("setSelf".equalsIgnoreCase(mathodName)){
@@ -129,16 +113,6 @@ public class EnhancedEventAspectInterceptor extends EnhancedBeanFactory implemen
  		
     }  
 	
-    
-    /**
-	 * 
-	 * @description	： 异常切面  :方法执行完后如果抛出异常则被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:31
-	 * @param point
-	 * @param ex
-	 * @throws Throwable
-	 */
     public void afterThrowing(JoinPoint point,Throwable ex) throws Throwable {  
     	
     	String mathodName = point.getSignature().getName();

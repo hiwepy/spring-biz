@@ -29,10 +29,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * 
- * @className	： DelegatingServletProxy
- * @description	： TODO(描述这个类的作用)
- * @date		： Dec 27, 2016 11:43:51 AM
- * @version 	V1.0
  * @see #setTargetBeanName
  * @see #setTargetServletLifecycle
  * @see javax.servlet.Servlet#init

@@ -11,12 +11,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
 
 /**
- * 
- * @className	： NestedLocaleResolver
- * @description	： 嵌套Locale解析器；解决同时设置Locale到Session和Cookie的问题
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年7月27日 下午10:27:28
- * @version 	V1.0
+ * 嵌套Locale解析器；解决同时设置Locale到Session和Cookie的问题
  */
 public class NestedLocaleResolver extends AbstractLocaleResolver implements LocaleResolver {
 	

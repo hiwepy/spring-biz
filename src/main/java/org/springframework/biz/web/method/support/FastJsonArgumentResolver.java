@@ -13,13 +13,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * 
- * @className	： FastJsonArgumentResolver
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年9月12日 下午11:22:59
- * @version 	V1.0
- * @see http://zjumty.iteye.com/blog/1927890
+ * http://zjumty.iteye.com/blog/1927890
  */
 public class FastJsonArgumentResolver implements HandlerMethodArgumentResolver {  
     
