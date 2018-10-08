@@ -15,25 +15,12 @@ import org.springframework.biz.utils.AspectUtils;
 import org.springframework.biz.factory.EnhancedBeanFactory;
 
 /**
- * 
- * @className	： AbstractAspectInterceptor
- * @description	：  基于Spring AOP 的方法切面拦截器
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:13:00
- * @version 	V1.0
+ * 基于Spring AOP 的方法切面拦截器
  */
 public abstract class AbstractAspectInterceptor extends EnhancedBeanFactory {
 	
 	protected Logger LOG = LoggerFactory.getLogger(getClass());
 	
-	/***
-	 * 
-	 * @description	： before 切面 : :方法执行前被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:11
-	 * @param point
-	 * @throws Throwable
-	 */
 	public void before(JoinPoint point) throws Throwable {
 		String mathodName = point.getSignature().getName();
 		if("setSelf".equalsIgnoreCase(mathodName)){
@@ -79,15 +66,6 @@ public abstract class AbstractAspectInterceptor extends EnhancedBeanFactory {
 	
 	public abstract Object doAround(ProceedingJoinPoint joinPoint) throws Throwable;
 	
-	/**
-	 * 
-	 * @description	： after 切面 :方法执行完后被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:21
-	 * @param point
-	 * @param returnValue
-	 * @throws Throwable
-	 */
     public void afterReturning(JoinPoint point,Object returnValue) throws Throwable {  
     	String mathodName = point.getSignature().getName();
 		if("setSelf".equalsIgnoreCase(mathodName)){
@@ -111,15 +89,6 @@ public abstract class AbstractAspectInterceptor extends EnhancedBeanFactory {
 	
     public abstract void doAfterReturning(JoinPoint point,Object returnValue) throws Throwable;
     
-	/**
-	 * 
-	 * @description	： 异常切面  :方法执行完后如果抛出异常则被调用
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年4月18日 下午9:13:31
-	 * @param point
-	 * @param ex
-	 * @throws Throwable
-	 */
     public void afterThrowing(JoinPoint point,Throwable ex) throws Throwable {  
     	
     	String mathodName = point.getSignature().getName();

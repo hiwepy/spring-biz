@@ -12,12 +12,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 
 /**
- * 
- * @className	： SpringPropertiesUtils
- * @description	： Properties缓存管理
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:03:46
- * @version 	V1.0
+ * Properties缓存管理
  */
 public abstract class SpringPropertiesUtils {
 	

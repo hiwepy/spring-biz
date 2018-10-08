@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2018 (https://github.com/vindell).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package org.springframework.biz.context.event;
 
 import java.lang.reflect.Method;
@@ -10,27 +25,16 @@ import org.springframework.biz.context.event.handler.EventHandler;
 import org.springframework.biz.factory.EnhancedBeanFactory;
 
 /**
- * 
- * @className	： EnhancedEventHandleListener
- * @description	： * Spring中ApplicationContext的事件机制--- 内定事件)
-	在Spring中已经定义了五个标准事件，分别介绍如下：
-	
-	1)      ContextRefreshedEvent：当ApplicationContext初始化或者刷新时触发该事件。
-	
-	2)      ContextClosedEvent：当ApplicationContext被关闭时触发该事件。容器被关闭时，其管理的所有单例Bean都被销毁。
-	
-	3)      RequestHandleEvent：在Web应用中，当一个http请求（request）结束触发该事件。
-	
-		ContestStartedEvent：Spring2.5新增的事件，当容器调用ConfigurableApplicationContext的Start()方法开始/重新开始容器时触发该事件。
-	
-	5) ContestStopedEvent：Spring2.5新增的事件，当容器调用ConfigurableApplicationContext的Stop()方法停止容器时触发该事件。
-
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月19日 下午9:43:50
- * @version 	V1.0
+ *  <p>Spring中ApplicationContext的事件机制--- 内定事件)</p>
+ *  <b>在Spring中已经定义了五个标准事件，分别介绍如下：</b>
+ *  <p>1)、ContextRefreshedEvent：当ApplicationContext初始化或者刷新时触发该事件。</p>
+ *  <p>2)、ContextClosedEvent：当ApplicationContext被关闭时触发该事件。容器被关闭时，其管理的所有单例Bean都被销毁。</p>
+ *  <p>3)、RequestHandleEvent：在Web应用中，当一个http请求（request）结束触发该事件。</p>
+ *  <p>4)、ContestStartedEvent：Spring2.5新增的事件，当容器调用ConfigurableApplicationContext的Start()方法开始/重新开始容器时触发该事件。</p>
+ *  <p>5)、ContestStopedEvent：Spring2.5新增的事件，当容器调用ConfigurableApplicationContext的Stop()方法停止容器时触发该事件。</p>
  */
 @SuppressWarnings({"rawtypes","unchecked"})
-public class EnhancedEventHandleListener  extends EnhancedBeanFactory implements ApplicationListener<EnhancedEvent> {
+public class EnhancedEventHandleListener extends EnhancedBeanFactory implements ApplicationListener<EnhancedEvent> {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {

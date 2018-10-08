@@ -17,12 +17,8 @@ import org.springframework.biz.utils.AspectUtils;
 import org.springframework.biz.utils.StringUtils;
 
 /**
- * 
- * @className	： MethodAspectInterceptor
- * @description	： 基于Spring AOP 的方法切面拦截器
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:13:48
- * @version 	V1.0
+ * 基于Spring AOP 的方法切面拦截器
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 public class MethodAspectInterceptor extends AbstractAspectInterceptor{
 	
@@ -33,14 +29,6 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
 		
 	}
 	
-	/***
-	 * 
-	 * @description	： before 切面 : :方法执行前被调用
-	 * @author 		：<a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年9月12日 下午11:25:24
-	 * @param point
-	 * @throws Throwable
-	 */
 	@Override
 	public void doBefore(JoinPoint point) throws Throwable {
 		Object target = point.getTarget();
@@ -175,16 +163,6 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
         return null; 
     }  
    
-	
-	/**
-	 * 
-	 * @description	： after 切面 :方法执行完后被调用
-	 * @author 		：<a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年9月12日 下午11:25:15
-	 * @param point
-	 * @param returnValue
-	 * @throws Throwable
-	 */
 	@Override
     public void doAfterReturning(JoinPoint point,Object returnValue) throws Throwable {  
 		
@@ -233,15 +211,6 @@ public class MethodAspectInterceptor extends AbstractAspectInterceptor{
  		}
     }  
 	
-	/**
-	 * 
-	 * @description	： 异常切面  :方法执行完后如果抛出异常则被调用
-	 * @author 		：<a href="https://github.com/vindell">vindell</a>
-	 * @date 		：2017年9月12日 下午11:25:05
-	 * @param point
-	 * @param ex
-	 * @throws Throwable
-	 */
 	@Override
     public void doAfterThrowing(JoinPoint point,Throwable ex) throws Throwable {  
 		

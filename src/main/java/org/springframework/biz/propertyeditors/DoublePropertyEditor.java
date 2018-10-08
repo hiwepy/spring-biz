@@ -18,12 +18,7 @@ package org.springframework.biz.propertyeditors;
 import org.springframework.beans.propertyeditors.PropertiesEditor;
 
 /**
- * @className	： DoubleEditor
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年6月3日 下午8:16:04
- * @version 	V1.0
- * @see http://blog.csdn.net/axin66ok/article/details/17938095
+ * http://blog.csdn.net/axin66ok/article/details/17938095
  */
 public class DoublePropertyEditor extends PropertiesEditor {
 	

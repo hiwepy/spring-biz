@@ -8,12 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.biz.context.SpringWebInstanceContext;
 
 /**
- * 
- * @className	： SpringContextInitializedListener
- * @description	： Spring 自定义上下文初始化监听
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:08:27
- * @version 	V1.0
+ * Spring 自定义上下文初始化监听
  */
 public class SpringContextInitializedListener implements ServletContextListener {
 

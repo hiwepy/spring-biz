@@ -33,14 +33,6 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 
-/**
- * 
- * @className	： PropertiesResource
- * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:08:44
- * @version 	V1.0
- */
 public class PropertiesResource extends AbstractResource implements WritableResource {
 
 	public static final PropertiesResource EMPTY_RESOURCE = new PropertiesResource();

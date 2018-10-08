@@ -6,13 +6,10 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 /**
- * 
- * @className	： DynamicDataSource
- * @description	： 动态数据源切换注解：有此注解的dao方法会自动切换数据源
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年9月12日 下午11:27:05
- * @version 	V1.0
+ * 动态数据源切换注解：有此注解的dao方法会自动切换数据源
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 @Target({ElementType.METHOD})
 @Documented

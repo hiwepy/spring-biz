@@ -35,9 +35,9 @@ public class AopProxyUtils {
 
 	/**
      * 是否代理了多次
-     * see http://jinnianshilongnian.iteye.com/blog/1894465
-     * @param proxy
-     * @return
+     * http://jinnianshilongnian.iteye.com/blog/1894465
+     * @param proxy 代理对象
+     * @return 是否多层代理
      */
     public static boolean isMultipleProxy(Object proxy) {
         try {
@@ -58,8 +58,8 @@ public class AopProxyUtils {
     /**
      * 查看指定的代理对象是否 添加事务切面
      * see http://jinnianshilongnian.iteye.com/blog/1850432
-     * @param proxy
-     * @return
+     * @param proxy 代理对象
+     * @return 是否 添加事务切面
      */
     public static boolean isTransactional(Object proxy) {
        return hasAdvice(proxy, TransactionInterceptor.class);
@@ -68,7 +68,7 @@ public class AopProxyUtils {
 
     /**
      * 移除代理对象的异步调用支持
-     * @return
+     * @param proxy 代理对象
      */
     public static void removeTransactional(Object proxy) {
          removeAdvisor(proxy, TransactionInterceptor.class);
@@ -77,7 +77,7 @@ public class AopProxyUtils {
 
     /**
      * 是否是异步的代理
-     * @param proxy
+     * @param proxy 代理对象
      * @return
      */
     public static boolean isAsync(Object proxy) {
@@ -86,6 +86,7 @@ public class AopProxyUtils {
 
     /**
      * 移除代理对象的异步调用支持
+     * @param proxy 代理对象
      * @return
      */
     public static void removeAsync(Object proxy) {

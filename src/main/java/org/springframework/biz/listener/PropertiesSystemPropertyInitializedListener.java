@@ -17,8 +17,7 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 /**
  * 
- * @className	： PropertiesResourceInitializedListener
- * @description	： 根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;
+ * 根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;
  * 				以便方便在程序运行期间的任何代码中根据System.getProperty(key)获取需要的参数
  * 				通常该对象加载 runtime-*.properties 信息
  * <p> 注意：location 采用 spring 资源路径匹配解析器
@@ -28,9 +27,6 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
  *    <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
  * </ul>
  * </p> 
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:06:29
- * @version 	V1.0
  */
 
 public class PropertiesSystemPropertyInitializedListener implements ServletContextListener {

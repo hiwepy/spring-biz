@@ -14,12 +14,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 
 /**
- * 
- * @className	： SpringPropertiesBundleUtils
- * @description	： 多Properties缓存管理；每个Properties文件路径对应一个Properties对象
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:04:11
- * @version 	V1.0
+ * 多Properties缓存管理；每个Properties文件路径对应一个Properties对象
  */
 public abstract class SpringPropertiesBundleUtils {
 

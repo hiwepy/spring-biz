@@ -6,13 +6,10 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 /**
- * 
- * @className	： Logger
- * @description	： Aop环绕通知注解：有此注解的class,方法上如果有Comment则会进行日志记录
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年9月12日 下午11:26:45
- * @version 	V1.0
+ * Aop环绕通知注解：有此注解的class,方法上如果有Comment则会进行日志记录
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 @Target({ ElementType.TYPE})
 @Documented

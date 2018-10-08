@@ -19,16 +19,10 @@ package org.springframework.biz.proxy;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+
 /**
- * 
- * @className	： EnhancedProxy
- * @description	： 
- * <p class="detail">
- * 功能：代理类：统一处理时间——约定大于配置
- * </p>
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年4月18日 下午9:05:49
- * @version 	V1.0
+ * 代理类：统一处理时间——约定大于配置
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 public class EnhancedProxy implements InvocationHandler, Serializable {
  

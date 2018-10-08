@@ -8,13 +8,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.springframework.biz.aop.Operation;
+
 /**
- * 
- * @className	： Comment
- * @description	： 日志记录注解：有此注解的方法才会记录日志
- * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年9月12日 下午11:27:14
- * @version 	V1.0
+ * 日志记录注解：有此注解的方法才会记录日志
+ * @author <a href="https://github.com/vindell">vindell</a>
  */
 @Target({ElementType.METHOD})
 @Documented

@@ -22,7 +22,8 @@ import com.alibaba.fastjson.JSONObject;
  * @see http://zjumty.iteye.com/blog/1927890
  */
 public class FastJsonArgumentResolver implements HandlerMethodArgumentResolver {  
-    @Override  
+    
+	@Override  
     public boolean supportsParameter(MethodParameter parameter) {  
         return parameter.getParameterAnnotation(FastJson.class) != null;  
     }  
