@@ -20,7 +20,7 @@ import org.springframework.beans.factory.support.ManagedMap;
 
 import java.util.*;
 
-/**
+/*
  * 加速spring启动，通过移除bean定义实现
  * <p>User: Zhang Kaitao
  * <p>Date: 13-6-3 下午9:47
@@ -40,7 +40,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
 
     private String[] noneLazyBeanNames;
 
-    /**
+    /*
      * 设置需要排除的bean的类的正则表达式
      * @param
      */
@@ -48,7 +48,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
         this.removedClassPatterns = removedClassPatterns;
     }
 
-    /**
+    /*
      * 设置需要包含的bean的类的正则表达式
      * @param includeClassPatterns
      */
@@ -56,7 +56,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
         this.includeClassPatterns = includeClassPatterns;
     }
 
-    /**
+    /*
      * 需要移除的bean的名字
      * @param removedBeanNames
      */
@@ -64,7 +64,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
         this.removedBeanNames = removedBeanNames;
     }
 
-    /**
+    /*
      * 需要移除的bean及属性名字 如 bean@property
      * 或
      * 需要替换掉值的bean及属性名字 如 bean@property=123
@@ -103,7 +103,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
 
     }
 
-    /**
+    /*
      * 设置非延迟加载的bean
      * @param noneLazyBeanNames
      */

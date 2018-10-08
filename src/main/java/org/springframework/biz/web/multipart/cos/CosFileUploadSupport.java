@@ -18,8 +18,7 @@ public class CosFileUploadSupport {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**
-	 * Constant identifier for the mulipart content type :
-	 * 'multipart/form-data'.
+	 * Constant identifier for the mulipart content type : 'multipart/form-data'.
 	 */
 	protected static final String MULTIPART_CONTENT_TYPE = "multipart/form-data";
 	
@@ -47,6 +46,7 @@ public class CosFileUploadSupport {
 
 	/**
 	 * Return the maximum allowed size (in bytes) before uploads are refused.
+	 * @return the maximum allowed size (in bytes)
 	 */
 	protected int getMaxUploadSize() {
 
@@ -55,18 +55,18 @@ public class CosFileUploadSupport {
 	}
 
 	/**
+	 * <p>
 	 * Set the default character encoding to use for parsing requests, to be
 	 * applied to headers of individual parts and to form fields. Default is
 	 * ISO-8859-1, according to the Servlet spec.
+	 * </p>
 	 * <p>
 	 * If the request specifies a character encoding itself, the request
 	 * encoding will override this setting. This also allows for generically
 	 * overriding the character encoding in a filter that invokes the
 	 * ServletRequest.setCharacterEncoding method.
-	 * 
-	 * @param defaultEncoding
-	 *            the character encoding to use
-	 * @see #determineEncoding
+	 * </p>
+	 * @param defaultEncoding the character encoding to use
 	 * @see javax.servlet.ServletRequest#getCharacterEncoding
 	 * @see javax.servlet.ServletRequest#setCharacterEncoding
 	 * @see WebUtils#DEFAULT_CHARACTER_ENCODING
@@ -88,6 +88,8 @@ public class CosFileUploadSupport {
 	/**
 	 * Set the temporary directory where uploaded files get stored. Default is
 	 * the servlet container's temporary directory for the web application.
+	 * @param uploadTempDir upload tempdir
+	 * @throws IOException  in case of general resolution/reading failures
 	 * @see org.springframework.web.util.WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE
 	 */
 	public void setUploadTempDir(Resource uploadTempDir) throws IOException {
@@ -103,6 +105,7 @@ public class CosFileUploadSupport {
 	
 	/**
 	 * Return the temporary directory where uploaded files get stored.
+	 * @return upload tempdir
 	 */
 	protected File getUploadTempDir() {
 		return uploadTempDir;
@@ -118,6 +121,7 @@ public class CosFileUploadSupport {
 	 * <p>Default is "false", stripping off path information that may prefix the
 	 * actual filename e.g. from Opera. Switch this to "true" for preserving the
 	 * client-specified filename as-is, including potential path separators.
+	 * @param preserveFilename whither preserveFilename
 	 * @since 4.3.5
 	 * @see MultipartFile#getOriginalFilename()
 	 * @see CosMultipartFile#setPreserveFilename(boolean)
@@ -129,10 +133,8 @@ public class CosFileUploadSupport {
 	/**
 	 * Parse the given List of Commons FileItems into a Spring MultipartParsingResult,
 	 * containing Spring MultipartFile instances and a Map of multipart parameter.
-	 * @param fileItems the Commons FileIterms to parse
-	 * @param encoding the encoding to use for form fields
+	 * @param multipartRequest the multipartRequest to parse
 	 * @return the Spring MultipartParsingResult
-	 * @see CosMultipartFile#CosMultipartFile(org.apache.commons.fileupload.FileItem)
 	 */
 	protected MultipartParsingResult parseFileItems(CosMultipartRequest multipartRequest) {
 		

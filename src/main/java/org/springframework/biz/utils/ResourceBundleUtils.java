@@ -35,7 +35,7 @@ public class ResourceBundleUtils {
         return Thread.currentThread().getContextClassLoader();
     }
     
-    /**
+    /*
      * Creates a key to used for lookup/storing in the bundle misses cache.
      *
      * @param prefix      the prefix for the returning String - it is supposed to be the ClassLoader hash code.
@@ -67,7 +67,7 @@ public class ResourceBundleUtils {
 		return baseName + "_" + currentLocale.toString() + "." + extension;
 	}
     
-    /**
+    /*
 	 * 判断资源文件表达式是否符合国际化资源表达式规范
 	 * @param expression : properties文件表达式 ；如："classpath*:i18n/message*_zh_CN.properties"
 	 */
@@ -111,7 +111,7 @@ public class ResourceBundleUtils {
 		return ret;
 	}
     
-    /**
+    /*
      * 获取指定国际化文件对应的ResourceBundle对象
      * @param bundleFileName : properties文件名称 ；如："message_zh_CN.properties"
      * @return java.util.ResourceBundle
@@ -142,7 +142,7 @@ public class ResourceBundleUtils {
 		return null;
     }
     
-    /**
+    /*
    	 * 根据表达式加载资源文件
    	 * @param expression : properties文件表达式 ；如："classpath*:i18n/message*_zh_CN.properties"
    	 */
@@ -150,7 +150,7 @@ public class ResourceBundleUtils {
     	return getResourceBundles(expression, true);
     }
     
-    /**
+    /*
      * 根据表达式加载资源文件
    	 * @param expression : properties文件表达式 ；如："classpath*:i18n/message*_zh_CN.properties"
      * @param cacheable  : 是否使用缓存

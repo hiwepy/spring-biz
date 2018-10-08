@@ -33,7 +33,7 @@ import java.lang.reflect.Proxy;
 
 public class AopProxyUtils {
 
-	/**
+	/*
      * 是否代理了多次
      * http://jinnianshilongnian.iteye.com/blog/1894465
      * @param proxy 代理对象
@@ -55,7 +55,7 @@ public class AopProxyUtils {
         }
     }
 
-    /**
+    /*
      * 查看指定的代理对象是否 添加事务切面
      * see http://jinnianshilongnian.iteye.com/blog/1850432
      * @param proxy 代理对象
@@ -66,7 +66,7 @@ public class AopProxyUtils {
     }
 
 
-    /**
+    /*
      * 移除代理对象的异步调用支持
      * @param proxy 代理对象
      */
@@ -75,7 +75,7 @@ public class AopProxyUtils {
     }
 
 
-    /**
+    /*
      * 是否是异步的代理
      * @param proxy 代理对象
      * @return
@@ -84,7 +84,7 @@ public class AopProxyUtils {
         return hasAdvice(proxy, AsyncExecutionInterceptor.class);
     }
 
-    /**
+    /*
      * 移除代理对象的异步调用支持
      * @param proxy 代理对象
      * @return
@@ -174,7 +174,7 @@ public class AopProxyUtils {
 		return proxiedInstance;
 	}
 	
-	/**
+	/*
 	 * 获取 目标对象
 	 * @param proxy 代理对象
 	 * @return

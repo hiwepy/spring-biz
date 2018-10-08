@@ -11,12 +11,12 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 
-/**
+/*
  * Properties缓存管理
  */
 public abstract class SpringPropertiesUtils {
 	
-	/**
+	/*
 	 * Any number of these characters are considered delimiters between
 	 * multiple context config paths in a single String value.
 	 * @see org.springframework.biz.context.support.AbstractXmlApplicationContext#setConfigLocation
@@ -29,7 +29,7 @@ public abstract class SpringPropertiesUtils {
 	//初始化配置文件：资源池
 	protected static Properties cachedProperties = new Properties();
 	
-	/**
+	/*
 	 * 读取配置文件到缓存区
 	 * @param location
 	 * @param encoding
@@ -100,7 +100,7 @@ public abstract class SpringPropertiesUtils {
 		return properties;
 	}
 	
-	/**
+	/*
 	 * 
 	 * 根据location路径 获取 Properties；
 	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
@@ -109,10 +109,6 @@ public abstract class SpringPropertiesUtils {
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
 	 * </p>
-	 * @param location
-	 * @return
-	 * @return  Properties 返回类型
-	 * @throws  
 	 */
 	public final static Properties getProperties(String location) {
 		Assert.notNull(location, " location is null!");
@@ -145,7 +141,7 @@ public abstract class SpringPropertiesUtils {
 	}
 	
 	
-	/**
+	/*
 	 * 
 	 * 加载 所有 匹配classpath*:**\\/*.properties的配置文件
 	 * @return
@@ -156,7 +152,7 @@ public abstract class SpringPropertiesUtils {
 		return SpringPropertiesUtils.getProperties("classpath*:*.properties");
 	}
 
-	/**
+	/*
 	 * 
 	 * 加载 所有 匹配classpath*:**\\/*.properties 配置文件
 	 * @return

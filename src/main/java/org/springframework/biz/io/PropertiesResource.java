@@ -92,7 +92,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		this.classLoader = bundleClassLoader;
 	}
 
-	/**
+	/*
 	 * Return the file location for this resource.
 	 */
 	public final String getPath() {
@@ -100,7 +100,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 	}
 
 
-	/**
+	/*
 	 * This implementation returns whether the underlying file exists.
 	 * @see java.io.File#exists()
 	 */
@@ -109,7 +109,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file.exists();
 	}
 
-	/**
+	/*
 	 * This implementation checks whether the underlying file is marked as readable
 	 * (and corresponds to an actual file with content, not to a directory).
 	 * @see java.io.File#canRead()
@@ -120,7 +120,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return (this.file.canRead() && !this.file.isDirectory());
 	}
 
-	/**
+	/*
 	 * This implementation opens a FileInputStream for the underlying file.
 	 * @see java.io.FileInputStream
 	 */
@@ -129,7 +129,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return new FileInputStream(this.file);
 	}
 
-	/**
+	/*
 	 * This implementation returns a URL for the underlying file.
 	 * @see java.io.File#toURI()
 	 */
@@ -138,7 +138,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file.toURI().toURL();
 	}
 
-	/**
+	/*
 	 * This implementation returns a URI for the underlying file.
 	 * @see java.io.File#toURI()
 	 */
@@ -147,7 +147,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file.toURI();
 	}
 
-	/**
+	/*
 	 * This implementation returns the underlying File reference.
 	 */
 	@Override
@@ -155,7 +155,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file;
 	}
 
-	/**
+	/*
 	 * This implementation returns the underlying File's length.
 	 */
 	@Override
@@ -163,7 +163,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file.length();
 	}
 
-	/**
+	/*
 	 * This implementation creates a FileSystemResource, applying the given location
 	 * relative to the location of the underlying file of this resource descriptor.
 	 * @see org.springframework.biz.util.StringUtils#applyRelativePath(String, String)
@@ -174,7 +174,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return new PropertiesResource(locationToUse);
 	}
 
-	/**
+	/*
 	 * This implementation returns the name of the file.
 	 * @see java.io.File#getName()
 	 */
@@ -183,7 +183,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return this.file.getName();
 	}
 
-	/**
+	/*
 	 * This implementation returns a description that includes the absolute
 	 * location of the file.
 	 * @see java.io.File#getAbsolutePath()
@@ -196,7 +196,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 
 	// implementation of WritableResource
 
-	/**
+	/*
 	 * This implementation checks whether the underlying file is marked as writable
 	 * (and corresponds to an actual file with content, not to a directory).
 	 * @see java.io.File#canWrite()
@@ -207,7 +207,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 		return (this.file.canWrite() && !this.file.isDirectory());
 	}
 
-	/**
+	/*
 	 * This implementation opens a FileOutputStream for the underlying file.
 	 * @see java.io.FileOutputStream
 	 */
@@ -217,7 +217,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 	}
 
 
-	/**
+	/*
 	 * This implementation compares the underlying File references.
 	 */
 	@Override
@@ -226,7 +226,7 @@ public class PropertiesResource extends AbstractResource implements WritableReso
 			(obj instanceof PropertiesResource && this.path.equals(((PropertiesResource) obj).path)));
 	}
 
-	/**
+	/*
 	 * This implementation returns the hash code of the underlying File reference.
 	 */
 	@Override

@@ -31,6 +31,7 @@ public class ModuleChangeInterceptor extends HandlerInterceptorAdapter {
 	/**
 	 * Set the name of the parameter that contains a locale specification in a
 	 * locale change request. Default is "locale".
+	 * @param paramName the paramName
 	 */
 	public void setParamName(String paramName) {
 		this.paramName = paramName;
@@ -39,6 +40,7 @@ public class ModuleChangeInterceptor extends HandlerInterceptorAdapter {
 	/**
 	 * Return the name of the parameter that contains a locale specification in
 	 * a locale change request.
+	 * @return paramName
 	 */
 	public String getParamName() {
 		return this.paramName;
@@ -56,7 +58,7 @@ public class ModuleChangeInterceptor extends HandlerInterceptorAdapter {
 
 	/**
 	 * Return the configured HTTP methods.
-	 * 
+	 * @return HTTP methods
 	 * @since 4.2
 	 */
 	public String[] getHttpMethods() {

@@ -13,12 +13,7 @@ public class SessionURLTemplateSource {
 	private URLConnection conn;
 	private InputStream inputStream;
 	private Boolean useCaches;
-
-	/**
-	 * @param useCaches
-	 *            {@code null} if this aspect wasn't set in the parent
-	 *            {@link TemplateLoader}.
-	 */
+	
 	public SessionURLTemplateSource(URL url, Boolean useCaches) throws IOException {
 		this.url = url;
 		this.conn = url.openConnection();

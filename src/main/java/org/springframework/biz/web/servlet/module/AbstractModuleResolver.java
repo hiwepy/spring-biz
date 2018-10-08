@@ -14,6 +14,7 @@ public abstract class AbstractModuleResolver implements ModuleResolver {
 
 	/**
 	 * Set the name of the default module. Out-of-the-box value is "default".
+	 * @return default module
 	 */
 	public String getDefaultModule() {
 		return defaultModule;
@@ -21,6 +22,7 @@ public abstract class AbstractModuleResolver implements ModuleResolver {
 	
 	/**
 	 * Return the name of the default module.
+	 * @param defaultModule default module
 	 */
 	public void setDefaultModule(String defaultModule) {
 		this.defaultModule = defaultModule;

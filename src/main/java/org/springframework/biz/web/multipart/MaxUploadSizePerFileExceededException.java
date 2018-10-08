@@ -18,6 +18,7 @@ public class MaxUploadSizePerFileExceededException extends MultipartException {
 
 	/**
 	 * Return the maximum upload size (in bytes) for each individual file
+	 * @return the maximum upload size (in bytes)
 	 */
 	public long getMaxUploadSizePerFile() {
 		return this.maxUploadSizePerFile;

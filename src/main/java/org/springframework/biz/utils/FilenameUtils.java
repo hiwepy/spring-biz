@@ -81,6 +81,7 @@ public class FilenameUtils extends org.apache.commons.io.FilenameUtils {
     /**
 	 * 判断资源文件名称是否符合国际化资源表达式规范
 	 * @param filename : properties文件名称 ；如："message_zh_CN.properties"
+	 * @return true or false
 	 */
 	public static boolean isBundleFile(String filename) {
     	// 获取文件对应的Locale对象

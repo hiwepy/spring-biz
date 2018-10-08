@@ -17,16 +17,16 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 /**
  * 
- * 根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;
+ * <p>根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;
  * 				以便方便在程序运行期间的任何代码中根据System.getProperty(key)获取需要的参数
- * 				通常该对象加载 runtime-*.properties 信息
- * <p> 注意：location 采用 spring 资源路径匹配解析器
+ * 				通常该对象加载 runtime-*.properties 信息</p> 
+ * <p> 注意：location 采用 spring 资源路径匹配解析器</p> 
  * <ul>
  *    <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
  *    <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
  *    <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
  * </ul>
- * </p> 
+ * 
  */
 
 public class PropertiesSystemPropertyInitializedListener implements ServletContextListener {

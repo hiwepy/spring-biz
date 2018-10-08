@@ -44,19 +44,23 @@ public class CosMultipartFile implements MultipartFile, Serializable {
 	/**
 	 * Return the underlying {@code java.io.File} instance. There is hardly any need
 	 * to access this.
+	 * @return the file
 	 */
 	public final File getFile() {
 		return this.file;
 	}
 
 	/**
+	 * <p>
 	 * Set whether to preserve the filename as sent by the client, not stripping off
 	 * path information in {@link CosMultipartFile#getOriginalFilename()}.
+	 * </p>
 	 * <p>
 	 * Default is "false", stripping off path information that may prefix the actual
 	 * filename e.g. from Opera. Switch this to "true" for preserving the
 	 * client-specified filename as-is, including potential path separators.
-	 * 
+	 * </p>
+	 * @param preserveFilename preserve file name
 	 * @since 4.3.5
 	 * @see #getOriginalFilename()
 	 * @see CosMultipartResolver#setPreserveFilename(boolean)
@@ -176,6 +180,7 @@ public class CosMultipartFile implements MultipartFile, Serializable {
 	 * Return a description for the storage location of the multipart content.
 	 * Tries to be as specific as possible: mentions the file location in case
 	 * of a temporary file.
+	 * @return the storage description
 	 */
 	public String getStorageDescription() {
 		if (this.file.exists()) {

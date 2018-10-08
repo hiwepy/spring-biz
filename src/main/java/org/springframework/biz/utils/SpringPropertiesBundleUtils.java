@@ -13,7 +13,7 @@ import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
 
-/**
+/*
  * 多Properties缓存管理；每个Properties文件路径对应一个Properties对象
  */
 public abstract class SpringPropertiesBundleUtils {
@@ -22,23 +22,17 @@ public abstract class SpringPropertiesBundleUtils {
 	protected static ConcurrentMap<String, Properties> cachedProperties = new ConcurrentHashMap<String, Properties>();
 	protected static String encoding = "UTF-8";
 	 
-	
-	/**
+	/*
 	 * 
 	 * 根据location路径 获取 Properties；
-	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
+	 * <p>注意：location 采用 spring 资源路径匹配解析器</p>
+	 * <ul>
 	 * <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
 	 * <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
-	 * </p>
-	 * @param location
-	 * @return
+	 * @param location : 资源路径
 	 * @return  Properties 返回类型
-	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public static void initProperties(String location,String encoding) {
 		Assert.notNull(location, " location is null!");
@@ -63,22 +57,17 @@ public abstract class SpringPropertiesBundleUtils {
 	}
 
 	
-	/**
+	/*
 	 * 
 	 * 根据location路径 获取 Properties；
-	 * <p>注意：location 采用 spring 资源路径匹配解析器<ul>
+	 * <p>注意：location 采用 spring 资源路径匹配解析器</p>
+	 * <ul>
 	 * <li>1、“classpath”： 用于加载类路径（包括jar包）中的一个且仅一个资源；对于多个匹配的也只返回一个，所以如果需要多个匹配的请考虑“classpath*:”前缀
 	 * <li>2、“classpath*”： 用于加载类路径（包括jar包）中的所有匹配的资源。
 	 * <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
 	 * </ul>
-	 * </p>
-	 * @param location
-	 * @return
+	 * @param location : 资源路径
 	 * @return  Properties 返回类型
-	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public static Properties getProperties(String location) {
 		Assert.notNull(location, " location is null!");
@@ -94,15 +83,9 @@ public abstract class SpringPropertiesBundleUtils {
 		return mergedProperties;
 	}
 	
-	/**
-	 * 
+	/*
 	 * 加载 所有 匹配classpath*:**\\/*.properties的配置文件
-	 * @return
 	 * @return  Properties 返回类型
-	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public static Properties getRootProperties(){
 		Properties rootProperties = new Properties();
@@ -118,15 +101,9 @@ public abstract class SpringPropertiesBundleUtils {
 		return rootProperties;
 	}
 
-	/**
-	 * 
+	/*
 	 * 加载 所有 匹配classpath*:**\\/*.properties 配置文件
-	 * @return
 	 * @return  Properties 返回类型
-	 * @throws  
-	 * @modify by:
-	 * @modify date :
-	 * @modify description : 
 	 */
 	public static Properties getAllProperties(){
 		Properties properties = new Properties();
@@ -221,16 +198,7 @@ public abstract class SpringPropertiesBundleUtils {
 	//---------------------------------------------------------------------
 	
 	
-	/**
-	 * 
-	 * 对存在的属性文件中添加键值对并保存
-	 * @param location		：属性文件的路径(包括类路径及文件系统路径)
-	 * @param keyValues		：键值对Hashtable
-	 * @return
-	 * @return  boolean 返回类型
-	 * @throws  
-	 */
-	public static boolean setProperties(String location,Hashtable<Object,Object> keyValues){
+	public static boolean setProperties(String location, Hashtable<Object,Object> keyValues){
 		Assert.notNull(location, " location is null!");
 		Assert.notNull(keyValues, " keyValues is null!");
 		try {
@@ -282,14 +250,6 @@ public abstract class SpringPropertiesBundleUtils {
 	// Delete methods for java.util.Properties
 	//---------------------------------------------------------------------
 	
-	/**
-	 * 
-	 * 删除缓存中 匹配 location 路径 的 配置文件 
-	 * @param location
-	 * @return
-	 * @return  boolean 返回类型
-	 * @throws  
-	 */
 	public static boolean removeCache(String location){
 		Assert.notNull(location, " location is null!");
 		try {

@@ -16,7 +16,7 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * {@link MultipartResolver } implementation for Jason Hunter's
- *       &lt;a href="http://www.servlets.com/cos">COS (com.oreilly.servlet)&lt;/a&gt;.
+ *       &lt;a href="http://www.servlets.com/cos"&gt;COS (com.oreilly.servlet)&lt;/a&gt;.
  *       Works with a COS MultipartRequest underneath.
  * 
  * <p>
@@ -49,11 +49,8 @@ public class CosMultipartResolver extends CosFileUploadSupport implements Multip
 	 * Constructor for standalone usage. Determines the servlet container's
 	 * temporary directory via the given ServletContext.
 	 * 
-	 * @param servletContext
-	 *            the ServletContext to use (must not be <code>null</code>)
-	 * @throws IllegalArgumentException
-	 *             if the supplied {
-	 * @link ServletContext } is <code>null</code>
+	 * @param servletContext the ServletContext to use (must not be <code>null</code>)
+	 * @throws IllegalArgumentException if the supplied {@link ServletContext } is <code>null</code>
 	 */
 	public CosMultipartResolver(ServletContext servletContext) {
 		this();
@@ -67,6 +64,7 @@ public class CosMultipartResolver extends CosFileUploadSupport implements Multip
 	 * corresponding exceptions at the time of the {@link #resolveMultipart} call.
 	 * Switch this to "true" for lazy multipart parsing, throwing parse exceptions
 	 * once the application attempts to obtain multipart files or parameters.
+	 * @param resolveLazily if resolve lazily
 	 */
 	public void setResolveLazily(boolean resolveLazily) {
 		this.resolveLazily = resolveLazily;

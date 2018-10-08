@@ -23,18 +23,18 @@ import org.slf4j.LoggerFactory;
 
 public class GenericsUtils {
 	
-	/**
+	/*
      * 日志.
      */
 	protected static Logger LOG = LoggerFactory.getLogger(GenericsUtils.class);
 
-    /**
+    /*
      * 构造方法.
      */
     protected GenericsUtils() {
     }
 
-	/**
+	/*
 	 * 
 	 *  通过反射,获得定义Class时声明的父类的范型参数的类型.如 public BookManager extends GenricManager&lt;Book&gt;
 	 * @param sourceClass The class to introspect
@@ -44,7 +44,7 @@ public class GenericsUtils {
 		return getSuperClassGenricType(sourceClass, 0);
 	}
 
-	/**
+	/*
 	 * 
 	 * 通过反射,获得定义Class时声明的父类的范型参数的类型. 如public BookManager extends GenricManager&lt;Book&gt;
 	 * @param sourceClass  The class to introspect
