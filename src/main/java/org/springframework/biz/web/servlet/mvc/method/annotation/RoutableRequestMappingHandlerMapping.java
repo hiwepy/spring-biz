@@ -14,11 +14,12 @@ import org.springframework.biz.config.Ini;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-@RequestMapping
+/**
+ * 通过表达式将请求映射到指定的方法上
+ */
 public class RoutableRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
 	protected static Field mappingRegistryField = ReflectionUtils.findField(RequestMappingHandlerMapping.class, "mappingRegistry");
@@ -58,8 +59,7 @@ public class RoutableRequestMappingHandlerMapping extends RequestMappingHandlerM
 
 	@Override
 	protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
-		// 找到当前请求路径的原始HandlerMethod
-		HandlerMethod handlerMethod = super.getHandlerInternal(request);
+		
 		// 获取lookupPath
 		String lookupPath = getUrlPathHelper().getLookupPathForRequest(request);
 		if (logger.isDebugEnabled()) {
@@ -69,6 +69,7 @@ public class RoutableRequestMappingHandlerMapping extends RequestMappingHandlerM
 		Iterator<Entry<String, String>>  ite = handlerDefinitionMap.entrySet().iterator();
 		while (ite.hasNext()) {
 			Entry<String, String> entry = ite.next();
+			// /get*/user = get/user
 			if(pathMatcher.match(entry.getKey(), lookupPath)){
 				
 				Object mappingRegistry = ReflectionUtils.getField(mappingRegistryField, this);
@@ -77,12 +78,12 @@ public class RoutableRequestMappingHandlerMapping extends RequestMappingHandlerM
 				ReflectionUtils.invokeMethod(acquireReadLockMethod, mappingRegistry);
 
 				try {
-					handlerMethod = lookupHandlerMethod(lookupPath, request);
+					HandlerMethod handlerMethod = lookupHandlerMethod(entry.getValue(), request);
 					if (logger.isDebugEnabled()) {
 						if (handlerMethod != null) {
 							logger.debug("Returning handler method [" + handlerMethod + "]");
 						} else {
-							logger.debug("Did not find handler method for [" + lookupPath + "]");
+							logger.debug("Did not find handler method for [" + entry.getValue() + "]");
 						}
 					}
 					return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);
@@ -94,9 +95,7 @@ public class RoutableRequestMappingHandlerMapping extends RequestMappingHandlerM
 				
 			}
 		}
-		
-		return handlerMethod;
-		
+		return super.getHandlerInternal(request);
 	}
 
 }

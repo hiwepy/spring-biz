@@ -32,15 +32,14 @@ public class MethodRequestMappingHandlerMapping extends RequestMappingHandlerMap
 
 	private final List<String> fileExtensions = new ArrayList<String>();
 
-	private static RequestMapping requestMapping = (RequestMapping) RoutableRequestMappingHandlerMapping.class
+	private static RequestMapping requestMapping = (RequestMapping) MethodRequestMappingHandlerMapping.class
 			.getAnnotation(RequestMapping.class);
 
 	@Override
 	protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
 		RequestMappingInfo info = null;
 		if (requestMapping != null) {
-			RequestCondition<?> methodCondition = getCustomMethodCondition(method);
-			info = createRequestMappingInfo(requestMapping, methodCondition, method);
+			info = createRequestMappingInfo(requestMapping, getCustomMethodCondition(method), method);
 			RequestMapping typeAnnotation = AnnotationUtils.findAnnotation(handlerType, RequestMapping.class);
 			if (typeAnnotation != null) {
 				RequestCondition<?> typeCondition = getCustomTypeCondition(handlerType);
@@ -52,6 +51,7 @@ public class MethodRequestMappingHandlerMapping extends RequestMappingHandlerMap
 
 	protected RequestMappingInfo createRequestMappingInfo(RequestMapping annotation,
 			RequestCondition<?> customCondition, Method method) {
+		
 		String className = method.getDeclaringClass().getSimpleName();
 		String classNameExceptAction = StringUtils.uncapitalize(className.substring(0, className.length() - 10));
 		String[] patterns = resolveEmbeddedValuesInPatterns(annotation.value());
