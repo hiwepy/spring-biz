@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.biz.web.DuplicateHandlerMethodException;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -20,7 +19,6 @@ import com.google.common.collect.Maps;
  * https://tech.imdada.cn/2015/12/23/springmvc-restful-optimize/
  * https://www.jianshu.com/p/5574cb427140
  */
-@RequestMapping
 public class HyperRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
 	private final static Map<HandlerMethod, RequestMappingInfo> HANDLER_METHOD_REQUEST_MAPPING_INFO_MAP = Maps
