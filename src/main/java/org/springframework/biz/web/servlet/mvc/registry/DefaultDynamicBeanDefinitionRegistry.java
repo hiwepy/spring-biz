@@ -13,8 +13,8 @@ import org.springframework.util.StringUtils;
 
 public class DefaultDynamicBeanDefinitionRegistry implements DynamicBeanDefinitionRegistry, ApplicationContextAware {
 
-	private DefaultListableBeanFactory beanFactory;
-	private ApplicationContext applicationContext;
+	protected DefaultListableBeanFactory beanFactory;
+	protected ApplicationContext applicationContext;
 	
 	@Override
     public void setApplicationContext(ApplicationContext applicationContext) {

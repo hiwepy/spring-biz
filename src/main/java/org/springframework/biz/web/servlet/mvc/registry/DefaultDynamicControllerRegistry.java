@@ -3,21 +3,18 @@ package org.springframework.biz.web.servlet.mvc.registry;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.InjectionMetadata;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.core.MethodIntrospector;
-import org.springframework.scripting.groovy.GroovyScriptFactory;
-import org.springframework.scripting.support.ResourceScriptSource;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.MultiValueMap;
@@ -31,9 +28,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefinitionRegistry
-		implements DynamicControllerRegistry {
-
-	protected static final Logger LOG = LoggerFactory.getLogger(DefaultDynamicControllerRegistry.class);
+		implements DynamicControllerDefinitionRegistry, DynamicControllerRegistry {
 
 	// RequestMappingHandlerMapping
 	protected static Method detectHandlerMethodsMethod = ReflectionUtils.findMethod(RequestMappingHandlerMapping.class,
@@ -47,9 +42,6 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 	protected static Field injectionMetadataCacheField = ReflectionUtils
 			.findField(AutowiredAnnotationBeanPostProcessor.class, "injectionMetadataCache");
 
-	private Map<String, Long> scriptLastModifiedMap = new ConcurrentHashMap<String, Long>();// in millis
-
-	@Autowired
 	protected RequestMappingHandlerMapping requestMappingHandlerMapping;
 	
 	static {
@@ -61,14 +53,8 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 	}
 
 	public DefaultDynamicControllerRegistry() {
-		this(-1L);
 	}
-
-	public DefaultDynamicControllerRegistry(Long scriptCheckInterval) {
-		if (scriptCheckInterval > 0L) {
-			startScriptModifiedCheckThead(scriptCheckInterval);
-		}
-	}
+	
 
 	@Override
 	public void registerController(Class<?> controllerClass) {
@@ -169,58 +155,6 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		removeRequestMappingIfNecessary(controllerBeanName);
 	}
 
-	@Override
-	public void registerGroovyController(String scriptLocation) throws IOException {
-
-		if (scriptNotExists(scriptLocation)) {
-			throw new IllegalArgumentException("script not exists : " + scriptLocation);
-		}
-		scriptLastModifiedMap.put(scriptLocation, scriptLastModified(scriptLocation));
-
-		// Create script factory bean definition.
-		GroovyScriptFactory groovyScriptFactory = new GroovyScriptFactory(scriptLocation);
-		groovyScriptFactory.setBeanFactory(getBeanFactory());
-		groovyScriptFactory.setBeanClassLoader(getBeanFactory().getBeanClassLoader());
-		Object controller = groovyScriptFactory
-				.getScriptedObject(new ResourceScriptSource(getApplicationContext().getResource(scriptLocation)));
-
-		String controllerBeanName = scriptLocation;
-
-		// 1、如果RequestMapping存在则移除
-		removeRequestMappingIfNecessary(controllerBeanName);
-		if (getBeanFactory().containsBean(controllerBeanName)) {
-			getBeanFactory().destroySingleton(controllerBeanName); // 移除单例bean
-			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an
-			// instance of declaring class
-			getInjectionMetadataCache().remove(controller.getClass().getName());
-		}
-
-		// 2、注册新的GroovyController
-		getBeanFactory().registerSingleton(controllerBeanName, controller); // 注册单例bean
-		getBeanFactory().autowireBean(controller); // 自动注入
-
-		// 3、注册新的RequestMapping
-		registerRequestMappingIfNecessary(controllerBeanName);
-	}
-
-	@Override
-	public void removeGroovyController(String scriptLocation, String controllerBeanName) throws IOException {
-
-		if (scriptNotExists(scriptLocation)) {
-			throw new IllegalArgumentException("script not exists : " + scriptLocation);
-		}
-
-		// 如果RequestMapping存在则移除
-		removeRequestMappingIfNecessary(scriptLocation);
-		if (getBeanFactory().containsBean(scriptLocation)) {
-			getBeanFactory().destroySingleton(scriptLocation); // 移除单例bean
-			// 移除注入缓存 否则Caused by: java.lang.IllegalArgumentException: object is not an
-			// instance of declaring class
-			getInjectionMetadataCache().remove(controllerBeanName);
-		}
-
-	}
-
 	@SuppressWarnings("unchecked")
 	protected void removeRequestMappingIfNecessary(String controllerBeanName) {
 
@@ -294,37 +228,7 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		// spring 3.1 开始
 		ReflectionUtils.invokeMethod(detectHandlerMethodsMethod, requestMappingHandlerMapping, controllerBeanName);
 
-	}
-
-	private void startScriptModifiedCheckThead(final Long scriptCheckInterval) {
-		new Thread() {
-			@Override
-			public void run() {
-				while (true) {
-					try {
-
-						Thread.sleep(scriptCheckInterval);
-
-						Map<String, Long> copyMap = new HashMap<String, Long>(scriptLastModifiedMap);
-						for (String scriptLocation : copyMap.keySet()) {
-
-							if (scriptNotExists(scriptLocation)) {
-								scriptLastModifiedMap.remove(scriptLocation);
-								// TODO remove handler mapping ?
-							}
-							if (copyMap.get(scriptLocation) != scriptLastModified(scriptLocation)) {
-								registerGroovyController(scriptLocation);
-							}
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-						// ignore
-					}
-				}
-			}
-		}.start();
-	}
-
+	} 
 	@SuppressWarnings("unchecked")
 	protected Map<String, InjectionMetadata> getInjectionMetadataCache() {
 
@@ -339,25 +243,30 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 
 	protected RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
 		try {
-			if(requestMappingHandlerMapping != null){
+			
+			if (requestMappingHandlerMapping != null) {
 				return requestMappingHandlerMapping;
 			}
-			return getApplicationContext().getBean(RequestMappingHandlerMapping.class);
+			
+			Map<String, RequestMappingHandlerMapping> beans = BeanFactoryUtils.beansOfTypeIncludingAncestors(
+					getApplicationContext(), RequestMappingHandlerMapping.class, true, false);
+			if (!beans.isEmpty()) {
+				List<RequestMappingHandlerMapping> mappings = new ArrayList<>(beans.values());
+				for(RequestMappingHandlerMapping handlerMapping : beans.values()) {
+					if(handlerMapping.getClass().getName().equals(RequestMappingHandlerMapping.class.getName())) {
+						requestMappingHandlerMapping = handlerMapping;
+						return handlerMapping;
+					}
+				}
+				AnnotationAwareOrderComparator.sort(mappings);
+				requestMappingHandlerMapping = mappings.get(0);
+				return requestMappingHandlerMapping;
+			}
+			requestMappingHandlerMapping = getApplicationContext().getBean(RequestMappingHandlerMapping.class);
+			return requestMappingHandlerMapping;
 		} catch (Exception e) {
 			throw new IllegalArgumentException("applicationContext must has RequestMappingHandlerMapping");
 		}
-	}
-
-	protected long scriptLastModified(String scriptLocation) {
-		try {
-			return getApplicationContext().getResource(scriptLocation).getFile().lastModified();
-		} catch (Exception e) {
-			return -1;
-		}
-	}
-
-	protected boolean scriptNotExists(String scriptLocation) {
-		return !getApplicationContext().getResource(scriptLocation).exists();
 	}
 
 }
