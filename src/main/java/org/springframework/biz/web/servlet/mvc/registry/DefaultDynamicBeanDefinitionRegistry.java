@@ -111,6 +111,11 @@ public class DefaultDynamicBeanDefinitionRegistry implements DynamicBeanDefiniti
 			throws BeanDefinitionStoreException {
 		getBeanFactory().registerBeanDefinition(beanName, beanDefinition);
 	}
+	
+	@Override
+	public void registerSingleton(String beanName, Object singletonObject)  {
+		getBeanFactory().registerSingleton(beanName, singletonObject);
+	}
 
 	@Override
 	public void removeBeanDefinition(String beanName) throws NoSuchBeanDefinitionException {

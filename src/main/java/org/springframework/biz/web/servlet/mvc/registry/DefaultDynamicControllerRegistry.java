@@ -144,6 +144,24 @@ public class DefaultDynamicControllerRegistry extends DefaultDynamicBeanDefiniti
 		registerRequestMappingIfNecessary(beanName);
 
 	}
+	
+	@Override
+	public void registerController(String beanName, Object controller) {
+		
+		Assert.notNull(controller, "controller must not null");
+		if (!WebApplicationContext.class.isAssignableFrom(getApplicationContext().getClass())) {
+			throw new IllegalArgumentException("applicationContext must be WebApplicationContext type");
+		}
+
+		beanName = StringUtils.isEmpty(beanName) ? controller.getClass().getName() : beanName;
+
+		// 1、如果RequestMapping存在则移除
+		removeRequestMappingIfNecessary(beanName);
+		// 2、注册新的Controller
+		getBeanFactory().registerSingleton(beanName, controller);
+		// 3、注册新的RequestMapping
+		registerRequestMappingIfNecessary(beanName);
+	}
 
 	@Override
 	public void removeController(String controllerBeanName) throws IOException {

@@ -42,6 +42,13 @@ public interface DynamicBeanDefinitionRegistry extends BeanDefinitionRegistry {
     public void registerBean(String beanName, Class<?> beanClass);
 	
     /**
+     * 动态注册指定类型的bean对象到Spring上下文
+     * @param beanName			: The name of bean 
+     * @param singletonObject	: The instance of bean
+     */
+    public void registerSingleton(String beanName, Object singletonObject);
+    
+    /**
      * 动态注册指定类型的Class到Spring上下文
      * @param beanName			: The name of bean 
      * @param beanClass			: The class type of bean

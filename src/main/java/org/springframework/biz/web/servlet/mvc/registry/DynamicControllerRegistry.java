@@ -78,6 +78,13 @@ public interface DynamicControllerRegistry extends DynamicBeanDefinitionRegistry
     public void registerController(String beanName, BeanDefinition beanDefinition);
     
     /**
+     * 动态注册SpringMVC Controller到Spring上下文
+     * @param beanName			: The name of bean 
+     * @param controller	: The instance of controller
+     */
+	public void registerController(String beanName, Object controller);
+	
+    /**
      * 动态从Spring上下文删除SpringMVC Controller
      * @param controllerBeanName		: The name of controller 
      * @throws IOException if io error
