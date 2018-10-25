@@ -37,7 +37,7 @@ import org.springframework.web.method.HandlerMethod;
  * 
  * 客户端此时可以采用相同版本号v2来方法原来的接口和升级后的接口
  * 
- * http://localhost:9001/api/v2/user >> http://localhost:9001/api/v1/user
+ * http://localhost:9001/api/v2/user &gt;&gt; http://localhost:9001/api/v1/user
  * http://localhost:9001/api/v2/company
  * </pre>
  */
