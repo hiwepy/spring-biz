@@ -64,7 +64,7 @@ public class ModuleReloadableResourceBundleMessageSource extends ReloadableResou
 	@Override
 	protected String resolveCodeWithoutArguments(String code, Locale locale) {
 		String module = RequestContextUtils.getModule();
-		Assert.notNull(module, " module is not specified!");
+		Assert.hasText(module, " module is not specified!");
 		if(logger.isDebugEnabled()){
 			logger.debug("module:" + module);
 		}

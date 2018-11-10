@@ -369,23 +369,17 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<alibaba-fastjson.version>1.2.32</alibaba-fastjson.version>
-		<aspectj.version>1.8.9</aspectj.version>
-		<aspectjweaver.version>1.8.9</aspectjweaver.version>
-		<cglib.version>3.2.4</cglib.version>
 		<commons-beanutils.version>1.8.3</commons-beanutils.version>
-		<commons-collections4.version>4.1</commons-collections4.version>
+		<commons-codec.version>1.11</commons-codec.version>
 		<commons-lang3.version>3.5</commons-lang3.version>
-		<commons-io.version>2.5</commons-io.version>
-		<commons-fileupload.version>1.3.2</commons-fileupload.version>
+		<commons-io.version>2.6</commons-io.version>
+		<commons-fileupload.version>1.3.3</commons-fileupload.version>
 		<cos.version>20021105</cos.version>
-		<ehcache2.version>2.10.4</ehcache2.version>
-		<freemarker.version>2.3.23</freemarker.version>
-		<javax.portlet-api.version>3.0.0</javax.portlet-api.version>
+		<fastjson.version>1.2.51</fastjson.version>
+		<freemarker.version>2.3.28</freemarker.version>
 		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
-		<jackson.version>2.8.9</jackson.version>
-		<jedis.version>2.9.0</jedis.version>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
+		<junit.version>4.12</junit.version>
 		<maven.version>3.0</maven.version>
 		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
@@ -401,25 +395,33 @@
 		<maven-surefire-plugin.vertsion>2.21.0</maven-surefire-plugin.vertsion>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
-		<slf4j.version>1.7.21</slf4j.version>
-		<spring.version>4.3.11.RELEASE</spring.version><!-- 4.3.x（JDK 1.7 ）、4.1.x（JDK 1.6）、4.0.x（JDK 1.6） -->
+		<slf4j.version>1.7.25</slf4j.version>
+		<spring.version>5.1.0.RELEASE</spring.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 
-			<!-- Test dependencies -->
+			<!-- https://mvnrepository.com/artifact/junit/junit -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.12</version>
+				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.slf4j -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<scope>provided</scope>
 				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>test</scope>
 			</dependency>
 
 			<!-- Commons项目中用来处理IO的一些工具类包 -->
@@ -434,6 +436,12 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
 			<!-- apache 上传组件 -->
 			<dependency>
 				<groupId>commons-fileupload</groupId>
@@ -447,15 +455,6 @@
 				<version>${cos.version}</version>
 			</dependency>
 
-			<!-- ###################### Java Web API ###################### -->
-
-			<!-- The Java Portlet API version 3.0 developed by the Java Community 
-				Process JSR-362 Expert Group. -->
-			<dependency>
-				<groupId>javax.portlet</groupId>
-				<artifactId>portlet-api</artifactId>
-				<version>${javax.portlet-api.version}</version>
-			</dependency>
 			<!-- Java Servlet API -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -467,10 +466,8 @@
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
-				<version>2.0.0.Final</version>
+				<version>${validation-api.version}</version>
 			</dependency>
-
-			<!-- ###################### 模板框架 ###################### -->
 
 			<!-- FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出 -->
 			<dependency>
@@ -478,37 +475,6 @@
 				<artifactId>freemarker</artifactId>
 				<version>${freemarker.version}</version>
 			</dependency>
-
-			<!-- ###################### AOP工具包 ###################### -->
-
-			<!-- AOP Alliance(http://aopalliance.sourceforge.net/) 是个联合的开源协作组织， 在多个项目间进行协作以期提供一套标准的AOP 
-				Java接口（interface）。 Spring AOP就是基于AOP Alliance标准API实现的。如果你打算使用Spring的AOP或基于AOP的任何特性， 
-				只需这个JAR文件。 -->
-			<dependency>
-				<groupId>aopalliance</groupId>
-				<artifactId>aopalliance</artifactId>
-				<version>1.0</version>
-			</dependency>
-			<!-- aspectj -->
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>${aspectj.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>${aspectj.version}</version>
-			</dependency>
-			<!-- CGLIB是一个强大的高性能的代码生成包。它广泛的被许多AOP的框架使用，例如Spring AOP和dynaop，为他们提供方法的interception（拦截）。 
-				最流行的OR Mapping工具hibernate也使用CGLIB来代理单端single-ended(多对一和一对一)关联（对集合的延迟抓取，是采用其他机制实现的）。 -->
-			<dependency>
-				<groupId>cglib</groupId>
-				<artifactId>cglib-nodep</artifactId>
-				<version>${cglib.version}</version>
-			</dependency>
-
-			<!-- ###################### Spring 4.x 核心框架 ###################### -->
 
 			<!-- 基于代理的AOP支持 -->
 			<dependency>
@@ -618,88 +584,12 @@
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			<!-- 用于Portlet环境的MVC实现 -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc-portlet</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<!-- WebSocket和SockJS的实现，包括对STOMP支持 -->
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-websocket</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-
-
-			<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
-			<dependency>
-				<groupId>org.springframework.data</groupId>
-				<artifactId>spring-data-redis</artifactId>
-				<version>1.8.4.RELEASE</version>
-			</dependency>
-
-
-			<!-- ###################### 缓存组件 ###################### -->
-
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache2.version}</version>
-			</dependency>
-
-			<!-- Jedis 是 Redis 官方首选的 Java 客户端开发包。 -->
-			<dependency>
-				<groupId>redis.clients</groupId>
-				<artifactId>jedis</artifactId>
-				<version>${jedis.version}</version>
-			</dependency>
-
-			<!-- fastjson 是一个性能很好的 Java 语言实现的 JSON 解析器和生成器，来自阿里巴巴的工程师开发。 主要特点： 快速FAST 
-				(比其它任何基于Java的解析器和生成器更快，包括jackson） 强大（支持普通JDK类包括任意Java Bean Class、Collection、Map、Date或enum） 
-				零依赖（没有依赖其它任何类库除了JDK） -->
+			
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
-				<version>${alibaba-fastjson.version}</version>
+				<version>${fastjson.version}</version>
 			</dependency>
-
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-core</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.core</groupId>
-				<artifactId>jackson-databind</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.module</groupId>
-				<artifactId>jackson-module-jaxb-annotations</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>22.0</version>
-			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
-			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-				<version>1.10</version>
-			</dependency>
-
-
 
 		</dependencies>
 	</dependencyManagement>
@@ -718,22 +608,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- ###################### Java Web API ###################### -->
-
-		<!-- The Java Portlet API version 3.0 developed by the Java Community Process 
-			JSR-362 Expert Group. -->
-		<dependency>
-			<groupId>javax.portlet</groupId>
-			<artifactId>portlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
 		<!-- Java Servlet API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -762,9 +642,6 @@
 			<artifactId>cos</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- ###################### 模板框架 ###################### -->
-
 		
 		<!-- FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出 -->
 		<dependency>
@@ -772,37 +649,6 @@
 			<artifactId>freemarker</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- ###################### AOP工具包 ###################### -->
-
-		<!-- AOP Alliance(http://aopalliance.sourceforge.net/) 是个联合的开源协作组织， 在多个项目间进行协作以期提供一套标准的AOP 
-			Java接口（interface）。 Spring AOP就是基于AOP Alliance标准API实现的。如果你打算使用Spring的AOP或基于AOP的任何特性， 
-			只需这个JAR文件。 -->
-		<dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- aspectj -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- CGLIB是一个强大的高性能的代码生成包。它广泛的被许多AOP的框架使用，例如Spring AOP和dynaop，为他们提供方法的interception（拦截）。 
-			最流行的OR Mapping工具hibernate也使用CGLIB来代理单端single-ended(多对一和一对一)关联（对集合的延迟抓取，是采用其他机制实现的）。 -->
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- ###################### Spring 4.x 核心框架 ###################### -->
 
 		<!-- 基于代理的AOP支持 -->
 		<dependency>
@@ -844,18 +690,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- 用于JVM启动引导的监测代理 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-instrument</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- 用于Tomcat的监测代理 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-instrument-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<!-- JDBC支持包，包括DataSource安装和JDBC访问支持 -->
@@ -912,76 +746,10 @@
 			<artifactId>spring-webmvc</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- 用于Portlet环境的MVC实现 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc-portlet</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<!-- WebSocket和SockJS的实现，包括对STOMP支持 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-websocket</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-jaxb-annotations</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- ###################### 缓存组件 ###################### -->
-
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
