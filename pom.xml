@@ -396,6 +396,7 @@
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<slf4j.version>1.7.25</slf4j.version>
+		<log4j.version>2.11.1</log4j.version>
 		<spring.version>5.1.0.RELEASE</spring.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
@@ -422,6 +423,12 @@
 				<artifactId>slf4j-simple</artifactId>
 				<version>${slf4j.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+			<dependency>
+			    <groupId>org.apache.logging.log4j</groupId>
+			    <artifactId>log4j-api</artifactId>
+			    <version>${log4j.version}</version>
 			</dependency>
 
 			<!-- Commons项目中用来处理IO的一些工具类包 -->
@@ -605,7 +612,17 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <scope>provided</scope>
 		</dependency>
 
 		<!-- Java Servlet API -->
