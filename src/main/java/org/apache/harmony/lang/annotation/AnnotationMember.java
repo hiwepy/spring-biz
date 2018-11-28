@@ -109,7 +109,7 @@ public class AnnotationMember implements Serializable {
      * @param type declared type of this element 
      * (return type of the defining method) 
      */  
-    public AnnotationMember(String name, Object val, Class type, Method m) {  
+    public AnnotationMember(String name, Object val, Class<?> type, Method m) {  
         this(name, val);  
   
         definingMethod = m;  
@@ -206,7 +206,7 @@ public class AnnotationMember implements Serializable {
         if (value instanceof Object[] && otherValue instanceof Object[]) {  
             return Arrays.equals((Object[])value, (Object[])otherValue);  
         }  
-        Class type = value.getClass();  
+        Class<?> type = value.getClass();  
         if (type != otherValue.getClass()) {  
             return false;  
         }  
@@ -242,7 +242,7 @@ public class AnnotationMember implements Serializable {
     public int hashCode() {  
         int hash = name.hashCode() * 127;  
         if (tag == ARRAY) {  
-            Class type = value.getClass();  
+            Class<?> type = value.getClass();  
             if (type == int[].class) {  
                 return hash ^ Arrays.hashCode((int[])value);  
             } else if (type == byte[].class) {  
@@ -347,7 +347,7 @@ public class AnnotationMember implements Serializable {
         if (tag != ARRAY || Array.getLength(value) == 0) {  
             return value;  
         }  
-        Class type = value.getClass();  
+        Class<?> type = value.getClass();  
         if (type == int[].class) {  
             return ((int[])value).clone();  
         } else if (type == byte[].class) {  

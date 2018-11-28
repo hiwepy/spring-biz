@@ -269,7 +269,7 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable  
     {  
         String name = method.getName();  
-        Class[] params = method.getParameterTypes();  
+        Class<?>[] params = method.getParameterTypes();  
         if (params.length == 0) {  
             if ("annotationType".equals(name)) {  
                 return klazz;  
