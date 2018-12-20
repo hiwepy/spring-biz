@@ -16,6 +16,9 @@
 package org.springframework.biz.utils;
 
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Proxy;
+
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.TargetSource;
@@ -25,11 +28,7 @@ import org.springframework.aop.framework.AopProxy;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.interceptor.AsyncExecutionInterceptor;
 import org.springframework.aop.support.AopUtils;
-import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.util.ReflectionUtils;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Proxy;
 
 public class AopProxyUtils {
 
@@ -61,18 +60,18 @@ public class AopProxyUtils {
      * @param proxy 代理对象
      * @return 是否 添加事务切面
      */
-    public static boolean isTransactional(Object proxy) {
+    /*public static boolean isTransactional(Object proxy) {
        return hasAdvice(proxy, TransactionInterceptor.class);
-    }
+    }*/
 
 
     /*
      * 移除代理对象的异步调用支持
      * @param proxy 代理对象
      */
-    public static void removeTransactional(Object proxy) {
+   /* public static void removeTransactional(Object proxy) {
          removeAdvisor(proxy, TransactionInterceptor.class);
-    }
+    }*/
 
 
     /*
