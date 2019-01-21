@@ -7,6 +7,6 @@ Spring Extension
 <dependency>
 	<groupId>com.github.vindell</groupId>
 	<artifactId>spring-biz</artifactId>
-	<version>${project.version}</version>
+	<version>1.0.6.RELEASE</version>
 </dependency>
 ```
