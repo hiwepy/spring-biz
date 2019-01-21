@@ -31,7 +31,7 @@ public @interface VersionRangeMapping {
     /**
      * Media type without the version or representation for example if a full media type is
      * application/vnd.app.resource-1.1.0+json , then this value should contain application/vnd.app.resource
-     * @return
+     * @return Media type
      */
     String media() default "";
 

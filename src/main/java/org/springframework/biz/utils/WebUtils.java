@@ -41,6 +41,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 	
 	/**
 	 *  获得请求的客户端信息【ip,port,name】
+	 *  @param request {@link HttpServletRequest} 对象
 	 *  @return 客户端信息[ip,port,name]
 	 */
 	public static String[] getRemoteInfo(HttpServletRequest request) {

@@ -28,7 +28,7 @@ import java.util.Arrays;
  * class-data structures and throwing is delayed until the element 
  * is requested for value. 
  * 
- * @see android.lang.annotation.AnnotationFactory 
+ * @see org.apache.harmony.lang.annotation.AnnotationFactory 
  * 
  * @author Alexey V. Varlamov, Serguei S. Zapreyev 
  * @version $Revision$ 
@@ -103,7 +103,7 @@ public class AnnotationMember implements Serializable {
     /** 
      * Creates the completely defined element. 
      * @param name element name, must not be null 
-     * @param value element value, should be of addmissible type, 
+     * @param val element value, should be of addmissible type, 
      * as specified in the description of this class 
      * @param m element-defining method, reflected on the annotation type 
      * @param type declared type of this element 
@@ -137,6 +137,8 @@ public class AnnotationMember implements Serializable {
   
     /** 
      * Fills in element's definition info and returns this. 
+     * @param copy The AnnotationMember instance
+     * @return The AnnotationMember instance
      */  
     protected AnnotationMember setDefinition(AnnotationMember copy) {  
         definingMethod = copy.definingMethod;  
@@ -146,6 +148,7 @@ public class AnnotationMember implements Serializable {
   
     /** 
      * Returns readable description of this annotation value. 
+     * @return readable description of this annotation value. 
      */  
     public String toString() {  
         if (tag == ARRAY) {  
@@ -198,6 +201,7 @@ public class AnnotationMember implements Serializable {
      * Returns true if the contained value and a passed object are equal arrays, 
      * false otherwise. Appropriate overloaded method of Arrays.equals() 
      * is used for equality testing. 
+     * @param otherValue the value to equal
      * @see java.util.Arrays#equals(java.lang.Object[], java.lang.Object[]) 
      * @return true if the value is array and is equal to specified object, 
      * false otherwise 
@@ -268,6 +272,7 @@ public class AnnotationMember implements Serializable {
   
     /** 
      * Throws contained error (if any) with a renewed stack trace. 
+     * @throws Throwable wrapper throwable
      */  
     public void rethrowError() throws Throwable {  
         if (tag == ERROR) {  
@@ -317,7 +322,8 @@ public class AnnotationMember implements Serializable {
      * 
      * @see #rethrowError() 
      * @see #copyValue() 
-     * @return actual valid value or null if no value 
+     * @return actual valid value or null if no value
+     * @throws Throwable wrapper throwable 
      */  
     public Object validateValue() throws Throwable {  
         if (tag == ERROR) {  
@@ -340,7 +346,8 @@ public class AnnotationMember implements Serializable {
     /** 
      * Provides mutation-safe access to contained value. That is, caller is free 
      * to modify the returned value, it will not affect the contained data value. 
-     * @return cloned value if it is mutable or the original immutable value 
+     * @return cloned value if it is mutable or the original immutable value
+     * @throws Throwable wrapper throwable 
      */  
     public Object copyValue() throws Throwable  
     {  

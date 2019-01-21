@@ -79,6 +79,7 @@ public class CosFileUploadSupport {
 
 	/**
 	 * Return the default character encoding to use for parsing requests.
+	 * @return the default character encoding to use for parsing requests.
 	 */
 	protected String getDefaultEncoding() {
 		return defaultEncoding;

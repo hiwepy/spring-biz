@@ -43,6 +43,8 @@ public class WebRequestUtils {
     
 	/**
      * Test if current HttpServletRequest is a multipart request.
+     * @param request The HttpServletRequest
+     * @return if current HttpServletRequest is a multipart request.
      */
     public static boolean isMultipartRequest(HttpServletRequest request) {
     	if (!"post".equals(request.getMethod().toLowerCase())) {

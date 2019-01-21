@@ -84,6 +84,7 @@ public class Version implements Comparable<Version> {
 	}
 	
     /**
+     * @param version string value of value
      * @return The number of major version.
      */
     public static int getMajorVersion(String version) {
@@ -92,6 +93,7 @@ public class Version implements Comparable<Version> {
     }
 
     /**
+     * @param version string value of value
      * @return The number of minor version.
      */
     public static int getMinorVersion(String version) {
@@ -100,6 +102,7 @@ public class Version implements Comparable<Version> {
     }
     
     /**
+     * @param version string value of value
      * @return The number of revision version.
      */
     public static int getRevisionVersion(String version) {
@@ -108,10 +111,11 @@ public class Version implements Comparable<Version> {
     }
 
     /**
+     * @param version string value of value
      * @return The version.
      */
-    private static String getVersion(String ver) {
-        return ver.trim().replaceAll("[^0-9\\.]", "");
+    private static String getVersion(String version) {
+        return version.trim().replaceAll("[^0-9\\.]", "");
     }
     
 }

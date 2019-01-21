@@ -23,10 +23,7 @@ public class QueryParamsUrlTemplateHandler implements UriTemplateHandler {
 	 * a URI variable into a path segment the "/" character is illegal and
 	 * encoded. The ";" character however is legal and not encoded even though
 	 * it has a reserved purpose.
-	 * <p><strong>Note:</strong> this property supersedes the need to also set
-	 * the {@link #setParsePath parsePath} property.
 	 * @param strictEncoding whether to perform strict encoding
-	 * @since 4.3
 	 */
 	public void setStrictEncoding(boolean strictEncoding) {
 		this.strictEncoding = strictEncoding;
@@ -34,6 +31,7 @@ public class QueryParamsUrlTemplateHandler implements UriTemplateHandler {
 
 	/**
 	 * Whether to strictly encode any character outside the unreserved set.
+	 * @return Whether to strictly encode any character outside the unreserved set.
 	 */
 	public boolean isStrictEncoding() {
 		return this.strictEncoding;

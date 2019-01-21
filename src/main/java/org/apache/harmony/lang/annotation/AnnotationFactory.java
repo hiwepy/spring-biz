@@ -26,7 +26,7 @@ import static org.apache.harmony.lang.annotation.AnnotationMember.ERROR;
  * conforming access to annotation member values and required implementations of 
  * methods declared in Annotation interface. 
  * 
- * @see android.lang.annotation.AnnotationMember 
+ * @see org.apache.harmony.lang.annotation.AnnotationMember 
  * @see java.lang.annotation.Annotation 
  * 
  * @author Alexey V. Varlamov, Serguei S. Zapreyev 
@@ -42,6 +42,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
     /** 
      * Reflects specified annotation type and returns an array 
      * of member element definitions with default values. 
+     * @param annotationType the annotation type definition 
+     * @return a new annotation instance array
      */  
     public static AnnotationMember[] getElementsDescription(Class<? extends Annotation> annotationType ) {  
         AnnotationMember[] desc = cache.get(annotationType);  
@@ -117,10 +119,12 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
   
     /** 
      * Reads the object, obtains actual member definitions for the annotation type, 
-     * and merges deserialized values with the new definitions. 
+     * and merges deserialized values with the new definitions.
+     * @param os ObjectInputStream
+     * @throws IOException if Class Not Found
+     * @throws ClassNotFoundException if Class Not Found
      */  
-    private void readObject(ObjectInputStream os) throws IOException,  
-    ClassNotFoundException {  
+    private void readObject(ObjectInputStream os) throws IOException, ClassNotFoundException {  
         os.defaultReadObject();  
         // Annotation type members can be changed arbitrarily  
         // So there may be zombi elements from the previous life;  
@@ -160,9 +164,10 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * returns the same element values. 
      * <br>Note, actual underlying implementation mechanism does not matter - it may 
      * differ completely from this class. 
+     * @param obj Object
      * @return true if the passed object is equivalent annotation instance, 
      * false otherwise. 
-     * @see android.lang.annotation.AnnotationMember#equals(Object) 
+     * @see org.apache.harmony.lang.annotation.AnnotationMember#equals(Object) 
      */  
     public boolean equals(Object obj) {  
         if (obj == this) {  
@@ -232,7 +237,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
     /** 
      * Returns a hash code composed as a sum of hash codes of member elements, 
      * including elements with default values. 
-     * @see android.lang.annotation.AnnotationMember#hashCode() 
+     * @see org.apache.harmony.lang.annotation.AnnotationMember#hashCode() 
+     * @return hashCode
      */  
     public int hashCode() {  
         int hash = 0;  
@@ -263,6 +269,11 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * Recognizes the methods declared in the 
      * {@link java.lang.annotation.Annotation java.lang.annotation.Annotation} 
      * interface, and member-defining methods of the implemented annotation type. 
+     * 
+     * 
+     * @param proxy The Proxy Object
+     * @param method The Proxy Method
+     * @param args The Proxy Method Args
      * @throws IllegalArgumentException If the specified method is none of the above 
      * @return the invocation result 
      */  

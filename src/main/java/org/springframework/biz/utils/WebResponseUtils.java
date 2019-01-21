@@ -23,6 +23,8 @@ public class WebResponseUtils {
 	/**
 	 * Returns true if the code is in [200..300), which means the request was
 	 * successfully received, understood, and accepted.
+	 * @param statusCode The status code of http
+	 * @return if request success
 	 */
 	public static boolean isSuccessful(int statusCode) {
 		return statusCode >= 200 && statusCode < 300;
