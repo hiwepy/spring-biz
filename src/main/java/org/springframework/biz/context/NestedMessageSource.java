@@ -17,6 +17,7 @@ package org.springframework.biz.context;
 
 import java.util.Locale;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
@@ -80,6 +81,14 @@ public class NestedMessageSource implements MessageSource{
 			}
 		}
 		return null;
+	}
+
+	public MessageSource[] getDelegates() {
+		return delegates;
+	}
+
+	public void addMessageSource(MessageSource delegate) {
+		this.delegates = ArrayUtils.add(delegates, delegate);
 	}
 
 }
