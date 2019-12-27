@@ -7,7 +7,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.BeanUtils;
 
 /**
- * @author <a href="https://github.com/vindell">vindell</a>
+ * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 public final class AspectUtils {
 

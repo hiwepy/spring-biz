@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 
 /**
- * @author <a href="https://github.com/vindell">vindell</a>
+ * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 public class LocaleUtils extends org.apache.commons.lang3.LocaleUtils {
 

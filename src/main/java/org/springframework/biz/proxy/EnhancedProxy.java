@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 (https://github.com/vindell).
+ * Copyright (c) 2018 (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 
 /**
  * 代理类：统一处理时间——约定大于配置
- * @author <a href="https://github.com/vindell">vindell</a>
+ * @author <a href="https://github.com/hiwepy">hiwepy</a>
  */
 public class EnhancedProxy implements InvocationHandler, Serializable {
  
