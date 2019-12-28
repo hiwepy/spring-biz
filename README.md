@@ -5,7 +5,7 @@ Spring Extension
 
 ``` xml
 <dependency>
-	<groupId>com.github.vindell</groupId>
+	<groupId>com.github.hiwepy</groupId>
 	<artifactId>spring-biz</artifactId>
 	<version>${project.version}</version>
 </dependency>
