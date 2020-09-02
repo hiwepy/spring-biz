@@ -7,6 +7,6 @@ Spring Extension
 <dependency>
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>spring-biz</artifactId>
-	<version>${project.version}</version>
+	<version>1.1.0.RELEASE</version>
 </dependency>
 ```
