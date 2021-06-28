@@ -17,38 +17,15 @@ package org.springframework.biz.utils;
 
 
 public class StringUtils extends org.springframework.util.StringUtils {
+
+	/**
+	 * Any number of these characters are considered delimiters between multiple
+	 * context config paths in a single String value.
+	 */
+	public static String CONFIG_LOCATION_DELIMITERS = ",; \t\n";
 	
-	public static String getSafeObj(Object str) {
-		return (isEmpty(str) || !(str instanceof String)) ? null : str.toString();
-	}
-
-	public static String getSafeStr(Object str) {
-		return (isEmpty(str) || !(str instanceof String)) ? "" : str.toString();
-	}
-
-	public static String getSafeStr(String str) {
-		return isEmpty(str) ? "" : str;
-	}
-
-	public static String getSafeStr(Object str, String defaultStr) {
-		return isEmpty(str) ? defaultStr : str.toString();
-	}
-
-	public static int getSafeInt(String str, String defaultStr) {
-		return Integer.parseInt(isEmpty(str) ? defaultStr : str);
-	}
-
-	public static float getSafeFloat(String str, String defaultStr) {
-		return Float.parseFloat(isEmpty(str) ? defaultStr : str);
-	}
-
-	public static long getSafeLong(Object str, String defaultStr) {
-		return Long.parseLong(isEmpty(str) ? defaultStr : str
-				.toString());
-	}
-
-	public static boolean getSafeBoolean(Object str, String defaultStr) {
-		return Boolean.parseBoolean(isEmpty(str) ? defaultStr : str .toString());
+	public static String[] tokenizeToStringArray(String str) {
+		return tokenizeToStringArray(str, CONFIG_LOCATION_DELIMITERS);
 	}
 	
 }

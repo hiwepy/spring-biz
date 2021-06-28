@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.biz.utils.FilemimeUtils;
-import org.springframework.biz.utils.FiletypeUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.util.AntPathMatcher;
@@ -27,6 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
+
+import hitool.core.io.FilemimeUtils;
+import hitool.core.io.FiletypeUtils;
 
 /**
  *  参考 http://www.cnblogs.com/com-itheima-crazyStone/p/6807342.html

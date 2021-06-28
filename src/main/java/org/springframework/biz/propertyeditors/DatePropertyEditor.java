@@ -16,9 +16,10 @@
 package org.springframework.biz.propertyeditors;
 
 import org.springframework.beans.propertyeditors.PropertiesEditor;
-import org.springframework.biz.utils.DateUtils;
 
-public class DatePropertyEditor  extends PropertiesEditor {    
+import hitool.core.lang3.time.DateUtils;
+
+public class DatePropertyEditor extends PropertiesEditor {    
 
 	@Override
 	public void setAsText(String text) {

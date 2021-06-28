@@ -18,7 +18,7 @@ package org.springframework.biz.context.event;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.biz.utils.SystemClock;
+import hitool.core.lang3.uid.SystemClock;
 
 public class EventPoint {
 	

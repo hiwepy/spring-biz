@@ -7,7 +7,8 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.biz.utils.SpringPropertiesUtils;
-import org.springframework.biz.utils.StringUtils;
+
+import hitool.core.lang3.StringUtils;
 
 /**
  * 

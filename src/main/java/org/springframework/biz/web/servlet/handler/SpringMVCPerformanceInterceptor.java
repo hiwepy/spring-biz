@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.biz.utils.DateUtils;
-import org.springframework.biz.utils.SystemClock;
-import org.springframework.biz.utils.WebUtils;
+import org.springframework.biz.utils.RemoteAddrUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.core.NamedThreadLocal;
@@ -18,6 +16,9 @@ import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import hitool.core.lang3.time.DateUtils;
+import hitool.core.lang3.uid.SystemClock;
 
 public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter implements ApplicationEventPublisherAware, InitializingBean {
 
@@ -81,7 +82,7 @@ public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter i
 		 */
 		
 		RequestHandledEvent event = new ServletRequestHandledEvent(this, request.getRequestURL().toString(),
-				WebUtils.getRemoteAddr(request), request.getMethod(), request.getServerName(),
+				RemoteAddrUtils.getRemoteAddr(request), request.getMethod(), request.getServerName(),
 				request.getRequestedSessionId(), request.getRemoteUser(), processingTimeMillis);
 		getEventPublisher().publishEvent(event);
 		

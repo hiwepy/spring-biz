@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.biz.utils.EnumerationIterator;
 import org.springframework.http.MediaType;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
@@ -24,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.oreilly.servlet.multipart.FileRenamePolicy;
+
+import hitool.core.lang3.iterator.EnumerationIterator;
 
 public class CosMultipartRequest implements MultipartRequest {
 
@@ -83,7 +85,7 @@ public class CosMultipartRequest implements MultipartRequest {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Iterator<String> getFileNames() {
-		return new EnumerationIterator<String>(multi.getFileNames());
+		return CollectionUtils.toIterator(multi.getFileNames());
 	}
 
 	@Override
@@ -187,7 +189,7 @@ public class CosMultipartRequest implements MultipartRequest {
 	
 	@SuppressWarnings("unchecked")
 	public Iterator<String> getParameterNames() {
-		return new EnumerationIterator<String>(multi.getParameterNames());
+		return CollectionUtils.toIterator(multi.getParameterNames());
 	}
 	
 	public String getParameter(String fieldName) {

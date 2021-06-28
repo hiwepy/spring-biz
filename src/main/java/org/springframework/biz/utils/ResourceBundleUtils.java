@@ -21,6 +21,8 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.util.ResourceUtils;
 
+import hitool.core.io.FilenameUtils;
+
 public class ResourceBundleUtils {
 
 	protected static Logger LOG = LoggerFactory.getLogger(ResourceBundleUtils.class);

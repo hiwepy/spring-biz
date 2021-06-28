@@ -7,7 +7,8 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.biz.utils.SpringPropertiesBundleUtils;
-import org.springframework.biz.utils.StringUtils;
+
+import hitool.core.lang3.StringUtils;
 
 /**
  * 
@@ -28,7 +29,7 @@ public class PropertiesBundleResourceInitializedListener implements ServletConte
 		String location = context.getInitParameter("location");
 		String encoding = context.getInitParameter("encoding");
 		if(!StringUtils.isEmpty(location)){
-			SpringPropertiesBundleUtils.initProperties(location,StringUtils.getSafeStr(encoding,"utf-8"));
+			SpringPropertiesBundleUtils.initProperties(location, StringUtils.getSafeStr(encoding,"utf-8"));
 		}else{
 			LOG.warn("location is null !");
 		}

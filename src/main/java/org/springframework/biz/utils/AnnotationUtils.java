@@ -21,7 +21,7 @@ import java.lang.reflect.Proxy;
 import org.apache.harmony.lang.annotation.AnnotationFactory;
 import org.apache.harmony.lang.annotation.AnnotationMember;
 
-public class AnnotationUtils {
+public class AnnotationUtils extends org.springframework.core.annotation.AnnotationUtils {
 
 	/*
 	 * Provides a new annotation instance.

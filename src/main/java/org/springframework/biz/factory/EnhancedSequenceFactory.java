@@ -17,6 +17,8 @@ package org.springframework.biz.factory;
 
 import org.springframework.beans.factory.FactoryBean;
 
+import hitool.core.lang3.uid.Sequence;
+
 public class EnhancedSequenceFactory extends EnhancedBeanFactory implements FactoryBean<Sequence> {
 
 	protected long workerId = -1;

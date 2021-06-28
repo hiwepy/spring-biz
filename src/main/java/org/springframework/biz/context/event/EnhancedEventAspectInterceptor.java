@@ -23,10 +23,10 @@ import org.springframework.biz.context.event.aspect.JoinPointAfterEvent;
 import org.springframework.biz.context.event.aspect.JoinPointAroundEvent;
 import org.springframework.biz.context.event.aspect.JoinPointBeforeEvent;
 import org.springframework.biz.context.event.aspect.JoinPointThrowingEvent;
+import org.springframework.biz.factory.EnhancedBeanFactory;
 import org.springframework.biz.utils.AspectUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.biz.factory.EnhancedBeanFactory;
 
 public class EnhancedEventAspectInterceptor extends EnhancedBeanFactory implements ApplicationEventPublisherAware{
 	

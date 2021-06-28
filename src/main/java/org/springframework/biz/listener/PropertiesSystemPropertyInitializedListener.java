@@ -11,10 +11,11 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.biz.utils.SpringResourceUtils;
-import org.springframework.biz.utils.StringUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import hitool.core.lang3.StringUtils;
 /**
  * 
  * <p>根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;
@@ -28,7 +29,6 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
  * </ul>
  * 
  */
-
 public class PropertiesSystemPropertyInitializedListener implements ServletContextListener {
 
 	protected static Logger LOG = LoggerFactory.getLogger(PropertiesSystemPropertyInitializedListener.class);

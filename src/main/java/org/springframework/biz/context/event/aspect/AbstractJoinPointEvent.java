@@ -15,8 +15,8 @@
  */
 package org.springframework.biz.context.event.aspect;
 
-import org.springframework.biz.context.event.EventInvocation;
 import org.springframework.biz.context.event.EnhancedEvent;
+import org.springframework.biz.context.event.EventInvocation;
 
 @SuppressWarnings("serial")
 public abstract class AbstractJoinPointEvent extends EnhancedEvent<EventInvocation> {
