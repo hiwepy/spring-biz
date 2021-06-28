@@ -5,7 +5,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Map;
 
-/**
+/*
  * 这是{@link ThreadPoolTaskExecutor}的一个简单替换，可以在每个任务之前设置子线程的MDC数据。
  * <p/>
  * 在记录日志的时候，一般情况下我们会使用MDC来存储每个线程的特有参数，如身份信息等，以便更好的查询日志。
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class Slf4jMDCThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 
-	/**
+	/*
 	 * 所有线程都会委托给这个execute方法，在这个方法中我们把父线程的MDC内容赋值给子线程
 	 * https://logback.qos.ch/manual/mdc.html#managedThreads
 	 *
@@ -32,7 +32,7 @@ public class Slf4jMDCThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 		super.execute(() -> run(runnable, context));
 	}
 
-	/**
+	/*
 	 * 子线程委托的执行方法
 	 *
 	 * @param runnable {@link Runnable}

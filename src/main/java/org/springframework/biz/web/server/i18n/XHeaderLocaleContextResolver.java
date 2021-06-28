@@ -43,7 +43,7 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 		this.defaultLocale = defaultLocale;
 	}
 
-	/**
+	/*
 	 * The configured default locale, if any.
 	 * <p>This method may be overridden in subclasses.
 	 */
