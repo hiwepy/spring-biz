@@ -5,7 +5,7 @@
 
 	<groupId>com.github.hiwepy</groupId>
 	<artifactId>spring-biz</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.3.RELEASE</version>
 	<description>Spring Extension</description>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<url>https://github.com/hiwepy/${project.artifactId}</url>
@@ -398,7 +398,7 @@
 		<maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<spring.version>5.1.0.RELEASE</spring.version>
-		<hitool.version>1.0.1.RELEASE</hitool.version>
+		<hitool.version>1.0.2.RELEASE</hitool.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
 
