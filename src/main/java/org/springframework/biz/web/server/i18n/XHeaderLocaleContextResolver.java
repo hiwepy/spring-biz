@@ -46,6 +46,7 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 
 	/**
 	 * Return the configured list of supported locales.
+	 * @return list of supported locales
 	 */
 	public List<Locale> getSupportedLocales() {
 		return this.supportedLocales;
@@ -62,7 +63,8 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 
 	/*
 	 * The configured default locale, if any.
-	 * <p>This method may be overridden in subclasses.
+	 * This method may be overridden in subclasses.
+	 * @return Default Locale
 	 */
 	@Nullable
 	public Locale getDefaultLocale() {
@@ -78,6 +80,7 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 	
 	/**
 	 * Return the default TimeZone that this resolver is supposed to fall back to, if any.
+	 * @return Default TimeZone
 	 */
 	@Nullable
 	public TimeZone getDefaultTimeZone() {
@@ -119,11 +122,11 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 	}
 	
 	/**
-	 * Determine the default locale for the given request,
+	 * Determine the default locale for the given exchange,
 	 * Called if no Locale session attribute has been found.
 	 * <p>The default implementation returns the specified default locale,
 	 * if any, else falls back to the request's accept-header locale.
-	 * @param request the request to resolve the locale for
+	 * @param exchange the exchange to resolve the locale for
 	 * @return the default locale (never {@code null})
 	 * @see #setDefaultLocale
 	 * @see javax.servlet.http.HttpServletRequest#getLocale()
@@ -172,11 +175,11 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 	}
 
 	/**
-	 * Determine the default time zone for the given request,
+	 * Determine the default time zone for the given exchange,
 	 * Called if no TimeZone session attribute has been found.
 	 * <p>The default implementation returns the specified default time zone,
 	 * if any, or {@code null} otherwise.
-	 * @param request the request to resolve the time zone for
+	 * @param exchange the exchange to resolve the time zone for
 	 * @return the default time zone (or {@code null} if none defined)
 	 * @see #setDefaultTimeZone
 	 */
