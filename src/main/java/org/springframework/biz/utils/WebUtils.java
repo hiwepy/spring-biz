@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import hitool.core.lang3.StringUtils;
 import hitool.core.lang3.network.InetAddressUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /*
  * http://blog.csdn.net/caoshuming_500/article/details/20952329
@@ -20,6 +23,7 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 	private static String LOCAL_HOST = "localhost";
 	private static String LOCAL_IP6 = "0:0:0:0:0:0:0:1";
 	private static String LOCAL_IP = "127.0.0.1";
+	private static int IPv4_LENGTH = 15;
 	private static String UNKNOWN = "unknown";
 	
 	/**
@@ -32,9 +36,9 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 
 		// 1、获取客户端IP地址，支持代理服务器
 		String remoteAddr = UNKNOWN;
-		for (String xheader : xheaders) {
-			remoteAddr = request.getHeader(xheader);
-			log.debug(" {} : {} ", xheader, remoteAddr);
+		for (String xHeader : xheaders) {
+			remoteAddr = request.getHeader(xHeader);
+			log.debug(" {} : {} ", xHeader, remoteAddr);
 			if (StringUtils.hasText(remoteAddr) && !UNKNOWN.equalsIgnoreCase(remoteAddr)) {
 				// 多次反向代理后会有多个ip值，第一个ip才是真实ip
 				if (remoteAddr.indexOf(",") != -1) {
@@ -54,6 +58,14 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 				}
 			}
 		}
+
+		// 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
+		if (StringUtils.hasText(remoteAddr) && remoteAddr.length() > IPv4_LENGTH) {
+			if (remoteAddr.indexOf(",") > 0) {
+				remoteAddr = remoteAddr.substring(0, remoteAddr.indexOf(","));
+			}
+		}
+
 		// 2、没有取得特定标记的值
 		if (!StringUtils.hasText(remoteAddr) || UNKNOWN.equalsIgnoreCase(remoteAddr)) {
 			remoteAddr = request.getRemoteAddr();
@@ -65,8 +77,8 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 
 		return remoteAddr;
 	}
-	
-	/*
+
+	/**
 	 *  获得请求的客户端信息【ip,port,name】
 	 *  @param request {@link HttpServletRequest} 对象
 	 *  @return 客户端信息[ip,port,name]
@@ -90,6 +102,26 @@ public class WebUtils extends org.springframework.web.util.WebUtils {
 	public static String getLocalHostName() {
 		return InetAddressUtils.getLocalHostName();
 	}
-	
+	public static HttpServletRequest getHttpServletRequest() {
+		try {
+			RequestAttributes requestAttributes = getRequestAttributesSafely();
+			if (requestAttributes != null) {
+				return ((ServletRequestAttributes) requestAttributes).getRequest();
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
+		return null;
+	}
+
+	public static RequestAttributes getRequestAttributesSafely(){
+		RequestAttributes requestAttributes = null;
+		try{
+			requestAttributes = RequestContextHolder.currentRequestAttributes();
+		} catch (IllegalStateException e){
+
+		}
+		return requestAttributes;
+	}
 	
 }
