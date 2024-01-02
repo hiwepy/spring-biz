@@ -16,15 +16,15 @@
 package org.springframework.biz.factory;
 
 
-import java.util.Arrays;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.type.filter.AssignableTypeFilter;
+
+import java.util.Arrays;
+import java.util.Set;
 
 public class EnhancedClassPathMapperScanner extends ClassPathBeanDefinitionScanner  {
 

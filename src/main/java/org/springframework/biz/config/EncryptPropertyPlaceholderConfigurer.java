@@ -1,10 +1,10 @@
 package org.springframework.biz.config;
 
-import java.util.Properties;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+
+import java.util.Properties;
 
 public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 

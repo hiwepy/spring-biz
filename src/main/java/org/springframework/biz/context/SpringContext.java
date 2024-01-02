@@ -15,10 +15,10 @@
  */
 package org.springframework.biz.context;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+
+import javax.sql.DataSource;
 
 public interface SpringContext {
 

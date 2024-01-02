@@ -15,12 +15,12 @@
  */
 package org.springframework.biz.web.servlet.view.xml;
 
-import java.util.Locale;
-
 import org.springframework.oxm.Marshaller;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.xml.MarshallingView;
+
+import java.util.Locale;
 
 public class Jaxb2MarshallingXmlViewResolver implements ViewResolver {
 

@@ -1,17 +1,17 @@
 package org.springframework.biz.utils;
 
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
+
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /*
  * 多Properties缓存管理；每个Properties文件路径对应一个Properties对象

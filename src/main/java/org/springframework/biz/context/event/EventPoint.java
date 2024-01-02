@@ -15,10 +15,10 @@
  */
 package org.springframework.biz.context.event;
 
+import hitool.core.lang3.uid.SystemClock;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import hitool.core.lang3.uid.SystemClock;
 
 public class EventPoint {
 	

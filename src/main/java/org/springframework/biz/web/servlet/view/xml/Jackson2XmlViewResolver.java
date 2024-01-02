@@ -15,13 +15,13 @@
  */
 package org.springframework.biz.web.servlet.view.xml;
 
-import java.util.Locale;
-
 import org.springframework.oxm.Marshaller;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.json.AbstractJackson2View;
 import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
+
+import java.util.Locale;
 
 public class Jackson2XmlViewResolver implements ViewResolver {
 

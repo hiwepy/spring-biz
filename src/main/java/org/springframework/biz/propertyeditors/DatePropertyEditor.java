@@ -15,9 +15,8 @@
  */
 package org.springframework.biz.propertyeditors;
 
-import org.springframework.beans.propertyeditors.PropertiesEditor;
-
 import hitool.core.lang3.time.DateUtils;
+import org.springframework.beans.propertyeditors.PropertiesEditor;
 
 public class DatePropertyEditor extends PropertiesEditor {    
 

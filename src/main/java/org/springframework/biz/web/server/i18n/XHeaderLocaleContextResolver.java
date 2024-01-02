@@ -1,10 +1,5 @@
 package org.springframework.biz.web.server.i18n;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import org.springframework.context.i18n.LocaleContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.i18n.TimeZoneAwareLocaleContext;
@@ -14,6 +9,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.i18n.LocaleContextResolver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 
@@ -129,7 +129,7 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 	 * @param exchange the exchange to resolve the locale for
 	 * @return the default locale (never {@code null})
 	 * @see #setDefaultLocale
-	 * @see javax.servlet.http.HttpServletRequest#getLocale()
+	 * @see jakarta.servlet.http.HttpServletRequest#getLocale()
 	 */
 	protected Locale determineDefaultLocale(ServerWebExchange exchange) {
 		List<Locale> requestLocales = null;

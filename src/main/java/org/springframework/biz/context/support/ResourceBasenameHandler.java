@@ -15,9 +15,9 @@
  */
 package org.springframework.biz.context.support;
 
-import java.io.IOException;
-
 import org.springframework.core.io.Resource;
+
+import java.io.IOException;
 
 public interface ResourceBasenameHandler {
 

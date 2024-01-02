@@ -15,11 +15,11 @@
  */
 package org.springframework.biz.utils;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Proxy;
-
 import org.apache.harmony.lang.annotation.AnnotationFactory;
 import org.apache.harmony.lang.annotation.AnnotationMember;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Proxy;
 
 public class AnnotationUtils extends org.springframework.core.annotation.AnnotationUtils {
 

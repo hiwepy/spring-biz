@@ -1,16 +1,17 @@
 package org.springframework.biz.web.servlet.handler;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.context.request.WebRequestInterceptor;
+import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
-public class ModuleChangeInterceptor extends HandlerInterceptorAdapter {
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class ModuleChangeInterceptor extends WebRequestHandlerInterceptorAdapter {
 
 	/**
 	 * Name of the session attribute that holds the module.
@@ -27,6 +28,15 @@ public class ModuleChangeInterceptor extends HandlerInterceptorAdapter {
 	private String paramName = DEFAULT_PARAM_NAME;
 
 	private String[] httpMethods;
+
+	/**
+	 * Create a new WebRequestHandlerInterceptorAdapter for the given WebRequestInterceptor.
+	 *
+	 * @param requestInterceptor the WebRequestInterceptor to wrap
+	 */
+	public ModuleChangeInterceptor(WebRequestInterceptor requestInterceptor) {
+		super(requestInterceptor);
+	}
 
 	/**
 	 * Set the name of the parameter that contains a locale specification in a

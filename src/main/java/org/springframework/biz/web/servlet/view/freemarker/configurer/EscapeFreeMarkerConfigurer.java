@@ -1,11 +1,10 @@
 package org.springframework.biz.web.servlet.view.freemarker.configurer;
 
-import java.util.List;
-
+import freemarker.cache.TemplateLoader;
 import org.springframework.biz.web.servlet.view.freemarker.cache.HtmlTemplateLoader;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import freemarker.cache.TemplateLoader;
+import java.util.List;
 
 public class EscapeFreeMarkerConfigurer extends FreeMarkerConfigurer{  
     

@@ -15,13 +15,13 @@
  */
 package org.springframework.biz.context;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+
+import javax.sql.DataSource;
 
 public  class AbstractSpringInstanceContext implements SpringContext {
 	

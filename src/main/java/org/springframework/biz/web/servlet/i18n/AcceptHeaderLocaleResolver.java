@@ -1,14 +1,13 @@
 package org.springframework.biz.web.servlet.i18n;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
+
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 public class AcceptHeaderLocaleResolver extends AbstractLocaleResolver {
 

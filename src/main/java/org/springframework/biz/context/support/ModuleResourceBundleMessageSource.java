@@ -15,13 +15,13 @@
  */
 package org.springframework.biz.context.support;
 
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 import org.springframework.biz.web.servlet.support.RequestContextUtils;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 public class ModuleResourceBundleMessageSource extends org.springframework.context.support.ResourceBundleMessageSource {
 	

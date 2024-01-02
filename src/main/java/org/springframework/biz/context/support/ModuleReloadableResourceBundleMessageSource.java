@@ -15,15 +15,15 @@
  */
 package org.springframework.biz.context.support;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Properties;
-
 import org.springframework.biz.web.servlet.support.RequestContextUtils;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
 
 public class ModuleReloadableResourceBundleMessageSource extends ReloadableResourceBundleMessageSource {
 	

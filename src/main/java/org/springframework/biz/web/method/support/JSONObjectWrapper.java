@@ -1,6 +1,6 @@
 package org.springframework.biz.web.method.support;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 
 public class JSONObjectWrapper {
 	

@@ -16,9 +16,6 @@
 package org.springframework.biz.utils;
 
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Proxy;
-
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.TargetSource;
@@ -29,6 +26,9 @@ import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.interceptor.AsyncExecutionInterceptor;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Proxy;
 
 public class AopProxyUtils {
 

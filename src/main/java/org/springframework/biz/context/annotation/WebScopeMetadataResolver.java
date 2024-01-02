@@ -15,14 +15,14 @@
  */
 package org.springframework.biz.context.annotation;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ScopeMetadata;
 import org.springframework.context.annotation.ScopeMetadataResolver;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class WebScopeMetadataResolver implements ScopeMetadataResolver {
 

@@ -1,10 +1,8 @@
 package org.springframework.biz.web.servlet.handler;
 
-import java.text.SimpleDateFormat;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import hitool.core.lang3.time.DateUtils;
+import hitool.core.lang3.uid.SystemClock;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -12,22 +10,33 @@ import org.springframework.biz.utils.WebUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.core.NamedThreadLocal;
+import org.springframework.web.context.request.WebRequestInterceptor;
 import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import hitool.core.lang3.time.DateUtils;
-import hitool.core.lang3.uid.SystemClock;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 
-public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter implements ApplicationEventPublisherAware, InitializingBean {
+import java.text.SimpleDateFormat;
+
+public class SpringMVCPerformanceInterceptor extends WebRequestHandlerInterceptorAdapter implements ApplicationEventPublisherAware, InitializingBean {
 
 	private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal<Long>("ThreadLocal StartTime");
     protected Logger LOG = LoggerFactory.getLogger(this.getClass());
     protected ApplicationEventPublisher eventPublisher;
     protected SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss.SSS") ;
-    
-    @Override
+
+	/**
+	 * Create a new WebRequestHandlerInterceptorAdapter for the given WebRequestInterceptor.
+	 *
+	 * @param requestInterceptor the WebRequestInterceptor to wrap
+	 */
+	public SpringMVCPerformanceInterceptor(WebRequestInterceptor requestInterceptor) {
+		super(requestInterceptor);
+	}
+
+	@Override
     public void afterPropertiesSet() throws Exception {
     	if (LOG.isDebugEnabled()){
 	        LOG.debug("Inited at : {} ", DateUtils.formatDateTime( SystemClock.now() ));
@@ -58,6 +67,7 @@ public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter i
      * 该方法需要当前对应的Interceptor 的preHandle 方法的返回值为true 时才会执行。
      * 顾名思义，该方法将在整个请求结束之后，也就是在DispatcherServlet 渲染了对应的视图之后执行。这个方法的主要作用是用于进行资源清理工作的。
      */
+
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		long beginTime = startTimeThreadLocal.get();//得到线程绑定的局部变量（开始时间）  

@@ -1,9 +1,10 @@
 package org.springframework.biz.web.servlet.handler;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.context.request.WebRequestInterceptor;
+import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 
 /**
  * 为你的REST API添加CORS支持
@@ -12,13 +13,22 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * ” No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘http://127.0.0.1:8080′ is therefore not allowed access.” OR
  * ” XMLHttpRequest cannot load http://abc.com/bla. Origin http://localhost:12345 is not allowed by Access-Control-Allow-Origin.”
  */
-public class SpringMVCCORSInterceptor extends HandlerInterceptorAdapter {
+public class SpringMVCCORSInterceptor extends WebRequestHandlerInterceptorAdapter {
 	
 	private String allowOrigin = "*";
 	private String allowMethods = "POST, GET, PUT, OPTIONS, DELETE";
 	private String allowHeaders = "Origin, X-Requested-With, Content-Type, Accept";
 	private String maxAge = "3600";
-	
+
+	/**
+	 * Create a new WebRequestHandlerInterceptorAdapter for the given WebRequestInterceptor.
+	 *
+	 * @param requestInterceptor the WebRequestInterceptor to wrap
+	 */
+	public SpringMVCCORSInterceptor(WebRequestInterceptor requestInterceptor) {
+		super(requestInterceptor);
+	}
+
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {

@@ -1,28 +1,25 @@
-package org.springframework.biz.web.multipart.commons;
+/**package org.springframework.biz.web.multipart.commons;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUpload;
-import org.apache.commons.fileupload.FileUploadBase;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.ProgressListener;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-/**
+
+import jakarta.servlet.http.HttpSession;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+
+import java.util.List;
+
  * 
  * <b> Spring中带进度条的文件上传</b>
  * <p> 1、Spring的DispatcherServlet在初始化的时候会去容器中查找是否有可用的MultipartResolver，如果有的话就会使用此resolver将request转换为MultipartHttpServletRequest。</p> 
  * <p> 2、Spring提供了两个resolver，CommonsMultipartResolver，StandardServletMultipartResolver。我们可以任选其一。
  *	CommonsMultipartResolver的parseRequest方法调用commons-fileupload的ServletFileupload完成了对request的解析工作。</p>
  * <p> 3、最后在controller的配置文件中指定resolver： &lt;bean id="multipartResolver" class="org.springframework.biz.web.multipart.commons.MultipartStatusResolver"&gt;&lt;/bean&gt;</p>
- */
-public class MultipartStatusResolver extends CommonsMultipartResolver {
+
+public class MultipartStatusResolver extends StandardServletMultipartResolver {
 	
 	@Override
     public MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
@@ -49,3 +46,4 @@ public class MultipartStatusResolver extends CommonsMultipartResolver {
     }
 	
 }
+ */

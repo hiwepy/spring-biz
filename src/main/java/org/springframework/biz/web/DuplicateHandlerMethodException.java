@@ -15,11 +15,10 @@
  */
 package org.springframework.biz.web;
 
-import java.util.List;
-
-import javax.servlet.ServletException;
-
 import org.springframework.web.method.HandlerMethod;
+
+import jakarta.servlet.ServletException;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class DuplicateHandlerMethodException extends ServletException {

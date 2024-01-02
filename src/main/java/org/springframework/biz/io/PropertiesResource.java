@@ -15,16 +15,6 @@
  */
 package org.springframework.biz.io;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URI;
-import java.net.URL;
-import java.util.Properties;
-
 import org.springframework.biz.utils.StringUtils;
 import org.springframework.core.io.AbstractResource;
 import org.springframework.core.io.Resource;
@@ -32,6 +22,11 @@ import org.springframework.core.io.WritableResource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.util.Assert;
+
+import java.io.*;
+import java.net.URI;
+import java.net.URL;
+import java.util.Properties;
 
 public class PropertiesResource extends AbstractResource implements WritableResource {
 
