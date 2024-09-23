@@ -1,6 +1,6 @@
 package org.springframework.biz.web.servlet.support;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.biz.web.servlet.ModuleDispatcherServlet;
 import org.springframework.biz.web.servlet.ModuleResolver;

@@ -2,15 +2,15 @@ package org.springframework.biz.web.method.support;
 
 import java.io.BufferedReader;
 
-import javax.servlet.http.HttpServletRequest;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 
 /**
  * http://zjumty.iteye.com/blog/1927890
@@ -28,7 +28,7 @@ public class FastJsonArgumentResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest webRequest,  
                                   WebDataBinderFactory binderFactory) throws Exception {  
   
-        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);  
+        HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         // content-type不是json的不处理  
         if (!request.getContentType().contains("application/json")) {  
             return null;  

@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.xml.sax.InputSource;
 

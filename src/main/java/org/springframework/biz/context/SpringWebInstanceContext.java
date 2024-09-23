@@ -15,8 +15,8 @@
  */
 package org.springframework.biz.context;
 
-import javax.servlet.ServletContext;
 
+import jakarta.servlet.ServletContext;
 import org.springframework.biz.utils.SpringContextUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;

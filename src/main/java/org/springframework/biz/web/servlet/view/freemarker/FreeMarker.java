@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.biz.web.servlet.view.freemarker.cache.ResourceTemplateLoader;
 import org.springframework.core.io.InputStreamResource;

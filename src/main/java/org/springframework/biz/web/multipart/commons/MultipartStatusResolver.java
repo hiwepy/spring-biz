@@ -2,8 +2,8 @@ package org.springframework.biz.web.multipart.commons;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUpload;
@@ -13,7 +13,7 @@ import org.apache.commons.fileupload.ProgressListener;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
 /**
  * 
  * <b> Spring中带进度条的文件上传</b>

@@ -1,7 +1,7 @@
 package org.springframework.biz.web.servlet;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 
 import org.springframework.web.context.support.WebApplicationContextUtils;
 

@@ -3,8 +3,8 @@ package org.springframework.biz.web.servlet.view;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.View;

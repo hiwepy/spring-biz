@@ -2,8 +2,8 @@ package org.springframework.biz.web.servlet.theme;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.theme.AbstractThemeResolver;
