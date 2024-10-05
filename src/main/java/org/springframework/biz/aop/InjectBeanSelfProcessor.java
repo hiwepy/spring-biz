@@ -6,6 +6,7 @@ import org.springframework.biz.aop.aware.BeanSelfAware;
 
 public class InjectBeanSelfProcessor implements BeanPostProcessor {
 
+    @Override
 	 public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {  
         if(bean instanceof BeanSelfAware){  
             BeanSelfAware myBean = (BeanSelfAware)bean;  
@@ -13,8 +14,9 @@ public class InjectBeanSelfProcessor implements BeanPostProcessor {
             return myBean;  
         }  
         return bean;  
-    }  
-   
+    }
+
+    @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {  
         return bean;  
     }  
