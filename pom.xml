@@ -668,7 +668,7 @@
 			<artifactId>hitool-core</artifactId>
 		</dependency>
 		
-		<!-- Apache 上传组件 -->
+		<!-- Apache 上传组件
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-fileupload2-jakarta</artifactId>
@@ -678,7 +678,7 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 		
 		<!-- FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出 -->
 		<dependency>
