@@ -1,13 +1,7 @@
 package org.springframework.biz.utils;
 
-import java.io.InputStream;
-import java.util.Map;
-
-import org.springframework.biz.web.servlet.view.HtmlResourceView;
-import org.springframework.biz.web.servlet.view.JSONResourceView;
-import org.springframework.biz.web.servlet.view.StaticResourceView;
-import org.springframework.biz.web.servlet.view.TextResourceView;
-import org.springframework.biz.web.servlet.view.XMLResourceView;
+import com.alibaba.fastjson2.JSONObject;
+import org.springframework.biz.web.servlet.view.*;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson2.JSONObject;
+import java.io.InputStream;
+import java.util.Map;
 
 
 public class WebResponseUtils {

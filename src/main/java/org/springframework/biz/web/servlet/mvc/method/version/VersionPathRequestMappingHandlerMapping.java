@@ -17,7 +17,6 @@ package org.springframework.biz.web.servlet.mvc.method.version;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
-
 import org.springframework.biz.web.servlet.mvc.method.annotation.HyperRequestMappingHandlerMapping;
 import org.springframework.web.method.HandlerMethod;
 

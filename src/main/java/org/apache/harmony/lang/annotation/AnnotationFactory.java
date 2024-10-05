@@ -1,8 +1,5 @@
 package org.apache.harmony.lang.annotation;
 
-import static org.apache.harmony.lang.annotation.AnnotationMember.ARRAY;
-import static org.apache.harmony.lang.annotation.AnnotationMember.ERROR;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -16,7 +13,10 @@ import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.WeakHashMap;  
+import java.util.WeakHashMap;
+
+import static org.apache.harmony.lang.annotation.AnnotationMember.ARRAY;
+import static org.apache.harmony.lang.annotation.AnnotationMember.ERROR;
   
 /** 
  * The annotation implementation based on dynamically generated proxy instances. 

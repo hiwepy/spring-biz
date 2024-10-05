@@ -1,13 +1,12 @@
 package org.springframework.biz.web.servlet.view;
 
-import java.io.ByteArrayInputStream;
-import java.util.Map;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.View;
+
+import java.io.ByteArrayInputStream;
+import java.util.Map;
 
 /**
  * {@link View} backed by an HTML/Text resource.

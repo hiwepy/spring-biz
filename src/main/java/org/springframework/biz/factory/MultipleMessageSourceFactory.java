@@ -15,12 +15,12 @@
  */
 package org.springframework.biz.factory;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.biz.context.NestedMessageSource;
 import org.springframework.context.MessageSource;
+
+import java.util.Map;
 
 public class MultipleMessageSourceFactory extends EnhancedBeanFactory implements FactoryBean<MessageSource> {
 

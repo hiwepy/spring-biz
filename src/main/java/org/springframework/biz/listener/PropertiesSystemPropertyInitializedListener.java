@@ -1,13 +1,9 @@
 package org.springframework.biz.listener;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
-
+import hitool.core.lang3.StringUtils;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.biz.utils.SpringResourceUtils;
@@ -15,7 +11,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
-import hitool.core.lang3.StringUtils;
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
 /**
  * 
  * <p>根据 location 路径 获取 *.properties 并将 key-value 设置到java.lang.System 对象;

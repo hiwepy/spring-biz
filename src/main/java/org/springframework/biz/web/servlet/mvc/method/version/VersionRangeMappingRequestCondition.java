@@ -15,20 +15,15 @@
  */
 package org.springframework.biz.web.servlet.mvc.method.version;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import jakarta.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.condition.AbstractRequestCondition;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VersionRangeMappingRequestCondition extends AbstractRequestCondition<VersionRangeMappingRequestCondition> {
 	

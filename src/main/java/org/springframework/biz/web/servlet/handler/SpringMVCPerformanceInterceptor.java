@@ -1,12 +1,10 @@
 package org.springframework.biz.web.servlet.handler;
 
-import java.text.SimpleDateFormat;
-
+import hitool.core.lang3.time.DateUtils;
+import hitool.core.lang3.uid.SystemClock;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.biz.utils.WebUtils;
 import org.springframework.context.ApplicationEventPublisher;
@@ -14,23 +12,22 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import hitool.core.lang3.time.DateUtils;
-import hitool.core.lang3.uid.SystemClock;
+import java.text.SimpleDateFormat;
 
-public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter implements ApplicationEventPublisherAware, InitializingBean {
+@Slf4j
+public class SpringMVCPerformanceInterceptor implements HandlerInterceptor, ApplicationEventPublisherAware, InitializingBean {
 
 	private static final ThreadLocal<Long> startTimeThreadLocal = new NamedThreadLocal<Long>("ThreadLocal StartTime");
-    protected Logger LOG = LoggerFactory.getLogger(this.getClass());
     protected ApplicationEventPublisher eventPublisher;
     protected SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss.SSS") ;
     
     @Override
     public void afterPropertiesSet() throws Exception {
-    	if (LOG.isDebugEnabled()){
-	        LOG.debug("Inited at : {} ", DateUtils.formatDateTime( SystemClock.now() ));
+    	if (log.isDebugEnabled()){
+	        log.debug("Inited at : {} ", DateUtils.formatDateTime( SystemClock.now() ));
 		}
     }
     
@@ -40,17 +37,16 @@ public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter i
 		long beginTime = SystemClock.now();
 		//线程绑定变量（该数据只有当前请求的线程可见）  
         startTimeThreadLocal.set(beginTime);
-    	if (LOG.isDebugEnabled()){
-	        LOG.debug("开始计时: {}  URI: {}", sdf.format(beginTime), request.getRequestURI());
+    	if (log.isDebugEnabled()){
+	        log.debug("开始计时: {}  URI: {}", sdf.format(beginTime), request.getRequestURI());
 		}
-        return super.preHandle(request, response, handler);
+        return Boolean.TRUE;
     }
 
     @Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-    	super.postHandle(request, response, handler, modelAndView);
     	if (modelAndView != null){
-			LOG.info("ViewName: " + modelAndView.getViewName());
+			log.info("ViewName: " + modelAndView.getViewName());
 		}
 	}
 
@@ -64,8 +60,8 @@ public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter i
 		long endTime = SystemClock.now(); 	//2、结束时间  
 		long processingTimeMillis = endTime - beginTime;
 		// 打印JVM信息。
-		if (LOG.isDebugEnabled()){
-	        LOG.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}MB  已分配内存: {}MB  已分配内存中的剩余空间: {}MB  最大可用内存: {}MB",
+		if (log.isDebugEnabled()){
+	        log.debug("计时结束：{}  耗时：{}  URI: {}  最大内存: {}MB  已分配内存: {}MB  已分配内存中的剩余空间: {}MB  最大可用内存: {}MB",
 	        		sdf.format(endTime), 
 	        		DateUtils.formatDateTime(processingTimeMillis),
 					request.getRequestURI(), 
@@ -86,7 +82,6 @@ public class SpringMVCPerformanceInterceptor extends HandlerInterceptorAdapter i
 				request.getRequestedSessionId(), request.getRemoteUser(), processingTimeMillis);
 		getEventPublisher().publishEvent(event);
 		
-		super.afterCompletion(request, response, handler, ex);
 	}
 	
 	@Override

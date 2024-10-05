@@ -1,22 +1,16 @@
 package org.springframework.biz.web.servlet.view.freemarker.cache;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import freemarker.cache.URLTemplateLoader;
+import jakarta.servlet.http.HttpServletRequest;
+import org.xml.sax.InputSource;
+
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
-import jakarta.servlet.http.HttpServletRequest;
-
-import org.xml.sax.InputSource;
-
-import freemarker.cache.URLTemplateLoader;
 
 public class ResourceTemplateLoader extends URLTemplateLoader {
 	

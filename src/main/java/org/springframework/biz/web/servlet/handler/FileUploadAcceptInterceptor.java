@@ -1,20 +1,11 @@
 package org.springframework.biz.web.servlet.handler;
 
-import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-
+import hitool.core.io.FilemimeUtils;
+import hitool.core.io.FiletypeUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.util.AntPathMatcher;
@@ -23,11 +14,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import hitool.core.io.FilemimeUtils;
-import hitool.core.io.FiletypeUtils;
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.*;
 
 /**
  *  参考 http://www.cnblogs.com/com-itheima-crazyStone/p/6807342.html
@@ -38,9 +30,8 @@ import hitool.core.io.FiletypeUtils;
  *	2、针对Spring MVC文件上传大小限制出现的这个问题，可以换用tomcat7.0.39+版本的tomcat服务器；或者不限制大小，采用拦截器判断处理。
  *	
  */
-public class FileUploadAcceptInterceptor extends HandlerInterceptorAdapter implements MessageSourceAware {
-
-protected static final Logger LOG = LoggerFactory.getLogger(FileUploadAcceptInterceptor.class);
+@Slf4j
+public class FileUploadAcceptInterceptor implements HandlerInterceptor,MessageSourceAware {
     
     protected MessageSource messageSource;
     
@@ -95,43 +86,43 @@ protected static final Logger LOG = LoggerFactory.getLogger(FileUploadAcceptInte
         // 1、检查上传的文件是否存在
         if (file == null) {
             String errMsg = messageSource.getMessage("springmvc.messages.error.uploading", new String[]{inputName}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
         } 
         // 2、检查上传文件是否超出大小限制
         else if (maxUploadSizePerFile != null && maxUploadSizePerFile > 0 &&  maxUploadSizePerFile < file.getSize()) {
             String errMsg = messageSource.getMessage("springmvc.messages.error.file.too.large", new String[]{inputName, filename, file.getName(), "" + file.getSize(), getMaximumSizeStr(locale)}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
         } 
         // 3、检查上传文件是否是允许的mimetypes
         else if ((!allowedTypesSet.isEmpty()) && (!containsItem(allowedTypesSet, contentType))) {
             String errMsg = messageSource.getMessage("springmvc.messages.error.content.type.not.allowed", new String[]{inputName, filename, file.getName(), contentType}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
         } 
         // 4、检查上传文件是否是允许的文件后缀
         else if ((!allowedExtensionsSet.isEmpty()) && (!hasAllowedExtension(allowedExtensionsSet, filename))) {
             String errMsg = messageSource.getMessage("springmvc.messages.error.file.extension.not.allowed", new String[]{inputName, filename, file.getName(), contentType}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
         } 
         // 5、检查是否伪造的文件类型；即不安全文件修改为安全文件后缀
         else if (useStrict == true && !FilenameUtils.getExtension(filename).equalsIgnoreCase(FiletypeUtils.getFileType(file.getBytes()))) {
         	String errMsg = messageSource.getMessage("springmvc.messages.error.file.extension.not.matched", new String[]{inputName, filename, file.getName(), contentType}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
         } 
         // 6、检查是否ContentType异常
         else if (useStrict == true && !file.getContentType().startsWith(FilemimeUtils.getFileMimeType(filename))) {
         	String errMsg = messageSource.getMessage("springmvc.messages.error.content.type.not.matched", new String[]{inputName, filename, file.getName(), contentType}, locale);
-            if (LOG.isWarnEnabled()) {
-                LOG.warn(errMsg);
+            if (log.isWarnEnabled()) {
+                log.warn(errMsg);
             }
 		} 
         // 通过检查

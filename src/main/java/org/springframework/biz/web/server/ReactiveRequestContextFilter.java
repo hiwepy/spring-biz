@@ -20,7 +20,6 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-
 import reactor.core.publisher.Mono;
 
 /**
@@ -35,9 +34,9 @@ public class ReactiveRequestContextFilter implements WebFilter {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         return chain.filter(exchange)
-            .subscriberContext(ctx -> ctx.put(ReactiveRequestContextHolder.EXCHANGE_KEY, exchange))
-            .subscriberContext(ctx -> ctx.put(ReactiveRequestContextHolder.REQUEST_KEY, request))
-            .subscriberContext(ctx -> ctx.put(ReactiveRequestContextHolder.RESPONSE_KEY, response));
+            .contextWrite(ctx -> ctx.put(ReactiveRequestContextHolder.EXCHANGE_KEY, exchange))
+            .contextWrite(ctx -> ctx.put(ReactiveRequestContextHolder.REQUEST_KEY, request))
+            .contextWrite(ctx -> ctx.put(ReactiveRequestContextHolder.RESPONSE_KEY, response));
     }
     
 }

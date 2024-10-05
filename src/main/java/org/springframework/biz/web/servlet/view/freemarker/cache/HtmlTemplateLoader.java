@@ -15,13 +15,12 @@
  */
 package org.springframework.biz.web.servlet.view.freemarker.cache;
 
+import freemarker.cache.TemplateLoader;
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
-
-import org.apache.commons.io.IOUtils;
-
-import freemarker.cache.TemplateLoader;
 
 public class HtmlTemplateLoader implements TemplateLoader {
     

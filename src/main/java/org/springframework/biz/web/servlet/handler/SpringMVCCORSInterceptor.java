@@ -2,8 +2,7 @@ package org.springframework.biz.web.servlet.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
  * 为你的REST API添加CORS支持
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * ” No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘http://127.0.0.1:8080′ is therefore not allowed access.” OR
  * ” XMLHttpRequest cannot load http://abc.com/bla. Origin http://localhost:12345 is not allowed by Access-Control-Allow-Origin.”
  */
-public class SpringMVCCORSInterceptor extends HandlerInterceptorAdapter {
+public class SpringMVCCORSInterceptor implements HandlerInterceptor {
 	
 	private String allowOrigin = "*";
 	private String allowMethods = "POST, GET, PUT, OPTIONS, DELETE";
@@ -27,9 +26,7 @@ public class SpringMVCCORSInterceptor extends HandlerInterceptorAdapter {
         response.setHeader("Access-Control-Allow-Methods", getAllowMethods());  
         response.setHeader("Access-Control-Allow-Headers", getAllowHeaders());  
         response.setHeader("Access-Control-Max-Age", getMaxAge());
-        
-		super.afterCompletion(request, response, handler, ex);
-		
+
 	}
 
 	public String getAllowOrigin() {

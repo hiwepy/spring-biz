@@ -15,9 +15,9 @@
  */
 package org.springframework.biz.context.event;
 
-import java.lang.reflect.Method;
-
 import org.aspectj.lang.JoinPoint;
+
+import java.lang.reflect.Method;
 
 public class EventInvocation {
 

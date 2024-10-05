@@ -14,7 +14,7 @@
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
 
@@ -364,7 +364,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<!-- Maven Plugin versions -->
 		<maven.version>3.9.9</maven.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -394,15 +394,15 @@
 		<commons-codec.version>1.17.1</commons-codec.version>
 		<commons-lang3.version>3.17.0</commons-lang3.version>
 		<commons-io.version>2.17.0</commons-io.version>
-		<commons-fileupload.version>1.5</commons-fileupload.version>
-		<cos.version>2020.4</cos.version>
+		<commons-fileupload2.version>2.0.0-M2</commons-fileupload2.version>
 		<fastjson2.version>2.0.53</fastjson2.version>
 		<freemarker.version>2.3.33</freemarker.version>
 		<jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
+		<jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
 		<junit-jupiter.version>5.11.0</junit-jupiter.version>
 		<lombok.version>1.18.34</lombok.version>
 		<slf4j.version>2.0.16</slf4j.version>
-		<spring.version>6.1.0</spring.version>
+		<spring.version>6.1.8</spring.version>
 		<hitool.version>1.0.2.RELEASE</hitool.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
 	</properties>
@@ -442,31 +442,42 @@
 				<artifactId>commons-codec</artifactId>
 				<version>${commons-codec.version}</version>
 			</dependency>
-			<!-- apache 上传组件 -->
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-core -->
 			<dependency>
-				<groupId>commons-fileupload</groupId>
-				<artifactId>commons-fileupload</artifactId>
-				<version>${commons-fileupload.version}</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-fileupload2-core</artifactId>
+				<version>${commons-fileupload2.version}</version>
 			</dependency>
-			<!-- O'Reilly公司的Java HTTP文件上传组件，简单实用，做的非常好。 -->
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta -->
 			<dependency>
-			    <groupId>com.jfinal</groupId>
-			    <artifactId>cos</artifactId>
-			    <version>${cos.version}</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-fileupload2-jakarta</artifactId>
+				<version>${commons-fileupload2.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta-servlet5 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-fileupload2-jakarta-servlet5</artifactId>
+				<version>${commons-fileupload2.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta-servlet6 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
+				<version>${commons-fileupload2.version}</version>
 			</dependency>
 
-			<!-- Java Servlet API -->
+			<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 			<dependency>
 				<groupId>jakarta.servlet</groupId>
 				<artifactId>jakarta.servlet-api</artifactId>
 				<version>${jakarta.servlet-api.version}</version>
 			</dependency>
-
-			<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+			<!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
 			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>${validation-api.version}</version>
+				<groupId>jakarta.validation</groupId>
+				<artifactId>jakarta.validation-api</artifactId>
+				<version>${jakarta.validation-api.version}</version>
 			</dependency>
 
 			<!-- FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出 -->
@@ -637,8 +648,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Commons项目中用来处理IO的一些工具类包 -->
@@ -656,16 +668,15 @@
 			<artifactId>hitool-core</artifactId>
 		</dependency>
 		
-		<!-- apache 上传组件 -->
+		<!-- Apache 上传组件 -->
 		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-fileupload2-jakarta</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- O'Reilly公司的Java HTTP文件上传组件，简单实用，做的非常好。 -->
 		<dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>cos</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		

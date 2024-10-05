@@ -15,9 +15,8 @@
  */
 package org.springframework.biz.factory;
 
-import org.springframework.beans.factory.FactoryBean;
-
 import hitool.core.lang3.uid.Sequence;
+import org.springframework.beans.factory.FactoryBean;
 
 public class EnhancedSequenceFactory extends EnhancedBeanFactory implements FactoryBean<Sequence> {
 

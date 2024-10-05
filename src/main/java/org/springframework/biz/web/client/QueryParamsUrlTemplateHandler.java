@@ -1,13 +1,13 @@
 package org.springframework.biz.web.client;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Map;
-
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriTemplateHandler;
 import org.springframework.web.util.UriUtils;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Map;
 
 public class QueryParamsUrlTemplateHandler implements UriTemplateHandler {
 

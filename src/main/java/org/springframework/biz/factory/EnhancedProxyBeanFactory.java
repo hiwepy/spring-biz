@@ -15,10 +15,10 @@
  */
 package org.springframework.biz.factory;
 
-import java.lang.reflect.Proxy;
-
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.biz.proxy.EnhancedProxy;
+
+import java.lang.reflect.Proxy;
 
 @SuppressWarnings("unchecked")
 public class EnhancedProxyBeanFactory<T> implements FactoryBean<T>{

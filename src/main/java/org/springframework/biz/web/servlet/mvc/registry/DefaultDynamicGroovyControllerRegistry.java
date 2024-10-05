@@ -1,12 +1,12 @@
 package org.springframework.biz.web.servlet.mvc.registry;
 
+import org.springframework.scripting.groovy.GroovyScriptFactory;
+import org.springframework.scripting.support.ResourceScriptSource;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.scripting.groovy.GroovyScriptFactory;
-import org.springframework.scripting.support.ResourceScriptSource;
 
 public class DefaultDynamicGroovyControllerRegistry extends DefaultDynamicControllerRegistry
 		implements DynamicGroovyControllerRegistry {

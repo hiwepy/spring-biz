@@ -1,12 +1,12 @@
 package org.springframework.biz.utils;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.biz.context.NestedMessageSource;
 import org.springframework.biz.factory.EnhancedBeanFactory;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.NoSuchMessageException;
+
+import java.util.Locale;
 
 public class MessageSourceHolder extends EnhancedBeanFactory {
 
