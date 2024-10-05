@@ -1,10 +1,11 @@
 package org.springframework.biz.web.servlet.support;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.biz.web.servlet.ModuleDispatcherServlet;
 import org.springframework.biz.web.servlet.ModuleResolver;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 public abstract class RequestContextUtils extends org.springframework.web.servlet.support.RequestContextUtils {
 

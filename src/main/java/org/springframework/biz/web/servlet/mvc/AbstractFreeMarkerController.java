@@ -1,14 +1,14 @@
 package org.springframework.biz.web.servlet.mvc;
 
 import freemarker.template.TemplateException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.biz.web.servlet.view.freemarker.FreeMarker;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;

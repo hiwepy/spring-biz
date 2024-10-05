@@ -1,13 +1,12 @@
 package org.springframework.biz.listener;
 
 import hitool.core.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.biz.utils.SpringPropertiesUtils;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * 
@@ -20,10 +19,10 @@ import jakarta.servlet.ServletContextListener;
  * </ul>
  * 
  */
+@Slf4j
 public class PropertiesResourceInitializedListener implements ServletContextListener {
 
-	protected static Logger LOG = LoggerFactory.getLogger(PropertiesResourceInitializedListener.class);
-	
+	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext context = event.getServletContext();
 		String location = context.getInitParameter("location");
@@ -31,10 +30,11 @@ public class PropertiesResourceInitializedListener implements ServletContextList
 		if(!StringUtils.isEmpty(location)){
 			SpringPropertiesUtils.initProperties(location,StringUtils.getSafeStr(encoding,"utf-8"));
 		}else{
-			LOG.warn("location is null !");
+			log.warn("location is null !");
 		}
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 	}
 	

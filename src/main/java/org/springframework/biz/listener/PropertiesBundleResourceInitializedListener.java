@@ -1,13 +1,12 @@
 package org.springframework.biz.listener;
 
 import hitool.core.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.biz.utils.SpringPropertiesBundleUtils;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * 
@@ -19,10 +18,10 @@ import jakarta.servlet.ServletContextListener;
  *    <li>3、或单一路径，如："file:C:/test.dat"、"classpath:test.dat"、"WEB-INF/test.dat"
  * </ul>
  */
+@Slf4j
 public class PropertiesBundleResourceInitializedListener implements ServletContextListener {
 
-	protected static Logger LOG = LoggerFactory.getLogger(PropertiesBundleResourceInitializedListener.class);
-	
+	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		ServletContext context = event.getServletContext();
 		String location = context.getInitParameter("location");
@@ -30,10 +29,11 @@ public class PropertiesBundleResourceInitializedListener implements ServletConte
 		if(!StringUtils.isEmpty(location)){
 			SpringPropertiesBundleUtils.initProperties(location, StringUtils.getSafeStr(encoding,"utf-8"));
 		}else{
-			LOG.warn("location is null !");
+			log.warn("location is null !");
 		}
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 	}
 	

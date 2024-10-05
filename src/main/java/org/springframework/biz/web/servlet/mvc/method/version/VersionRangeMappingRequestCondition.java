@@ -15,12 +15,12 @@
  */
 package org.springframework.biz.web.servlet.mvc.method.version;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.condition.AbstractRequestCondition;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,13 +1,13 @@
 /**package org.springframework.biz.web.multipart.commons;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import java.util.List;

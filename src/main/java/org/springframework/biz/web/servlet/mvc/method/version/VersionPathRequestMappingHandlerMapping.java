@@ -15,10 +15,11 @@
  */
 package org.springframework.biz.web.servlet.mvc.method.version;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
 import org.springframework.biz.web.servlet.mvc.method.annotation.HyperRequestMappingHandlerMapping;
 import org.springframework.web.method.HandlerMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * 参考： http://www.itkeyword.com/doc/1092001740570865187/how-to-manage-rest-api-versioning-with-spring

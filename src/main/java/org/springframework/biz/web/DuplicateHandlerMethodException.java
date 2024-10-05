@@ -17,7 +17,7 @@ package org.springframework.biz.web;
 
 import org.springframework.web.method.HandlerMethod;
 
-import jakarta.servlet.ServletException;
+import javax.servlet.ServletException;
 import java.util.List;
 
 @SuppressWarnings("serial")

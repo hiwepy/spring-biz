@@ -1,11 +1,11 @@
 package org.springframework.biz.web.servlet;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 public class ModuleDispatcherServlet extends DispatcherServlet {

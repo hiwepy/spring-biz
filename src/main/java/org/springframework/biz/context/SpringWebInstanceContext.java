@@ -19,7 +19,8 @@ import org.springframework.biz.utils.SpringContextUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import jakarta.servlet.ServletContext;
+import javax.servlet.ServletContext;
+
 /**
  * WebApplicationContext上下文实例;根据ServletContext初始化的实例
  */

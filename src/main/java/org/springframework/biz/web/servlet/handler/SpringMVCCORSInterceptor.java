@@ -1,10 +1,10 @@
 package org.springframework.biz.web.servlet.handler;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.context.request.WebRequestInterceptor;
 import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 为你的REST API添加CORS支持

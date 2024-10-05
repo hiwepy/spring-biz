@@ -1,6 +1,5 @@
 package org.springframework.biz.web.servlet.mvc.method.annotation;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.biz.config.Ini;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
@@ -8,6 +7,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

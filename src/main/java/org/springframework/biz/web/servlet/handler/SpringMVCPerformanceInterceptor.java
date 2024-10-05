@@ -2,7 +2,6 @@ package org.springframework.biz.web.servlet.handler;
 
 import hitool.core.lang3.time.DateUtils;
 import hitool.core.lang3.uid.SystemClock;
-import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -14,10 +13,10 @@ import org.springframework.web.context.request.WebRequestInterceptor;
 import org.springframework.web.context.support.RequestHandledEvent;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 import org.springframework.web.servlet.ModelAndView;
-
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.WebRequestHandlerInterceptorAdapter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 
 public class SpringMVCPerformanceInterceptor extends WebRequestHandlerInterceptorAdapter implements ApplicationEventPublisherAware, InitializingBean {

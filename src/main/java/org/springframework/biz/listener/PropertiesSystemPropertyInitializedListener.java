@@ -1,16 +1,15 @@
 package org.springframework.biz.listener;
 
 import hitool.core.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.biz.utils.SpringResourceUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
@@ -27,29 +26,30 @@ import java.util.Properties;
  * </ul>
  * 
  */
+@Slf4j
 public class PropertiesSystemPropertyInitializedListener implements ServletContextListener {
 
-	protected static Logger LOG = LoggerFactory.getLogger(PropertiesSystemPropertyInitializedListener.class);
 	public static final String location = "classpath*:**/*runtime*.properties";
 
+	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		LOG.info("System init begain ...... ");
+		log.info("System init begain ...... ");
 		try {
 			ServletContext context = event.getServletContext();
 			String encoding = context.getInitParameter("encoding");
 			if (!StringUtils.isEmpty(location)) {
 				try {
-					LOG.info("Loading file from [" + location + "] !");
+					log.info("Loading file from [" + location + "] !");
 					Properties properties = new Properties();
 					Resource[] resources = SpringResourceUtils.getRuntimeProperties();
 					for (Resource resource : resources) {
 						try {
-							LOG.info("Loading file [" + resource.getFile().getName() + "] !");
+							log.info("Loading file [" + resource.getFile().getName() + "] !");
 							// 加载Properties对象
 							PropertiesLoaderUtils.fillProperties(properties,
 									new EncodedResource(resource, StringUtils.getSafeStr(encoding, "utf-8")));
 						} catch (IOException ex) {
-							LOG.warn("Could not load file from " + resource.getFilename() + ": " + ex.getMessage());
+							log.warn("Could not load file from " + resource.getFilename() + ": " + ex.getMessage());
 						}
 					}
 					// 将初始化参数设置到java.lang.System 对象
@@ -57,23 +57,24 @@ public class PropertiesSystemPropertyInitializedListener implements ServletConte
 					properties.clear();
 					properties = null;
 					resources = null;
-					LOG.info("Loading [" + location + "] finished !");
+					log.info("Loading [" + location + "] finished !");
 				} catch (Exception ex) {
-					LOG.error("Loading [" + location + "] error : " + ex.getMessage());
+					log.error("Loading [" + location + "] error : " + ex.getMessage());
 				}
 			}
 			String realPath = event.getServletContext().getRealPath(File.separator);
 			if (!realPath.endsWith(System.getProperty("file.separator"))) {
 				realPath += System.getProperty("file.separator");
 			}
-			LOG.info("[web_root]:" + realPath);
+			log.info("[web_root]:" + realPath);
 			System.setProperty("web_root", realPath);
 		} catch (Exception e) {
-			LOG.error("System init error .", e.getCause());
+			log.error("System init error .", e.getCause());
 		}
-		LOG.info("System init succsess.");
+		log.info("System init succsess.");
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 
 	}

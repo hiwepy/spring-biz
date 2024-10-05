@@ -1,27 +1,27 @@
 package org.springframework.biz.listener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.biz.context.SpringWebInstanceContext;
 
-import jakarta.servlet.ServletContextEvent;
-import jakarta.servlet.ServletContextListener;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * Spring 自定义上下文初始化监听
  */
+@Slf4j
 public class SpringContextInitializedListener implements ServletContextListener {
 
-	protected static Logger LOG = LoggerFactory.getLogger(SpringContextInitializedListener.class);
-	
+	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		LOG.info(" SpringContext initialize start ... ");
+		log.info(" SpringContext initialize start ... ");
 		SpringWebInstanceContext.initialInstanceContext(event.getServletContext());
-		LOG.info("SpringContext initialized.");
+		log.info("SpringContext initialized.");
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent event) {
-		LOG.info("SpringContext destroyed .");
+		log.info("SpringContext destroyed .");
 	}
 	
 }

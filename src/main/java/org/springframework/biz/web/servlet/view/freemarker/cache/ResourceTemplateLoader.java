@@ -1,9 +1,9 @@
 package org.springframework.biz.web.servlet.view.freemarker.cache;
 
 import freemarker.cache.URLTemplateLoader;
-import jakarta.servlet.http.HttpServletRequest;
 import org.xml.sax.InputSource;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;

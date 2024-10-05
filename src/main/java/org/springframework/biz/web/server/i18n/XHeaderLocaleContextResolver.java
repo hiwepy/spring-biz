@@ -129,7 +129,7 @@ public class XHeaderLocaleContextResolver implements LocaleContextResolver {
 	 * @param exchange the exchange to resolve the locale for
 	 * @return the default locale (never {@code null})
 	 * @see #setDefaultLocale
-	 * @see jakarta.servlet.http.HttpServletRequest#getLocale()
+	 * @see javax.servlet.http.HttpServletRequest#getLocale()
 	 */
 	protected Locale determineDefaultLocale(ServerWebExchange exchange) {
 		List<Locale> requestLocales = null;
