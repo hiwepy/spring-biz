@@ -169,7 +169,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * @return true if the passed object is equivalent annotation instance, 
      * false otherwise. 
      * @see org.apache.harmony.lang.annotation.AnnotationMember#equals(Object) 
-     */  
+     */
+    @Override
     public boolean equals(Object obj) {  
         if (obj == this) {  
             return true;  
@@ -204,14 +205,12 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
                 }  
                 try {  
                     if (!el.definingMethod.isAccessible()) {  
-                        AccessController.doPrivileged(new PrivilegedAction<Object>(){  
-                            public Object run() {  
-                                try {  
-                                    el.definingMethod.setAccessible(true);  
-                                } catch (Exception ignore) {}  
-                                return null;  
-                            }  
-                        });  
+                        AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
+                            try {
+                                el.definingMethod.setAccessible(true);
+                            } catch (Exception ignore) {}
+                            return null;
+                        });
                     }  
                     Object otherValue = el.definingMethod.invoke(obj);  
                     if (otherValue != null ) {  
@@ -240,7 +239,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * including elements with default values. 
      * @see org.apache.harmony.lang.annotation.AnnotationMember#hashCode() 
      * @return hashCode
-     */  
+     */
+    @Override
     public int hashCode() {  
         int hash = 0;  
         for (AnnotationMember element : elements) {  
@@ -253,7 +253,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * Provides detailed description of this annotation instance, 
      * including all member name-values pairs. 
      * @return string representation of this annotation 
-     */  
+     */
+    @Override
     public String toString() {  
         String res = "@" + klazz.getName() + "(";  
         for(int i = 0; i < elements.length; i++) {  
@@ -277,7 +278,8 @@ public final class AnnotationFactory implements InvocationHandler, Serializable 
      * @param args The Proxy Method Args
      * @throws IllegalArgumentException If the specified method is none of the above 
      * @return the invocation result 
-     */  
+     */
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable  
     {  
         String name = method.getName();  
